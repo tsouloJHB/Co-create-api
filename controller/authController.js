@@ -1,28 +1,18 @@
-const jwt = require('jsonwebtoken');
-
-
-//create token
-const maxAge = 3 * 24 * 60 * 60;
-const createToken = (id)=>{
-    return jwt.sign({id},'auth secret',{
-        expiresIn:maxAge,
-    });
-}
+const generateToken = require{'../utils/generateToken.js'};
+const User = require("../modules/user");
 
 module.exports.login_post = async (req,res)=>{
     const {email,password} = req.body;
    
     try{
-        if(email == "james@gmail.com" && password == "1234567"){
-            
-            const token = createToken("343242343");
-            res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge * 1000});
-            res.status(200).json({user:"123456"});
-          }
-        
+        const user = await User.login(email,password);
+        const token = generateToken(user._id);
+        res.cookie('jwt',token,{httpOnly:true,'3d'});
+        res.status(200).json({user:user._id});
     }catch (err){
         console.log(err)
-       // res.status(400).json({"error":""});
+        res.status(400).json({"error":""});
     }
+  
     
 }

@@ -17,6 +17,10 @@ describe('User Auth', ()=>{
         expect(res.statusCode).toBe(200);
         console.log(res.headers);
         expect(res.headers["set-cookie"]).toBeDefined();
+        expect(res.headers["set-cookie"]).toEqual(expect.objectContaining([
+            expect.any(String)
+        ]));
+       
         expect(res.body).toEqual(
             expect.objectContaining({
                 user:expect.any(String)
@@ -24,11 +28,11 @@ describe('User Auth', ()=>{
         );
     });
     it('POST Empty password login failure /api/users/login', async ()=>{
-        const {body,statusCode} = await request(app).post('/api/login').send({
+        const res = await request(app).post('/api/users/login').send({
             email:'james@gmail.com',
-            password: ''
+            password: '123'
         });
-        expect(statusCode).toBe(400);
+        expect(res.statusCode).toBe(400);
     });
 
     it('POST Incorrect email syntax login /api/users/login', async ()=>{
