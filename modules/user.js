@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 const {isEmail} = require('validator');
 const bcrypt = require('bcrypt');
 
@@ -11,53 +11,60 @@ const userSchema = new mongoose.Schema({
         Validate:[isEmail,"Please enter valid email"]     
     },
     password:{
-        type:string,
+        type:String,
         required:[true,"Please enter password"],
         minlength:[6,"Minimum password length is 6 characters"]
     },
     name:{
-        type:string,
+        type:String,
+        required:[true,"Please enter a name"],
         max:50
     },
     surname:{
-        type:string,
+        type:String,
         max:50
     },
     city:{
-        type:string,
+        type:String,
         max:50
     },
     country:{
-        type:string,
+        type:String,
         max:50
     },
     occupation:{
-        type:string,
+        type:String,
         max:50
     },
     cell:{
-        type:integer,
+        type:String,
+        max:11
+    },
+    countryCode:{
+        type:String,
         max:11
     },
     skills:{
-        type:string,
+        type:String,
         max:100
     },
     desc: {
-        type: String,
+        type:String,
         max: 100,
-      },
+    },
     isAdmin: {
         type: Boolean,
         required: true,
         default: false,
-      },
-    { timestamps: true }   
+    },
     
-});
+    
+},
+{ timestamps: true }  
+);
 
 userSchema.pre('save', async function(next){
-    const salt = await bcrypt().genSalt();
+    const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password,salt);
     next();
 });
