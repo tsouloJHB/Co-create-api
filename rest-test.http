@@ -9,10 +9,22 @@ Content-Type: application/json
 
 ###
 
-put http://localhost:8080/api/users/update/3545
+put http://localhost:8080/api/users/update/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MTMyNDUwOCwiZXhwIjoxNjcxMzI0NTI4fQ.wdjXld4vLmcuEOcvclMz7mTfldagWhNUCMjDq-RyU_8
+
+{   
+    "userId":"639a8205e3cb2b41c7ea835a",
+    "name":"mandela",
+    "surname":"nelson"
+}
+
+###
+
+post http://localhost:8080/api/users/refresh-token
 Content-Type: application/json
 
-{
-    "email":"james@gmail.com",
-    "password":"1234567"
+{   
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MTMyMzEyOCwiZXhwIjoxNjcxNTgyMzI4fQ.d_H2q8mmaX0_lwHD0lexxI41BYbz1mUpM_3PW5yClRw"
+   
 }

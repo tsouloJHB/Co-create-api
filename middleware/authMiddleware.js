@@ -3,23 +3,23 @@ const createError = require('http-errors')
 
 
 const protect = (req,res,next) =>{
-    // let token;
-    // if (
-    //     req.headers.authorization &&
-    //     req.headers.authorization.startsWith('Bearer')
-    //   ) {
-    //     next();
-    //   }
-    if(!req.headers['authorization']) {
+   //check for cookie as well
+    if(!req.headers['authorization'] ) {
         return res.status(401).send("Access denied.");
     }
+    // check for cookie
+
+
     if (
         req.headers.authorization &&
         req.headers.authorization.startsWith('Bearer')
+       
       ) {
         try {
           token = req.headers.authorization.split(' ')[1];
-    
+
+          //get value from cookie
+
           const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
          
@@ -29,7 +29,7 @@ const protect = (req,res,next) =>{
         }
       }
    
-
+       //check for cookie as well
     
    
 }
