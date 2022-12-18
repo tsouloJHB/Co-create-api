@@ -121,7 +121,7 @@ module.exports.refreshToken = async(req,res,)=>{
         const token = await createToken(userId.id);
         console.log(userId.id);
         const refreshTokenNew = await createRefreshToken (userId.id);
-        res.status(201).json({token,refreshToken});
+        res.status(201).json({token,refreshTokenNew});
        
     }catch(err){
         res.status(401).json("error");
