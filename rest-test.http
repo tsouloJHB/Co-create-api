@@ -9,14 +9,22 @@ Content-Type: application/json
 
 ###
 
+get http://localhost:8080/api/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NDI1NCwiZXhwIjoxNjcyMDkxNDU0fQ.ukgcBWB6AcI1OJgFLyCWU3xK-8GWsgk2w_PA63Jb2Mw
+
+
+
+###
+
 put http://localhost:8080/api/users/update/639a8205e3cb2b41c7ea835a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MTMyNDUwOCwiZXhwIjoxNjcxMzI0NTI4fQ.wdjXld4vLmcuEOcvclMz7mTfldagWhNUCMjDq-RyU_8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA1NTc1MSwiZXhwIjoxNjcyMDYyOTUxfQ.N8xxIFPtO3qoYplxz9zj-bX3jQz7hlbw7QxGDwxRhLY
 
 {   
     "userId":"639a8205e3cb2b41c7ea835a",
-    "name":"mandela",
-    "surname":"nelson"
+    "city":"soweto",
+    "country":"South Africa"
 }
 
 ###
@@ -25,6 +33,101 @@ post http://localhost:8080/api/users/refresh-token
 Content-Type: application/json
 
 {   
-    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MTMyMzEyOCwiZXhwIjoxNjcxNTgyMzI4fQ.d_H2q8mmaX0_lwHD0lexxI41BYbz1mUpM_3PW5yClRw"
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA3NTg1NiwiZXhwIjoxNjcyMzM1MDU2fQ.Ren0qgxEtWYGdOR8EIQHbR2WY1GwFUr1_pV9voNfuZ8"
    
+}   
+
+###
+get  http://localhost:8080/api/users/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NDI1NCwiZXhwIjoxNjcyMDkxNDU0fQ.ukgcBWB6AcI1OJgFLyCWU3xK-8GWsgk2w_PA63Jb2Mw
+
+
+###
+post http://localhost:8080/api/posts/createpost
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NjgzNywiZXhwIjoxNjcyMDk0MDM3fQ.9Zg-hCmWfF9Xp9ZRoJhUSEzfNWUxGbfRpD6vVCyQkIU
+
+{
+    "userId":"639a8205e3cb2b41c7ea835a",
+    "desc":"This some post",
+    "img":""
+}
+###
+get  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+###
+get http://localhost:8080/api/posts/all
+Content-Type: application/json'
+
+### 
+get  http://localhost:8080/api/posts/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+###
+
+put  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+{
+ 
+    "desc":"Belive in the word of god"
+    
+}
+
+###
+delete  http://localhost:8080/api/posts/63aa05650121c03496f2f7bd
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+
+
+###
+post http://localhost:8080/api/users/signup
+Content-Type: application/json
+
+{
+    "email":"nolan@gmail.com",
+    "name":"nolan",
+    "password":"1234567"
+}
+
+###
+put  http://localhost:8080/api/users/changepassword 
+Content-Type: application/json
+
+{
+    "email":"jeff@gmail.com",
+    "password":"1234567"
+}
+
+###
+post http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+
+
+###
+get http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+
+###
+delete http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+
+###
+put http://localhost:8080/api/join/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+
+{
+    "postId":"63aa06c650dbe6ba10e81f6c",
+    "joinId":"63ace6896b1061a16d36fdab",
+    "status":"Accept"
 }

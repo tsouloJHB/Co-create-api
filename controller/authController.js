@@ -1,37 +1,14 @@
-const {createToken,createRefreshToken,verifyRefreshToken} = require('../utils/generateToken.js');
-const User = require("../modules/user");
-const RefreshTokenModel = require('../modules/refreshToken.model');
-const bcrypt = require("bcrypt");
-const { verify } = require('jsonwebtoken');
+const {createToken,createRefreshToken,verifyRefreshToken,saveDeleteRefreshToken} = require('../utils/tokenUtil');
+const User = require("../models/user");
+const setCookies = require('../utils/cookieUtil');
+const handleErrors = require('../utils/errors.js');
+const RefreshToken = require('../models/refreshToken.model');
 
-const maxAge = 3 * 24 * 60 * 60;
-const handleErrors = (err) =>{
-    let errors = {"email":"","password":""};
-     //incorrect email
-     if(err.message === 'Incorrect email'){
-        errors.email = 'Incorrect email';
-    }
 
-    //incorrect password
-    if(err.message === 'Incorrect password'){
-        errors.password = 'Incorrect password';
-    }
 
-    //duplicate error code
-    if(err.code === 11000){
-        errors.email = "That email is already registered";
-        return errors;
-    }
-     //validation error
-     if(err.message.includes('user validation failed')){
-        Object.values(err.errors).forEach(({properties}) =>{
-            errors[properties.path] = properties.message;
-        });
-    }
-    return errors;
-}
-
-//POST login
+//@desc     POST User Profile
+//@route    POST api/users/users/
+//@access   Public
 module.exports.login_post = async (req,res)=>{
     const {email,password} = req.body;
    
@@ -39,23 +16,15 @@ module.exports.login_post = async (req,res)=>{
         const user = await User.login(email,password);
         const token = createToken(user._id);
         const RefreshToken = createRefreshToken(user._id);
-
         //save refresh token to database
-        const refreshTokenDoc = RefreshTokenModel({
-            owner: user._id
-        });
-    
-        await refreshTokenDoc.save();
-
-        res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge});
+        await saveDeleteRefreshToken(user.id);
+        res = setCookies(res,token,RefreshToken);
         res.status(200).json({user:user._id,'token':token,'refreshToken':RefreshToken});
     }catch (err){
         const errors = handleErrors(err);
         console.log(err);
         res.status(401).json({errors});
     }
-  
-    
 }
 
 
@@ -68,11 +37,12 @@ module.exports.sign_up = async (req,res)=>{
         const user = await User.create({email,password,name});
         const token = await createToken(user._id);
         const RefreshToken = await createRefreshToken(user._id);
-
-        res.cookie('jwt',token, {httpOnly: true, maxAge: maxAge * 1000});
-        res.status(201).json({'user': user._id,'token':token,'refreshToken':RefreshToken});
+        saveDeleteRefreshToken(user._id);
+        res = setCookies(res,token,RefreshToken);
+        res.status(201).json({'user': user._id,'accessToken':token,'refreshToken':RefreshToken});
     }catch(err){
         const errors = handleErrors(err);
+        console.log(err);
         res.status(400).json({errors});
     }  
 
@@ -83,15 +53,12 @@ module.exports.sign_up = async (req,res)=>{
 //@route    PUT api/users/users/:id
 //@access   Private
 module.exports.update_user = async (req,res)=>{
-    // res.status(201).json({'user': '2334435'});
+ 
     if(req.body.userId === req.params.id){
         try{
             const user = await User.findByIdAndUpdate(req.params.id,{
                 $set:req.body,
             });
-            const salt = await bcrypt.genSalt();
-            const password = await bcrypt.hash("1234567",salt);
-            console.log(password);
             res.status(201).json("Account has been updated");
         }catch(err){
             return res.status(500).json(err);
@@ -102,7 +69,9 @@ module.exports.update_user = async (req,res)=>{
 }
 
 
-//Refresh token
+//@desc     Refresh token
+//@route    POST api/users/users/
+//@access   Public
 module.exports.refreshToken = async(req,res,)=>{
     try{
         const {refreshToken} = req.body;
@@ -110,17 +79,12 @@ module.exports.refreshToken = async(req,res,)=>{
         const userId  = await verifyRefreshToken(refreshToken);
         if(!userId.id) return res.status(400).json('Bad request');
         //create refresh token model
-        const refreshTokenDoc = RefreshTokenModel({
-            owner:userId.id
-        });
-        await refreshTokenDoc.save();
-        await RefreshTokenModel.deleteOne({
-            _id:userId.id
-        });
-
+        saveDeleteRefreshToken(userId.id);
+        
         const token = await createToken(userId.id);
-        console.log(userId.id);
-        const refreshTokenNew = await createRefreshToken (userId.id);
+        const refreshTokenNew = await createRefreshToken(userId.id);
+
+        res = setCookies(res,token,refreshTokenNew);
         res.status(201).json({token,refreshTokenNew});
        
     }catch(err){
@@ -128,4 +92,57 @@ module.exports.refreshToken = async(req,res,)=>{
     }    
 }
 
-//GET User
+
+//@desc     GET user Profile
+//@route    GET api/users/users/:id
+//@access   Private
+module.exports.get_user = async(req,res) =>{
+  
+    if(req.params.id == req.id.id){
+        const user = await User.findById(req.id.id);
+        const { password, isAdmin,createdAt,updatedAt,__v, ...other } = user._doc;
+        // const user = User.findById(req.id.id);
+        res.status(200).json(other);
+    }else{
+        res.status(403).json("Unknown user");
+    }
+}
+
+//@desc     Log user out
+//@route    GET api/users/users/
+//@access   Private
+module.exports.logout = async(req,res) =>{
+    const user = await User.findById(req.id.id);
+ 
+  try {
+     res.cookie('jwt', '',{maxAge:1});
+      await RefreshToken.deleteMany({owner:user});
+      //destroy token ?
+      res.status(200).json('User logged out');
+  } catch (error) {
+    res.status(401).json('User not found');
+  }
+   
+   
+}
+
+//@desc     Change password
+//@route    GET api/users/users/
+//@access   Public
+module.exports.change_password = async(req,res) =>{
+  const user = await User.find({email:req.body.email}); 
+  if(!user){
+    res.status(401).json('Email not found');
+  }
+  try {
+      const user1 = await User.findOneAndUpdate({email:req.body.email},{$set:req.body.password});
+      console.log(user1);
+      res.status(201).json('Password updated');
+  } catch (error) {
+    const errors = handleErrors(error);
+    console.log(error);
+    res.status(401).json({errors});
+  }
+   
+   
+}
