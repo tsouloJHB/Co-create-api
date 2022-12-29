@@ -1,5 +1,7 @@
+const { response } = require('../app');
 const Join = require('../models/join');
 const Post = require('../models/Post');
+const User = require('../models/user');
 
 
 //@desc     Request join project
@@ -84,12 +86,26 @@ module.exports.get_join_requests  = async(req,res)  =>{
         //check if post exits 
       
         const findPost = await Post.find({postId:req.params.id,userId:req.id.id});
-        
+       
         if(findPost){
             
             const join = await Join.find({postId:req.params.id});
-            console.log(join); 
-            res.status(200).json(join);
+           
+            
+            var resp = [];
+            var object = {};
+            join.forEach(async el => {
+                var user = await User.findById(el.userId);
+        
+                 obj  = {
+                    joinId:el.userId,
+                    name:user.name,
+                }
+                resp.push(obj);    
+                console.log(resp);
+            }); 
+           
+            res.status(200).json(resp);
         }else{
             res.status(400).json("Post not found"); 
         }
