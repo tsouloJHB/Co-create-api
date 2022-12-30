@@ -70,11 +70,19 @@ module.exports.join_response = async(req,res) =>{
         if(getPost){
             
             if(findJoin){
+                //check if user is already accepted for the project
                 const join = await Join.findByIdAndUpdate(req.body.joinId,{status:req.body.status});
                 const respond = 'Request was: ' +req.body.status+"ed";
                 //update project and add user to project
-                await addAcceptedUserToProject(req.body.status,join.userId,req.body.postId,req.id.id);
-                res.status(201).json(respond);
+                const acceptJoin = await addAcceptedUserToProject(req.body.status,join.userId,req.body.postId,req.id.id);
+                if(acceptJoin.response){
+                    res.status(201).json(respond);
+                }else{
+                    //revert join
+                    await Join.findByIdAndUpdate(req.body.joinId,{status:"Rejected"});
+                    res.status(400).json(acceptJoin.message);
+                }
+               
             }else{
                 res.status(400).json("Join request not found");
             }
@@ -101,21 +109,7 @@ module.exports.get_join_requests  = async(req,res)  =>{
         if(findPost){
             
             const join = await Join.find({postId:req.params.id});
-           
-            
-            var resp = [];
             var obj = {};
-            // join.forEach(async el => {
-            //     var user = await User.findById(el.userId);
-        
-            //      obj  = {
-            //         joinId:el.userId,
-            //         name:user.name,
-            //     }
-            //     resp.push(obj);    
-            //     console.log(resp);
-            // }); 
-
             const joinRequest = await Promise.all(
                 join.map(async (el) => {
                     var user = await User.findById(el.userId);  
@@ -154,6 +148,8 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
             let membersAmount = findProjectMaxNumber.members.length+1;
             if(membersAmount <= findProjectMaxNumber.maxMembers){
                 //const addProject = await Project.findOneAndUpdate({postId:postId},{ $push: { members: userId } }); 
+                acceptResponse.response = true;
+                return acceptResponse;
             }else{
                 acceptResponse.response = false;
                 acceptResponse.message = 'The project has reached its maximum members';
@@ -169,5 +165,5 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
         }
        
     }
-    return true;
+    return acceptResponse;
 }
