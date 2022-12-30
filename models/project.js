@@ -6,13 +6,21 @@ const ProjectSchema = new mongoose.Schema(
             type: String,
             require:[true,"No project name provided"],
         },
+        userId:{
+            type:String,
+            required:[true,"No user Id provided"],
+        },
+        postId:{
+            type:String,
+            required:[true,"No post Id provided"],
+        },
         dec:{
             type: String,
-            require:[true,"No project description provided"],,
+            require:[true,"No project description provided"],
         },
         status:{
-            type:string,
-            enum: [NotStarted,InProgress, Complete],
+            type:String,
+            enum: ['NotStarted','InProgress', 'Complete'],
             default: "NotStarted",
         },
         members: {
@@ -20,11 +28,11 @@ const ProjectSchema = new mongoose.Schema(
             default: [],
         },
         maxMembers:{
-            type: number,
-            require:[true,"No maximum member provided"],,
+            type: Number,
+            require:[true,"No maximum member provided"],
         },
         currentMembers:{
-            type: number,
+            type: Number,
             default:0,
             
         },

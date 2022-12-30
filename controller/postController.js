@@ -1,6 +1,8 @@
 const Post = require("../models/Post");
 const User = require("../models/user");
+const Project = require('../models/project');
 const createError = require('http-errors');
+
 
 
 
@@ -8,12 +10,24 @@ const createError = require('http-errors');
 //@route    POST api/posts/
 //@access   Private
 module.exports.create_post = async(req,res)=>{
-    const newPost = new Post(req.body);
+    req.body.userId = req.id.id;
+   
     try {
       const savedPost = await Post.create(req.body);
+      //create project
+      console.log(savedPost.id);
+      const newProject = new Project({
+        projectName:req.body.projectName,
+        postId:savedPost.id,
+        userId:req.id.id,
+        dec:req.body.desc,
+        members:[req.id.id],
+        maxMembers:req.body.maxMembers,
+      });
+      await newProject.save();
       res.status(200).json(savedPost);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(400).json(err);
     }
 }
 

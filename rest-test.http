@@ -8,6 +8,18 @@ Content-Type: application/json
 }
 
 ###
+post http://localhost:8080/api/users/signup
+Content-Type: application/json
+
+{
+    "email":"nolan@gmail.com",
+    "name":"nolan",
+    "password":"1234567"
+}
+
+###
+
+
 
 get http://localhost:8080/api/users/logout
 Content-Type: application/json
@@ -17,14 +29,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 
 ###
 
-put http://localhost:8080/api/users/update/639a8205e3cb2b41c7ea835a
+put http://localhost:8080/api/users/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA1NTc1MSwiZXhwIjoxNjcyMDYyOTUxfQ.N8xxIFPtO3qoYplxz9zj-bX3jQz7hlbw7QxGDwxRhLY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZjE3YmYyNDY1OThkMmYxOTgzZiIsImlhdCI6MTY3MjMyOTk2NCwiZXhwIjoxNjcyMzM3MTY0fQ.Ow35hzBhmT67w6apjXdHOQI8om6SurObGDSco1hwHL8
 
 {   
-    "userId":"639a8205e3cb2b41c7ea835a",
-    "city":"soweto",
-    "country":"South Africa"
+
+    "desc":"Im a marine biologist",
+    "occupation":"Biologist"
 }
 
 ###
@@ -40,18 +52,20 @@ Content-Type: application/json
 ###
 get  http://localhost:8080/api/users/639a8205e3cb2b41c7ea835a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NDI1NCwiZXhwIjoxNjcyMDkxNDU0fQ.ukgcBWB6AcI1OJgFLyCWU3xK-8GWsgk2w_PA63Jb2Mw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjMyNDc4NiwiZXhwIjoxNjcyMzMxOTg2fQ.aj_XflktNMqYxxkRe935_3H5y4grETly-MJj6kZ2dbw
 
-
+//create post and project
 ###
-post http://localhost:8080/api/posts/createpost
+post http://localhost:8080/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NjgzNywiZXhwIjoxNjcyMDk0MDM3fQ.9Zg-hCmWfF9Xp9ZRoJhUSEzfNWUxGbfRpD6vVCyQkIU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
 
 {
-    "userId":"639a8205e3cb2b41c7ea835a",
-    "desc":"This some post",
-    "img":""
+   
+    "desc":"Worm holes are unknown",
+    "img":"",
+    "projectName":"Starnight",
+    "maxMembers":"3"
 }
 ###
 get  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
@@ -80,21 +94,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 }
 
 ###
-delete  http://localhost:8080/api/posts/63aa05650121c03496f2f7bd
+delete  http://localhost:8080/api/posts/63adee85d68aa1112e4e1fb7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
 
 
 
-###
-post http://localhost:8080/api/users/signup
-Content-Type: application/json
-
-{
-    "email":"nolan@gmail.com",
-    "name":"nolan",
-    "password":"1234567"
-}
 
 ###
 put  http://localhost:8080/api/users/changepassword 
@@ -108,26 +113,41 @@ Content-Type: application/json
 ###
 post http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjMzMDIwNywiZXhwIjoxNjcyMzM3NDA3fQ.rSqHvkvlwUwGYghErQArM_Zaxz5jEjf6PWKhPMav7Jw
 
 
 ###
 get http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjMyNDc4NiwiZXhwIjoxNjcyMzMxOTg2fQ.aj_XflktNMqYxxkRe935_3H5y4grETly-MJj6kZ2dbw
 
 ###
 delete http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjMzMDIwNywiZXhwIjoxNjcyMzM3NDA3fQ.rSqHvkvlwUwGYghErQArM_Zaxz5jEjf6PWKhPMav7Jw
 
 ###
 put http://localhost:8080/api/join/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI3MDU3OCwiZXhwIjoxNjcyMjc3Nzc4fQ.K65vP4mzA53jt0q14aPcdra4DHOcRj--Q1VfS3eXqPg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjMyNDc4NiwiZXhwIjoxNjcyMzMxOTg2fQ.aj_XflktNMqYxxkRe935_3H5y4grETly-MJj6kZ2dbw
 
 {
     "postId":"63aa06c650dbe6ba10e81f6c",
     "joinId":"63ace6896b1061a16d36fdab",
     "status":"Accept"
 }
+
+//project endpoints
+###
+
+###
+get http://localhost:8080/api/project/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
+
+
+###
+get http://localhost:8080/api/project/all
+Content-Type: application/json
+
+

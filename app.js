@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const joinRouter = require('./routes/join');
 const postRouter = require('./routes/posts');
+const projectRouter = require('./routes/project');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/join',joinRouter);
+app.use('/api/project',projectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
