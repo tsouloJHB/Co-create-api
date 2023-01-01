@@ -5,6 +5,12 @@ const User = require('../models/user');
 const Project = require('../models/project');
 
 
+
+let returnResponse = {
+    response:false,
+    message:"",
+};
+
 //@desc     Request join project
 //@route    POST api/join/
 //@access   Private
@@ -65,12 +71,13 @@ module.exports.delete_join = async(req,res) =>{
 module.exports.join_response = async(req,res) =>{
     try {
         const getPost = await Post.findOne({userId:req.id.id,_id:req.body.postId});
-        const findJoin = await Join.findById(req.body.joinId);
-       
+        const foundJoin = await Join.findById(req.body.joinId);
+        const userInProjectCheck = await checkIfUserExitsInProject(foundJoin.userId,req.id.id,req.body.postId);
         if(getPost){
-            
-            if(findJoin){
+            if(foundJoin && userInProjectCheck.response){
+                //inline if const beverage = age >= 21 ? "Beer" : "Juice";
                 //check if user is already accepted for the project
+
                 const join = await Join.findByIdAndUpdate(req.body.joinId,{status:req.body.status});
                 const respond = 'Request was: ' +req.body.status+"ed";
                 //update project and add user to project
@@ -84,14 +91,16 @@ module.exports.join_response = async(req,res) =>{
                 }
                
             }else{
-                res.status(400).json("Join request not found");
+                const message = userInProjectCheck.message != "" ?  userInProjectCheck.message : "Join request not found";
+                res.status(400).json(message);
             }
         }else{
             res.status(400).json("Post not found"); 
         }
 
     } catch (err) {
-        res.status(400).json(err); 
+
+        res.status(500).json("The Server application encountered an error"); 
     }
 }
 
@@ -106,7 +115,7 @@ module.exports.get_join_requests  = async(req,res)  =>{
       
         const findPost = await Post.find({postId:req.params.id,userId:req.id.id});
        
-        if(findPost){
+        if(findPost ){
             
             const join = await Join.find({postId:req.params.id});
             var obj = {};
@@ -136,10 +145,8 @@ module.exports.get_join_requests  = async(req,res)  =>{
 
 
 const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
-    let acceptResponse = {
-        response:false,
-        message:"Project not updated",
-    };
+    returnResponse.message ="Project not updated";
+   
     if(status == 'Accept'){
         console.log(status); 
         try {
@@ -147,23 +154,59 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
             
             let membersAmount = findProjectMaxNumber.members.length+1;
             if(membersAmount <= findProjectMaxNumber.maxMembers){
-                //const addProject = await Project.findOneAndUpdate({postId:postId},{ $push: { members: userId } }); 
-                acceptResponse.response = true;
-                return acceptResponse;
+                const addProject = await Project.findOneAndUpdate({postId:postId},{ $push: { members: userId },currentMembers:membersAmount });
+                await Join.findByIdAndDelete(req.body.joinId);
+                if(membersAmount == findProjectMaxNumber.maxMembers){
+                    await Project.findOneAndUpdate({postId:postId},{status:"InProgress"});
+                  
+                }
+                returnResponse.response = true;
+                return returnResponse;
             }else{
-                acceptResponse.response = false;
-                acceptResponse.message = 'The project has reached its maximum members';
-                return acceptResponse;
+                returnResponse.response = false;
+                returnResponse.message = 'The project has reached its maximum members';
+                return returnResponse;
             }
             
             //update join status
         } catch (err) {
             console.log(err);
-            acceptResponse.message = err;
-            acceptResponse.message = false;
-            return acceptResponse;
+            returnResponse.message = err;
+            returnResponse.message = false;
+            return returnResponse;
         }
        
     }
-    return acceptResponse;
+    return returnResponse;
 }
+
+//check if user is already a member of a project
+const checkIfUserExitsInProject = async(userId,projectUserId,postId) =>{
+    const project = await Project.findOne({postId:postId,userId:projectUserId});
+    if(project.members.includes(userId)){
+        returnResponse.response = false;
+        returnResponse.message = "User has already joined the project";
+        return returnResponse;
+    }
+    returnResponse.response = true;
+    return returnResponse;   
+}
+
+//delete all joins
+module.exports.delete_all_joins = async(postId) =>{
+    try {
+        const findJoin = await Join.find({postId:postId});
+        if(findJoin.length > 0){
+            const joinRemove = await Promise.all(
+                findJoin.map(async (el) => {
+                    await Join.findByIdAndDelete(el.id);
+                })
+              );
+              return true;
+        }
+    } catch (err) {
+        return false
+    }
+    return false;
+}
+

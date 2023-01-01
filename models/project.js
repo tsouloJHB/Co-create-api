@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema(
             type:String,
             required:[true,"No post Id provided"],
         },
-        dec:{
+        desc:{
             type: String,
             require:[true,"No project description provided"],
         },

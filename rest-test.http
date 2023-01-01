@@ -58,14 +58,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 ###
 post http://localhost:8080/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQ0OTI1MiwiZXhwIjoxNjcyNDU2NDUyfQ.7PELIHh7s2hSI9seiJAE1908SkdXsI3dg6dbbd1oNFI
 
 {
    
-    "desc":"Worm holes are unknown",
+    "desc":"Sound is an individual perception",
     "img":"",
-    "projectName":"Starnight",
-    "maxMembers":"3"
+    "projectName":"The colours of might",
+    "maxMembers":"2"
 }
 ###
 get  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
@@ -79,7 +79,7 @@ Content-Type: application/json'
 ### 
 get  http://localhost:8080/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjQyNTkyNSwiZXhwIjoxNjcyNDMzMTI1fQ.bmNyPxkWRZAr8lmZsJf-_qikgHqxDJp4ixDdM4QPNeY
 
 ###
 
@@ -94,9 +94,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 }
 
 ###
-delete  http://localhost:8080/api/posts/63adee85d68aa1112e4e1fb7
+delete  http://localhost:8080/api/posts/63af64a17abf62df9ef69ef7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQzODg4NSwiZXhwIjoxNjcyNDQ2MDg1fQ._B5Bwhgfr1SHkFJPb8hEnGY3B_RlThEi5VOwOM4-Zv4
 
 
 
@@ -111,29 +111,30 @@ Content-Type: application/json
 }
 
 ###
-post http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+post http://localhost:8080/api/join/63af95b4728c0ed2f6d8c708
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjMzMDIwNywiZXhwIjoxNjcyMzM3NDA3fQ.rSqHvkvlwUwGYghErQArM_Zaxz5jEjf6PWKhPMav7Jw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjQ5NjM4OSwiZXhwIjoxNjcyNTAzNTg5fQ.s1crEjcNw3-9hZUAZjGDsGKjqinhGWXkcA55QUdJD-o
 
 
 ###
-get http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+get http://localhost:8080/api/join/63af95b4728c0ed2f6d8c708
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjMyNDc4NiwiZXhwIjoxNjcyMzMxOTg2fQ.aj_XflktNMqYxxkRe935_3H5y4grETly-MJj6kZ2dbw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjUxMzYzNCwiZXhwIjoxNjcyNTIwODM0fQ.AzzRYgzsB8-obZ-exqh8xrhF1KIXnKWa1KKlqKaG0i4
+
 
 ###
-delete http://localhost:8080/api/join/63aa06c650dbe6ba10e81f6c
+delete http://localhost:8080/api/join/63af464f448dad0d5f9ed43b
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjMzMDIwNywiZXhwIjoxNjcyMzM3NDA3fQ.rSqHvkvlwUwGYghErQArM_Zaxz5jEjf6PWKhPMav7Jw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQyMjM4OCwiZXhwIjoxNjcyNDI5NTg4fQ.8L7WUj5DkvaQtZ4Hdw6fbbwr1YAw1NUKLqRfYCENiao
 
 ###
 put http://localhost:8080/api/join/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjMyNDc4NiwiZXhwIjoxNjcyMzMxOTg2fQ.aj_XflktNMqYxxkRe935_3H5y4grETly-MJj6kZ2dbw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
 
 {
-    "postId":"63aa06c650dbe6ba10e81f6c",
-    "joinId":"63ace6896b1061a16d36fdab",
+    "postId":"63af95b4728c0ed2f6d8c708",
+    "joinId":"63b045a48ff55f8e6f28ab80",
     "status":"Accept"
 }
 
@@ -143,11 +144,42 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 ###
 get http://localhost:8080/api/project/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjM0MjM5NSwiZXhwIjoxNjcyMzQ5NTk1fQ.ilgX7q6lmkyyU5Ma38QiXvjPAE_Svk13lgssUQFBBBo
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZjE3YmYyNDY1OThkMmYxOTgzZiIsImlhdCI6MTY3MjQ0NTA1MiwiZXhwIjoxNjcyNDUyMjUyfQ.WrmYgCb8hMqxYAsYZ7oP4zGnhA4XkaXrOxdVRYOjy-Q
 
 ###
 get http://localhost:8080/api/project/all
 Content-Type: application/json
 
+###
+delete http://localhost:8080/api/project/63adf011b63ecc9ab42cb380
+Content-Type: application/json
 
+###
+put http://localhost:8080/api/project/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQ5NjEzMiwiZXhwIjoxNjcyNTAzMzMyfQ.nhUNmuIr6XPxT9Wd6-p36oEcWiNAeL-BRXuYUxxiGv8
+
+{
+    "projectName":"The ultimate Students",
+    "desc":"make me better",
+    "maxMembers": 2
+}
+
+###
+put http://localhost:8080/api/project/startproject/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
+
+###
+delete http://localhost:8080/api/project/exitproject/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjUxMzYzNCwiZXhwIjoxNjcyNTIwODM0fQ.AzzRYgzsB8-obZ-exqh8xrhF1KIXnKWa1KKlqKaG0i4
+
+###
+delete http://localhost:8080/api/project/removeuser/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
+
+{
+    "userId":"63ab3e9df64e8baf2976d159"
+}
