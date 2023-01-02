@@ -4,6 +4,7 @@ const Project = require('../models/project');
 const createError = require('http-errors');
 const ProjectController = require('../controller/projectController');
 const joinController = require('./joinController');
+const groupController = require('../controller/GroupChatController');
 
 
 const minimumMembers = 2;
@@ -26,7 +27,10 @@ module.exports.create_post = async(req,res)=>{
           members:[req.id.id],
           maxMembers:req.body.maxMembers,
         });
-        await newProject.save();
+        groupResults = await newProject.save();
+        //create group chat
+        
+        groupController.createGroupChat(groupResults.id,req.id.id);
         res.status(200).json(savedPost);  
       }else{
         res.status(400).json("A project must have a minimum of 2 members"); 

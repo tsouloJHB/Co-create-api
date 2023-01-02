@@ -58,13 +58,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 ###
 post http://localhost:8080/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQ0OTI1MiwiZXhwIjoxNjcyNDU2NDUyfQ.7PELIHh7s2hSI9seiJAE1908SkdXsI3dg6dbbd1oNFI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjY5NDcwMywiZXhwIjoxNjcyNzAxOTAzfQ.HcfJ5ReG1KvPx1aoixbti836iPsr-WUmx4S7iqR2QNM
 
 {
    
-    "desc":"Sound is an individual perception",
+    "desc":"Naruto and buroto",
     "img":"",
-    "projectName":"The colours of might",
+    "projectName":"The uzumaki family",
     "maxMembers":"2"
 }
 ###
@@ -111,15 +111,15 @@ Content-Type: application/json
 }
 
 ###
-post http://localhost:8080/api/join/63af95b4728c0ed2f6d8c708
+post http://localhost:8080/api/join/63b34c7a0d354234083a4778
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjQ5NjM4OSwiZXhwIjoxNjcyNTAzNTg5fQ.s1crEjcNw3-9hZUAZjGDsGKjqinhGWXkcA55QUdJD-o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjY5NDUyNywiZXhwIjoxNjcyNzAxNzI3fQ.IVaMyjj7VICtAdpzWDB787IW8jqTp5AGTIRt_sujV2w
 
 
 ###
-get http://localhost:8080/api/join/63af95b4728c0ed2f6d8c708
+get http://localhost:8080/api/join/63b34c7a0d354234083a4778
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjUxMzYzNCwiZXhwIjoxNjcyNTIwODM0fQ.AzzRYgzsB8-obZ-exqh8xrhF1KIXnKWa1KKlqKaG0i4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjY5NDcwMywiZXhwIjoxNjcyNzAxOTAzfQ.HcfJ5ReG1KvPx1aoixbti836iPsr-WUmx4S7iqR2QNM
 
 
 ###
@@ -130,16 +130,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 ###
 put http://localhost:8080/api/join/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjY5NDcwMywiZXhwIjoxNjcyNzAxOTAzfQ.HcfJ5ReG1KvPx1aoixbti836iPsr-WUmx4S7iqR2QNM
+
 
 {
-    "postId":"63af95b4728c0ed2f6d8c708",
-    "joinId":"63b045a48ff55f8e6f28ab80",
+    "postId":"63b34c7a0d354234083a4778",
+    "joinId":"63b34c9e0d354234083a4784",
     "status":"Accept"
 }
 
 //project endpoints
-###
 
 ###
 get http://localhost:8080/api/project/
@@ -171,9 +171,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
 
 ###
-delete http://localhost:8080/api/project/exitproject/63af95b4728c0ed2f6d8c70a
+delete http://localhost:8080/api/project/exitproject/63b34c7a0d354234083a477a
 Content-Type: application/json  
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjUxMzYzNCwiZXhwIjoxNjcyNTIwODM0fQ.AzzRYgzsB8-obZ-exqh8xrhF1KIXnKWa1KKlqKaG0i4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjY5NDUyNywiZXhwIjoxNjcyNzAxNzI3fQ.IVaMyjj7VICtAdpzWDB787IW8jqTp5AGTIRt_sujV2w
 
 ###
 delete http://localhost:8080/api/project/removeuser/63af95b4728c0ed2f6d8c70a
@@ -183,3 +183,49 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1Z
 {
     "userId":"63ab3e9df64e8baf2976d159"
 }
+
+//Group chat end points
+
+###
+post http://localhost:8080/api/groupchat/adduser/
+Content-Type: application/json
+
+{
+    "userId":"639a8205e3cb2b41c7ea8355",
+    "projectId":"63b32851237cdf263f75e55f"
+}
+
+### 
+get http://localhost:8080/api/groupchat/all/
+Content-Type: application/json  
+
+###
+get http://localhost:8080/api/groupchat/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/groupchat/find/63b31cc00de1f45a3035d572
+Content-Type: application/json
+
+//Message end points
+
+###
+
+post http://localhost:8080/api/message
+Content-Type: application/json
+
+{
+    "groupChatId":"63b327620a510b005dde2c1d",
+    "privateChatId":"",
+    "text":"Hi there bro"
+}
+
+###
+
+get http://localhost:8080/api/message/groupChat/63b359549715e7e5c65c8eea
+Content-Type: application/json
+
+###
+
+get http://localhost:8080/api/message/all
+Content-Type: application/json

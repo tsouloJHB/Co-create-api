@@ -3,6 +3,7 @@ const Join = require('../models/join');
 const Post = require('../models/Post');
 const User = require('../models/user');
 const Project = require('../models/project');
+const GroupChatController = require('../controller/GroupChatController');
 
 
 
@@ -75,14 +76,16 @@ module.exports.join_response = async(req,res) =>{
         const userInProjectCheck = await checkIfUserExitsInProject(foundJoin.userId,req.id.id,req.body.postId);
         if(getPost){
             if(foundJoin && userInProjectCheck.response){
-                //inline if const beverage = age >= 21 ? "Beer" : "Juice";
+
                 //check if user is already accepted for the project
 
                 const join = await Join.findByIdAndUpdate(req.body.joinId,{status:req.body.status});
                 const respond = 'Request was: ' +req.body.status+"ed";
                 //update project and add user to project
                 const acceptJoin = await addAcceptedUserToProject(req.body.status,join.userId,req.body.postId,req.id.id);
-                if(acceptJoin.response){
+                if(acceptJoin.response){ 
+                    //remove join request
+                    await Join.findByIdAndDelete(req.body.joinId);
                     res.status(201).json(respond);
                 }else{
                     //revert join
@@ -150,16 +153,18 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
     if(status == 'Accept'){
         console.log(status); 
         try {
-            const findProjectMaxNumber = await Project.findOne({postId:postId,userId:projectUserId});
+            const foundProject = await Project.findOne({postId:postId,userId:projectUserId});
             
-            let membersAmount = findProjectMaxNumber.members.length+1;
-            if(membersAmount <= findProjectMaxNumber.maxMembers){
+            let membersAmount = foundProject.members.length+1;
+            if(membersAmount <= foundProject.maxMembers){
                 const addProject = await Project.findOneAndUpdate({postId:postId},{ $push: { members: userId },currentMembers:membersAmount });
-                await Join.findByIdAndDelete(req.body.joinId);
-                if(membersAmount == findProjectMaxNumber.maxMembers){
+                //await Join.findByIdAndDelete(req.body.joinId);
+                if(membersAmount == foundProject.maxMembers){
                     await Project.findOneAndUpdate({postId:postId},{status:"InProgress"});
                   
                 }
+                 //add user to group chat
+                await GroupChatController.addUserToGroupChat(userId,foundProject.id);
                 returnResponse.response = true;
                 return returnResponse;
             }else{
@@ -172,7 +177,7 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
         } catch (err) {
             console.log(err);
             returnResponse.message = err;
-            returnResponse.message = false;
+            returnResponse.response = false;
             return returnResponse;
         }
        

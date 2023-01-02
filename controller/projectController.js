@@ -1,6 +1,7 @@
 const Project = require('../models/project');
 const Post = require('../models/Post');
 const User = require('../models/user');
+const GroupChatModel = require('../models/GroupChatModel');
 
 
 //@desc     Get all projects
@@ -85,6 +86,11 @@ module.exports.delete_project = async(req,res) =>{
         const checkProject = await Project.findOne({_id:req.params.id});
         if(checkProject){
             const deleteProject = await Project.findByIdAndDelete(req.params.id);
+            // delete group chat
+
+            //delete project
+
+
             res.status(201).json("Project was deleted"); 
         }else{
             res.status(400).json("Project not found")
@@ -152,8 +158,11 @@ module.exports.leave_project = async(req,res) =>{
         } 
         //leave project
         const currentMembers = project.currentMembers -1;
+      
         await Project.findByIdAndUpdate(req.params.id,{$pull :{members:req.id.id},currentMembers:currentMembers,status:"Pending"});
         //reduce current members
+        //leave group
+        await GroupChatModel.findOneAndUpdate({projectId:project.id},{$pull:{members:req.id.id}});     
         res.status(201).json("User has left the project");
     } catch (err) {
         console.log(err)
@@ -186,6 +195,7 @@ module.exports.remove_user_from_project = async(req,res) =>{
         const currentMembers = project.currentMembers -1;
         //if project current members is 1 then set the project status to pending 
         await Project.findByIdAndUpdate(req.params.id,{$pull :{members:req.body.userId},currentMembers:currentMembers,status:"Pending"});
+        await GroupChatModel.findOneAndUpdate({projectId:project.id},{$pull:{members:req.body.userId}});     
         res.status(201).json("User has been removed");
         //reduce current members
     } catch (err) {

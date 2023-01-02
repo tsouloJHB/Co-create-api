@@ -5,9 +5,12 @@ const GroupChatSchema = new mongoose.Schema(
         members:{
             type:Array,
         },
+        projectId:{
+            type:String,
+        },
     },
     {
-        timestamps:true,
+        timestamps:true,    
     }
 );
 
