@@ -6,7 +6,7 @@ const {getPrivateChat} = require('../controller/PrivateChatController');;
 router.get('/all' ,getAllMessages);
 router.post('/',addMessage);
 router.get('/groupChat/:groupChatId' ,getGroupMessages);
-router.get('/privateChat/:privateChatId' ,getPrivateChat);
+router.get('/privateChat/:privateChatId' ,getPrivateMessages);
 
 
 module.exports = router;

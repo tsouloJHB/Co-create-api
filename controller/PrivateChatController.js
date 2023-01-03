@@ -30,12 +30,24 @@ module.exports.getUserPrivateChats = async(req,res) =>{
 }
 
 
-module.exports.getPrivateChat = async(req,res) =>{
+module.exports.findPrivateChat = async(req,res) =>{
     try {
         const privateChat = await PrivateChat.findOne({
-            projectId:req.params.projectId
-        });
+            members: { $all: [req.params.firstId, req.params.secondId] },
+          });
         res.status(200).json(privateChat);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+module.exports.getAllPrivateChat = async(req,res) =>{
+
+    try {
+        const results = await PrivateChat.find();
+        console.log(results);
+     
+        res.status(200).json(results); 
     } catch (err) {
         res.status(500).json(err);
     }

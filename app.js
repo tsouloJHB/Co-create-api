@@ -11,6 +11,7 @@ const postRouter = require('./routes/posts');
 const projectRouter = require('./routes/project');
 const groupChatRouter = require('./routes/GroupChatRoute');
 const messageRouter = require('./routes/messageRoutes');
+const privateChatRouter = require('./routes/PrivateChatRouter');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/api/posts', postRouter);
 app.use('/api/join',joinRouter);
 app.use('/api/project',projectRouter);
 app.use('/api/groupchat',groupChatRouter);
+app.use('/api/privateChat',privateChatRouter);
 app.use('/api/message',messageRouter);
 
 // catch 404 and forward to error handler

@@ -3,7 +3,7 @@ post http://localhost:8080/api/users/login
 Content-Type: application/json
 
 {
-    "email":"james@gmail.com",
+    "email":"jeff@gmail.com",
     "password":"1234567"
 }
 
@@ -210,7 +210,11 @@ Content-Type: application/json
 //Message end points
 
 ###
+get http://localhost:8080/api/message/all
+Content-Type: application/json
 
+###
+//group chat 
 post http://localhost:8080/api/message
 Content-Type: application/json
 
@@ -222,10 +226,54 @@ Content-Type: application/json
 
 ###
 
-get http://localhost:8080/api/message/groupChat/63b359549715e7e5c65c8eea
+
+
+###
+
+
+get http://localhost:8080/api/message/groupChat/63b327620a510b005dde2c1d
 Content-Type: application/json
 
 ###
 
-get http://localhost:8080/api/message/all
+
+
+post http://localhost:8080/api/message
+Content-Type: application/json
+
+{
+    "groupChatId":"63b327620a510b005dde2c1d",
+    "privateChatId":"",
+    "text":"Hi there bro"
+}
+
+###
+get http://localhost:8080/api/message/privateChat/63b327620a510b005dde2c1d
+Content-Type: application/json
+
+
+###
+
+
+//private chat 
+
+post http://localhost:8080/api/privateChat
+Content-Type: application/json
+
+{
+    "senderId":"639a8205e3cb2b41c7ea835a",
+    "receiverId":"63ab3e9df64e8baf2976d159"
+}
+
+###
+
+get http://localhost:8080/api/privateChat/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/privateChat/find/639a8205e3cb2b41c7ea835a/63ab3e9df64e8baf2976d159
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/privateChat/all
 Content-Type: application/json
