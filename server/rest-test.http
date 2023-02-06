@@ -1,0 +1,340 @@
+
+post http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+    "email":"mavis@gmail.com",
+    "password":"1234567"
+}
+
+###
+post http://localhost:8080/api/users/signup
+Content-Type: application/json
+
+{
+    "email":"nolan@gmail.com",
+    "name":"nolan",
+    "password":"1234567"
+}
+
+###
+
+
+//get user info
+get http://localhost:8080/api/users/users/63ab3e9df64e8baf2976d159,63ab3f17bf246598d2f1983f,63c051b56d52f42e978e5db3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NDI5MjYxNiwiZXhwIjoxNjc0MzEwNjE2fQ.UR9XnhdzRGOeaWVImwdoTkuAjgkBCJPXuacPttaLe7c
+
+
+
+
+###
+
+//get mulitiple users users info
+get http://localhost:8080/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3Mzk5NzIyNSwiZXhwIjoxNjc0MDA0NDI1fQ.WnO62Xlc8X9hV-WAxhbylvxk9G9_TZhmahkqilGc4Fc
+
+
+
+###
+get http://localhost:8080/api/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjA4NDI1NCwiZXhwIjoxNjcyMDkxNDU0fQ.ukgcBWB6AcI1OJgFLyCWU3xK-8GWsgk2w_PA63Jb2Mw
+
+
+
+###
+
+put http://localhost:8080/api/users/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZjE3YmYyNDY1OThkMmYxOTgzZiIsImlhdCI6MTY3MjMyOTk2NCwiZXhwIjoxNjcyMzM3MTY0fQ.Ow35hzBhmT67w6apjXdHOQI8om6SurObGDSco1hwHL8
+
+{   
+
+    "desc":"Im a marine biologist",
+    "occupation":"Biologist"
+}
+
+###
+
+post http://localhost:8080/api/users/refresh-token
+Content-Type: application/json
+
+{   
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3Mzk5ODI3OCwiZXhwIjoxNjc0MjU3NDc4fQ.T2MArlz_TzTBtk0xje3rTLp1AwJgVrU5UtIpAydm0Us"
+   
+}   
+
+###
+get  http://localhost:8080/api/users/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3NDEzOTY1NCwiZXhwIjoxNjc0MTU3NjU0fQ.kTrzYPATg0SALSoV-MgkhxQtbosMS-QtTLugRjTZ_OU
+
+//create post and project
+###
+post  http://localhost:8080/api/posts  
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NTEwMDQ2NCwiZXhwIjoxNjc1MTE4NDY0fQ.pxCgfwDhRzpCieG5TAJRuZK1pWeCmyzZyM_XaPosEig
+
+{
+   
+    "desc":"We going to satan",
+    "img":"",
+    "projectName":"Space project to Satan",
+    "maxMembers":"3"
+}
+###
+get  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+###
+get http://localhost:8080/api/posts/all
+Content-Type: application/json'
+
+### 
+get  http://localhost:8080/api/posts/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjQyNTkyNSwiZXhwIjoxNjcyNDMzMTI1fQ.bmNyPxkWRZAr8lmZsJf-_qikgHqxDJp4ixDdM4QPNeY
+
+###
+
+put  http://localhost:8080/api/posts/63aa06c650dbe6ba10e81f6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjI1NDkwMiwiZXhwIjoxNjcyMjYyMTAyfQ.Zpb7nj5dCiIbXlpbO0y2WVrbug-odrdx1lnbxyThkRI
+
+{
+ 
+    "desc":"Belive in the word of god"
+    
+}
+
+###
+delete  http://localhost:8080/api/posts/63af64a17abf62df9ef69ef7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQzODg4NSwiZXhwIjoxNjcyNDQ2MDg1fQ._B5Bwhgfr1SHkFJPb8hEnGY3B_RlThEi5VOwOM4-Zv4
+
+
+
+
+###
+put  http://localhost:8080/api/users/changepassword 
+Content-Type: application/json
+
+{
+    "email":"jeff@gmail.com",
+    "password":"1234567"
+}
+
+###
+post http://localhost:8080/api/join/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1NmQ1MmY0MmU5NzhlNWRiMyIsImlhdCI6MTY3NTE3NTYzMiwiZXhwIjoxNjc1MTkzNjMyfQ.OGtKBGC-NzulvrBilQ7em4x6-2eVB2eKq7sjaaflHWM
+
+{
+    "postId":"63af64a17abf62df9ef69ef7"
+}
+
+###
+get http://localhost:8080/api/join/63d03f8c6bccf76ae2e1c874
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NDU5MjAyMiwiZXhwIjoxNjc0NjEwMDIyfQ.rBaQvm94ius_iHTpzLjWVfCFvtK5o5ylU5jmf-AmvxI
+
+###
+//get join requests
+get http://localhost:8080/api/join/requests
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1NmQ1MmY0MmU5NzhlNWRiMyIsImlhdCI6MTY3Mzc3MjY1NSwiZXhwIjoxNjczNzc5ODU1fQ.vt7lNxyZomStIDS_frxbPrN9WEKJOwUpbhbMjGmG-DQ
+
+###
+delete http://localhost:8080/api/join/63af464f448dad0d5f9ed43b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQyMjM4OCwiZXhwIjoxNjcyNDI5NTg4fQ.8L7WUj5DkvaQtZ4Hdw6fbbwr1YAw1NUKLqRfYCENiao
+
+###
+put http://localhost:8080/api/join/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NDU5MjAyMiwiZXhwIjoxNjc0NjEwMDIyfQ.rBaQvm94ius_iHTpzLjWVfCFvtK5o5ylU5jmf-AmvxI
+
+
+{
+    "postId":"63d03f8c6bccf76ae2e1c874",
+    "joinId":"63d041346bccf76ae2e1c96c",
+    "status":"Accept"
+}
+
+//project endpoints
+
+###
+get http://localhost:8080/api/project/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3NDA4Njk0NiwiZXhwIjoxNjc0MTEyMTQ2fQ.ahOiOqXEz2Wr1_ocREld7srkg3h7CRpTG4vCjqqJdxM
+
+### 
+get http://localhost:8080/api/project/all
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/project/63d92940ba305fec44334530
+Content-Type: application/json
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1NmQ1MmY0MmU5NzhlNWRiMyIsImlhdCI6MTY3NTE3NTYzMiwiZXhwIjoxNjc1MTkzNjMyfQ.OGtKBGC-NzulvrBilQ7em4x6-2eVB2eKq7sjaaflHWM
+
+
+###
+delete http://localhost:8080/api/project/63adf011b63ecc9ab42cb380
+Content-Type: application/json
+
+###
+put http://localhost:8080/api/project/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQ5NjEzMiwiZXhwIjoxNjcyNTAzMzMyfQ.nhUNmuIr6XPxT9Wd6-p36oEcWiNAeL-BRXuYUxxiGv8
+
+{
+    "projectName":"The ultimate Students",
+    "desc":"make me better",
+    "maxMembers": 2
+}
+
+###
+put http://localhost:8080/api/project/startproject/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
+
+###
+delete http://localhost:8080/api/project/exitproject/63b34c7a0d354234083a477a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3MjY5NDUyNywiZXhwIjoxNjcyNzAxNzI3fQ.IVaMyjj7VICtAdpzWDB787IW8jqTp5AGTIRt_sujV2w
+
+###
+delete http://localhost:8080/api/project/removeuser/63af95b4728c0ed2f6d8c70a
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjUxMzg1MSwiZXhwIjoxNjcyNTIxMDUxfQ.CO8UOgGz2vfb0OEs5YUMnckkBV3QCDXKikfG8Y-U2s0
+
+{
+    "userId":"63ab3e9df64e8baf2976d159"
+}
+
+//Group chat end points
+
+###
+post http://localhost:8080/api/groupchat/adduser/
+Content-Type: application/json
+
+{
+    "userId":"639a8205e3cb2b41c7ea8355",
+    "projectId":"63b32851237cdf263f75e55f"
+}
+
+### 
+get http://localhost:8080/api/groupchat/all/
+Content-Type: application/json  
+
+###
+get http://localhost:8080/api/groupchat/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/groupchat/find/63b31cc00de1f45a3035d572
+Content-Type: application/json
+
+//Message end points
+
+###
+get http://localhost:8080/api/message/all
+Content-Type: application/json
+
+###
+//group chat 
+post http://localhost:8080/api/message
+Content-Type: application/json
+
+{
+    "projectId":"63af64a17abf62df9ef69ef9",
+    "privateChatId":"",
+    "text":"Real make",
+    "senderId":"639a8205e3cb2b41c7ea835a"
+}
+
+###
+
+
+
+###
+
+//get messages for a groupchat
+get http://localhost:8080/api/message/groupChat/63b327620a510b005dde2c1d
+Content-Type: application/json
+
+###
+
+
+//get messages for a projectId
+get http://localhost:8080/api/message/groupChat/projectId/63af64a17abf62df9ef69ef9
+Content-Type: application/json
+
+###
+
+
+
+post http://localhost:8080/api/message
+Content-Type: application/json
+
+{
+    "projectId":"63b327620a510b005dde2c1d",
+    "privateChatId":"",
+    "text":"Hi there bro"
+}
+
+###
+get http://localhost:8080/api/message/privateChat/63b327620a510b005dde2c1d
+Content-Type: application/json
+
+
+###
+
+
+//private chat 
+
+post http://localhost:8080/api/privateChat
+Content-Type: application/json
+
+{
+    "senderId":"639a8205e3cb2b41c7ea835a",
+    "receiverId":"63ab3e9df64e8baf2976d159"
+}
+
+###
+
+get http://localhost:8080/api/privateChat/639a8205e3cb2b41c7ea835a
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/privateChat/find/639a8205e3cb2b41c7ea835a/63ab3e9df64e8baf2976d159
+Content-Type: application/json
+
+###
+get http://localhost:8080/api/privateChat/all
+Content-Type: application/json
+
+
+
+###
+
+
+//post comments
+
+post http://localhost:8080/api/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1NmQ1MmY0MmU5NzhlNWRiMyIsImlhdCI6MTY3NTYzMjAzNCwiZXhwIjoxNjc1NjUwMDM0fQ.kwXgDkNwfKdIp03wOcwpaGc28c_POR6Zy3ZXOzzEnGE
+
+{
+    "postId":"63b32851237cdf263f75e55d",
+    "text":"Second Post"
+}
+
+
+###
+get http://localhost:8080/api/comments/63b32851237cdf263f75e55d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1NmQ1MmY0MmU5NzhlNWRiMyIsImlhdCI6MTY3NTYzMjAzNCwiZXhwIjoxNjc1NjUwMDM0fQ.kwXgDkNwfKdIp03wOcwpaGc28c_POR6Zy3ZXOzzEnGE
