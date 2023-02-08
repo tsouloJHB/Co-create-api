@@ -53,7 +53,7 @@ module.exports.get_comments = async(req,res) =>{
             if(request.length > 0){
                 res.status(200).json(request);
             }else{
-                res.status(400).json("No comments found");
+                res.status(200).json({});
             }
         }else{
             res.status(400).json("No postId provided");

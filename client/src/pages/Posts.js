@@ -8,23 +8,24 @@ import { useLogout } from '../hooks/useLogout'
 import { RefreshToken } from "../api/RefreshToken";
 import CreateProject from "../components/CreateProjects/CreateProject";
 import SideJoinRequest from "../components/SideJoinRequest/SideJoinRequest";
-import { set } from "mongoose";
 
 const Projects = () =>{
     const { user,dispatch } = useContext(AuthContext);
     const [userState ,setUserState] = useState(user);
     const [localPost,setlocalPost] = useState(null);
-    const [uPosted,setuPost] = useState(null);
+   
     const [joins,setJoins] = useState(null);
     const {posts,postDispatch} = useContext(PostContext);
-    const [isLoading, setLoading] = useState(true);
+
     const {logout} = useLogout();
     var myPostFound = 0
     const [closeParent, setCloseParent] = useState(false);
+    const [postDetailsModal ,setPostDetailsModal] = useState(false);
     
   
     const openParent = () =>{
       setCloseParent(false)
+      
     }
     const closeParentModal = ()=>{
       setCloseParent(true)
@@ -115,7 +116,13 @@ const Projects = () =>{
         dispatch({type:'SET_POSTS',payload:data});
     }
 
-
+    const postDetailsModalSetFalse = () =>{
+      setPostDetailsModal(false);
+      setCloseParent(true)
+    }
+    const postDetailsModalSetTrue = () =>{
+      setPostDetailsModal(true);
+    }
     return (
       <div   onClick={() => setCloseParent(true)}   >
           <CreateProject updateParentPost={updateParentPost}/>  
@@ -131,7 +138,9 @@ const Projects = () =>{
           {/* center post*/}
           <div className="home" >
           
-            <div className="workouts">
+            <div className="workouts" onClick={(e) => {
+          e.stopPropagation();
+        }}>
             
               {/* {post && post.map((post) => {
                   let returnObject = <PostDetails key={post._id} post={post} />
@@ -140,14 +149,14 @@ const Projects = () =>{
               })} */}
               <div>{user.token}</div>
               
-              {posts && posts.map((post) => {
-                  myPostFound = post.userId === user.user ? myPostFound + 1 : myPostFound
-                  const re = post.userId === user.user && myPostFound === 1 ?
-                  <><p> Your Post</p> <PostDetails key={post._id} post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </> 
-                  :  <PostDetails key={post._id}   post={post}  closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/>
+              {posts && posts.map((post) => (
+                
+                 
+                  <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div>
+                
               
-                  return re 
-              })}
+                  
+              ))}
             </div>
             
           </div>

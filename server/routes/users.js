@@ -13,5 +13,6 @@ router.put('/',protect.protect,authController.update_user);
 router.put('/changepassword',authController.change_password);
 router.post('/refresh-token',authController.refreshToken);
 router.get('/:userid',protect.protect,authController.get_user_by_id);
+router.put('/upload',protect.protect,authController.updateProfilePicture);
 
 module.exports = router;

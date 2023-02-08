@@ -52,6 +52,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         max: 100,
     },
+    image:{
+        data:Buffer,
+        contentType:String
+    },
     isAdmin: {
         type: Boolean,
         required: true,

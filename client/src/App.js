@@ -15,7 +15,7 @@ import { RefreshToken } from './api/RefreshToken';
 import { useLogout } from './hooks/useLogout';
 import ProjectView from './pages/ProjectView';
 import ProjectStatus from './pages/ProjectStatus';
-import ViewProject from './components/viewProject/ViewProject';
+import ViewProject from './pages/ViewProject';
 
 
 function App () {

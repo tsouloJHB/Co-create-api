@@ -13,9 +13,11 @@ import { fetchPosts } from "../../api/PostRequest";
 import { JoinContext } from "../../context/JoinContext";
 import Modal from "../modal/Modal";
 import { useNavigate } from 'react-router-dom';
+import LinesEllipsis from 'react-lines-ellipsis'
 
 
-const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
+
+const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetailsModal,post,updateParentPost,closeParent,openParent}) =>{
     let { user ,dispatch} = useContext(AuthContext);
     let {joins,JoinDispatch} = useContext(JoinContext)
     const {refreshtoken} = useRefreshToken();
@@ -27,9 +29,10 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
     const [modalProject,setModalProject] = useState(null);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
+    const comments = true;
    
     useEffect(()=>{
-        console.log(post);
+   
         const foundUser = async() =>{
             const foundUser = await getUser(post.userId,dispatch,logout);
             setProfile(foundUser)
@@ -50,8 +53,8 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
 
     useEffect(() => {
         if (closeParent) {
-          console.log(closeParent)
           setOpenModal(false)
+          postDetailsModalSetFalse()
         }
       }, [closeParent]);
 
@@ -70,16 +73,16 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
             body: JSON.stringify({postId:post._id})
     
         })      
-        console.log(response)
+       
         if(response.status === 400){
-            console.log(response)
+           
         }
         if(response.status === 401){
             // send refresh token
            // await refreshtoken();
            if(response.status === 401){
             const refreshResponse = await RefreshToken(logout,user,dispatch);
-            console.log("The join request refresh" + refreshResponse);
+          
             if(refreshResponse){
                user = JSON.parse(localStorage.getItem('user'))
                handleSubmit();
@@ -90,8 +93,7 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
         //updateParentPost();
         if(response.ok){
             updateParentPost();
-            console.log("join request made")
-            console.log(posts);
+         
             const newPosts = posts.filter(
                 item => item._id !== post._id 
             );
@@ -103,27 +105,31 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
            //update joins
             if(project) {
                 joins.push(project)
-                console.log(joins)
+                
                 JoinDispatch({type:'SET_JOINS',payload:joins})   
             }     
            //update posts
             postDispatch({type:'SET_POSTS',payload:newPosts});
-            console.log(newPosts)
+       
         }
         const json = await response.json();  
     }
 
     const handleOpenModal = e =>{
     
-        
-        
-       
+        if(postDetailsModal || openModal){
+            setOpenModal(false)
+            postDetailsModalSetFalse()
+            return
+        }      
 
         if(screenWidth > 700){
             setOpenModal(true)
+            postDetailsModalSetTrue()
             openParent();
         }else{
-            navigate("/");
+            //get project from post
+            navigate("/viewProject",{state:project});
         }
      
     }
@@ -132,17 +138,33 @@ const PostDetails = ({post,updateParentPost,closeParent,openParent}) =>{
         <div>
              
             <div className="workout-details"  onClick={handleOpenModal} >
-                {profile && <p>{profile.name} {profile.surname}</p>}
-                <h4>{post.projectName}</h4> 
-                <p>{post.desc}</p>
+                {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p>}
+                <h4>{project && project.projectName}</h4> 
+                <p>{project &&
+                    <LinesEllipsis
+                    text={project.desc}
+                    maxLine='1'
+                    ellipsis='...'
+                    component='p'
+                    basedOn='words'
+                  />
+                }</p>
                 <p>{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"Space left":"Spaces left"}</p>
                 <p>{format(post.createdAt)} </p>
+                <div onClick={(e) => {
+          e.stopPropagation();
+        }}>
                 {post.userId === user.user ?  <span className="material-symbols-outlined"  >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
+                </div>
                 <Modal 
                     open={openModal} 
-                    onClose={() => setOpenModal(false)}
+                    onClose={() => {
+                        setOpenModal(false)
+                        postDetailsModalSetFalse()
+                    }}
                     projectData={post}
                     user={profile}
+                    insertComments={comments}
            
                     />
                    

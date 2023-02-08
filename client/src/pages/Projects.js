@@ -37,6 +37,12 @@ const Projects = () => {
     }
     return ( 
         <div>
+            <div>
+                <form>
+                    <input type="file"/>
+                    <button>Submit</button>
+                </form>
+            </div>    
             <CreateProject updateParentPost={fetchPosts}/>  
             <h3>Projects </h3>
             <div>

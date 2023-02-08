@@ -4,8 +4,20 @@ const setCookies = require('../utils/cookieUtil');
 const handleErrors = require('../utils/errors.js');
 const RefreshToken = require('../models/refreshToken.model');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
+//post middleware
+const Storage = multer.diskStorage({
+    destination:"uploads",
+    filename : (req,file,cb) =>{
+        //cb(null,Date.now+file.originalname);
+        cb(null,file.originalname);
+    },
+});
 
+const upload = multer({
+    storage:Storage
+}).single('testImage')
 
 //@desc     POST User Profile
 //@route    POST api/users/users/
@@ -191,5 +203,21 @@ module.exports.change_password = async(req,res) =>{
     res.status(401).json({errors});
   }
    
-   
 }
+
+
+module.exports.updateProfilePicture = async (req,res)=>{
+    const user = await User.findById(req.id.id);
+        upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send('successfully uploaded');
+            // const newImage = await User.findOneAndUpdate{{_id:req.id.id},{image:{data:req.file.filename,contentType:'image/png'}}}
+            // if(newImage){
+               
+            // }
+        }
+    })   
+  }
+   

@@ -48,8 +48,9 @@ module.exports.create_post = async(req,res)=>{
 //@route    POST api/posts/
 //@access   Private
 module.exports.get_post = async(req,res)=>{
+  
     try {
-        const post = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id)
         console.log(req.params.id);
         res.status(200).json(post);
       } catch (err) {
@@ -62,9 +63,10 @@ module.exports.get_post = async(req,res)=>{
 //@route    POST api/posts/getallpost
 //@access   public
 module.exports.get_all_posts = async(req,res) =>{
+  var mysort = { createdAt: -1 };
     try {
       const newPosts = [];
-      const posts = await Post.find();
+      const posts = await Post.find().sort(mysort);;
       // if project is in Inprogress
       const joinRemove = await Promise.all(
         posts.map(async (el) => {

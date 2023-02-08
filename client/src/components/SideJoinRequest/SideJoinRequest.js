@@ -11,8 +11,8 @@ import { cancelJoinRequest } from "../../api/JoinRequest";
 import { fetchPosts } from "../../api/PostRequest";
 import { JoinContext } from "../../context/JoinContext";
 import Modal from "../modal/Modal";
-import ViewProject from "../viewProject/ViewProject";
-import {Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import ViewProject from "../../pages/ViewProject";
+import {Navigate, Route, Routes, useNavigate ,Link} from 'react-router-dom';
 
 
 
@@ -47,7 +47,6 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
 
     useEffect(() => {
         if (closeParent) {
-          console.log(closeParent)
           setOpenModal(false)
         }
       }, [closeParent]);
@@ -57,13 +56,13 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     const getProjectRequest = async()=>{
         const joinRequest = await fetchAllJoinRequest(user,dispatch,logout);
         //the joins are are late
-        console.log(joinRequests);
-        setJoinRequest(joinRequest)        
+        setJoinRequest(joinRequest)
+             
         if(joinRequest){
         // console.log(joinRequest)
             const projectData = await fetchProjectData(joinRequest);
         }
-        console.log(joins);
+ 
         return joinRequest
         
     }
@@ -83,7 +82,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             })
         );
        //set projects to state
-           
+       console.log(localProjects)     
         JoinDispatch({type:'SET_JOINS',payload:localProjects})
         setProjects(localProjects)
 
@@ -106,7 +105,10 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     }
     
     const handleOpenModal = e =>{
-    
+        if(openModal){
+            setOpenModal(false)
+            return
+        }
         const index = e.target.getAttribute("data-values");
         
         setModalProject(joins[index])
@@ -115,7 +117,10 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             setOpenModal(true)
             openParent();
         }else{
-            navigate("/");
+            navigate("/viewProject",{state:joins[index]});
+            // const project = e.target.getAttribute("data-projects");
+            // console.log(joins[index])
+            //<Link to="/viewProject" state={{ post: joins[index] } }></Link>
         }
      
     }
@@ -125,7 +130,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             {closeParent}
             
             {joinRequests && joins && joins.map((project,index)=>(
-                <div key={project._id} data-values={index} className="workout-details" onClick={handleOpenModal} >
+                <div key={project._id}   data-values={index}  data-projects={project._id} className="workout-details" onClick={handleOpenModal} >
                      <h4 data-values={index}>   {project.projectName}</h4> 
                      <p data-values={index}   >{project.desc} </p>
                      <div onClick={(e) => {e.stopPropagation();}}>
@@ -136,6 +141,8 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                     onClose={() => setOpenModal(false)}
                     projectData={modalProject}
                     user={""}
+                    insertComments={false}
+
                     />
                  </div>
                  
