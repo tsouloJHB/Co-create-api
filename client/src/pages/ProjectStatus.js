@@ -17,7 +17,7 @@ const ProjectStatus = () =>{
     useEffect(()=>{       
         console.log(project)
         const getData = async() =>{
-           const response = await getUsers(user,project.members,dispatch,logout);
+           const response = await getUsers(project.members,dispatch,logout);
             setMembers(response)
         }
         //get project join request

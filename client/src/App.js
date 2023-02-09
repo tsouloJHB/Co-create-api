@@ -16,6 +16,7 @@ import { useLogout } from './hooks/useLogout';
 import ProjectView from './pages/ProjectView';
 import ProjectStatus from './pages/ProjectStatus';
 import ViewProject from './pages/ViewProject';
+import ProjectEdit from './pages/ProjectEdit';
 
 
 function App () {
@@ -62,9 +63,14 @@ function App () {
             element={user ? <ProjectView /> :  <Login/>} 
            />
 
-<Route
+          <Route
             path="/viewProject"
             element={user ? <ViewProject /> :  <Login/>} 
+           />
+
+          <Route
+            path="/projectEdit"
+            element={user ? <ProjectEdit /> :  <Login/>} 
            />
             
             <Route

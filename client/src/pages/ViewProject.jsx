@@ -6,7 +6,7 @@ import { useContext,useState } from 'react';
 import { useEffect } from 'react';
 import { getComments } from '../api/CommentsRequests';
 import { AuthContext } from '../context/AuthContext';
-import Comments from "../components/Comments";
+import Comments from "../components/Comments/Comments";
 const ViewProject = () =>{
     // const location = useLocation();
     // const { state } = location.state;

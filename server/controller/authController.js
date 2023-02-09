@@ -5,19 +5,20 @@ const handleErrors = require('../utils/errors.js');
 const RefreshToken = require('../models/refreshToken.model');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const fs = require('fs');
 
 //post middleware
 const Storage = multer.diskStorage({
     destination:"uploads",
     filename : (req,file,cb) =>{
-        //cb(null,Date.now+file.originalname);
-        cb(null,file.originalname);
+        cb(null,Date.now()+file.originalname);
+        // cb(null,file.originalname);
     },
 });
 
 const upload = multer({
     storage:Storage
-}).single('testImage')
+}).single('imageUpload')
 
 //@desc     POST User Profile
 //@route    POST api/users/users/
@@ -195,6 +196,7 @@ module.exports.change_password = async(req,res) =>{
   }
   try {
       const user1 = await User.findOneAndUpdate({email:req.body.email},{$set:req.body.password});
+      
       console.log(user1);
       res.status(201).json('Password updated');
   } catch (error) {
@@ -207,17 +209,35 @@ module.exports.change_password = async(req,res) =>{
 
 
 module.exports.updateProfilePicture = async (req,res)=>{
-    const user = await User.findById(req.id.id);
-        upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }else{
-            res.send('successfully uploaded');
-            // const newImage = await User.findOneAndUpdate{{_id:req.id.id},{image:{data:req.file.filename,contentType:'image/png'}}}
-            // if(newImage){
-               
-            // }
-        }
-    })   
+    // const user = await User.findById(req.id.id);
+    //  const userId = req.id.id;
+    //  const filename = req.file.filename
+        
+   try {
+     upload(req,res,async(err)=>{
+         if(err){
+             console.log(err)
+         }else{
+            
+            
+             const newImage = await User.findByIdAndUpdate(
+                req.id.id,{
+                image:{
+                    data:fs.readFileSync('uploads/'+req.file.filename),
+                    contentType:'image/png'
+                }});
+             if(newImage){
+                 res.status(201).json("Successfully");
+             }else{
+                res.status(401).json("Could not upload file");
+             }
+         }
+     })
+   } catch (err) {
+    res.status(500).json(err);
+   }
+
+
+
   }
    

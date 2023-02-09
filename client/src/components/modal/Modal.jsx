@@ -3,9 +3,9 @@ import { useContext,useState } from 'react';
 import { useEffect } from 'react';
 import { getComments } from '../../api/CommentsRequests';
 import { AuthContext } from '../../context/AuthContext';
-import Comments from '../Comments';
+import Comments from '../Comments/Comments';
 import './modal.css';
-
+import profilePicture from "../../images/profile.jpg"
 
 const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
     let { dispatch} = useContext(AuthContext);
@@ -21,13 +21,22 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
     
     const fetchComments = async() =>{
       const foundComments = await getComments(projectData._id,dispatch);
+      console.log(foundComments);
       if(foundComments.length > 0)  setComments(foundComments)
      
    
     }
 
     if (!open) return null;
-   
+
+    const convertBinaryToString = (image)=>{
+      
+      const base64String = btoa(
+          String.fromCharCode(...new Uint8Array(image.data.data) )
+      );
+          
+      return base64String
+  }
   
     return (
 
@@ -46,6 +55,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
             X
           </p>
           <div className='content'>
+          {user && user.image.data && user.image.data.data !== null ? <img alt={user.name} src={`data:image/png;base64,${convertBinaryToString(user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
             <p>{user && user.name}</p>
             <p>{projectData && projectData.projectName}</p>
             <p>{projectData && projectData._id}</p>

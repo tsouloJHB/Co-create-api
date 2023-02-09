@@ -87,7 +87,7 @@ const MessagesPanel = ({project}) =>{
         //get group messages
         
         const getData = async() =>{
-           const response = await getUsers(user,project.members,dispatch,logout);
+           const response = await getUsers(project.members,dispatch,logout);
             setMembers(response)
            //get messages
            const messagesResponse = await getGroupMessages(project._id);

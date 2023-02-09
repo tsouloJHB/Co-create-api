@@ -14,8 +14,10 @@ import { JoinContext } from "../../context/JoinContext";
 import Modal from "../modal/Modal";
 import { useNavigate } from 'react-router-dom';
 import LinesEllipsis from 'react-lines-ellipsis'
+import profilePicture from "../../images/profile.jpg"
+import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 
-
+const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
 const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetailsModal,post,updateParentPost,closeParent,openParent}) =>{
     let { user ,dispatch} = useContext(AuthContext);
@@ -134,27 +136,44 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
      
     }
 
+    const convertBinaryToString = (image)=>{
+      
+        const base64String = btoa(
+            String.fromCharCode(...new Uint8Array(image.data.data) )
+        );
+            
+        return base64String
+    }
+
+    const handleOnclickEdit = () =>{
+       
+        navigate("/projectEdit",{state:project});
+    }
+
     return(
         <div>
-             
+            {/* convertBinaryToString(profile.image)  */}
             <div className="workout-details"  onClick={handleOpenModal} >
-                {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p>}
+                {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
+                {profile && profile.image.data && profile.image.data.data !== null ? <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
                 <h4>{project && project.projectName}</h4> 
                 <p>{project &&
-                    <LinesEllipsis
-                    text={project.desc}
-                    maxLine='1'
-                    ellipsis='...'
-                    component='p'
-                    basedOn='words'
-                  />
+                //     <LinesEllipsis
+                //     text={project.desc}
+                //     maxLine='1'
+                //     ellipsis='...'
+                //     component='p'
+                //     basedOn='words'
+                //   />
+                  <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
                 <p>{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"Space left":"Spaces left"}</p>
                 <p>{format(post.createdAt)} </p>
                 <div onClick={(e) => {
           e.stopPropagation();
         }}>
-                {post.userId === user.user ?  <span className="material-symbols-outlined"  >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
+                {post.userId === user.user ?  <span className="material-symbols-outlined"  onClick={handleOnclickEdit} >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
                 </div>
                 <Modal 
                     open={openModal} 

@@ -16,7 +16,7 @@ export const getUser = async(user,dispatch,logout) =>{
               const refreshResponse = await RefreshToken(logout,user,dispatch);
             if(refreshResponse){
                 user = JSON.parse(localStorage.getItem('user'))
-                getUser(user,dispatch,logout,);
+                getUser(user,dispatch,logout);
                
             }  
           }
@@ -26,7 +26,8 @@ export const getUser = async(user,dispatch,logout) =>{
     }
 }
 
-export const getUsers = async(user,users,dispatch,logout) =>{
+export const getUsers = async(users,dispatch,logout) =>{
+    const user = JSON.parse(localStorage.getItem('user'))
     try {
         const response = await fetch(`http://localhost:8080/api/users/users/${users.join(',')}`,{
             method:'GET',
@@ -42,8 +43,8 @@ export const getUsers = async(user,users,dispatch,logout) =>{
           if(response.status === 401){
               const refreshResponse = await RefreshToken(logout,user,dispatch);
             if(refreshResponse){
-                user = JSON.parse(localStorage.getItem('user'))
-                getUser(user,dispatch,logout,);
+               
+                getUsers(user,dispatch,logout);
                
             }  
           }

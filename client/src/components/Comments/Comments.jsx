@@ -1,8 +1,8 @@
 
 import { useContext,useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { postComment } from '../api/CommentsRequests';
-
+import { AuthContext } from '../../context/AuthContext';
+import { postComment } from '../../api/CommentsRequests';
+import profilePicture from "../../images/profile.jpg"
 
 const Comments = ({ fetchComments,postId,comments}) => {
     let { dispatch} = useContext(AuthContext);
@@ -17,12 +17,24 @@ const Comments = ({ fetchComments,postId,comments}) => {
             setComment("");
             fetchComments()
         }
-     } 
+     }
+
+     const convertBinaryToString = (image)=>{
+      
+        const base64String = btoa(
+            String.fromCharCode(...new Uint8Array(image.data.data) )
+        );
+            
+        return base64String
+    }
+
     return (
         <div>
             <div>{comments && comments.map((comment)=>(
                 <div key={comment.comment._id}>
-                <p>{comment.comment.text}</p>
+                    { comment.user.image.data.data !== null ? <img alt={comment.user.name} src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                    <p>{comment.user.name}</p>
+                    <p>{comment.comment.text}</p>
                 </div>
             ))}
             </div>
