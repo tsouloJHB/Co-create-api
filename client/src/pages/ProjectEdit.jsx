@@ -8,16 +8,21 @@ import { getUsers } from "../api/GetUsers";
 import { useLogout } from '../hooks/useLogout'
 import { AuthContext } from '../context/AuthContext';
 import profilePicture from "../images/profile.jpg"
+import EditModal from "../components/EditModal/EditModal";
 
 const ProjectEdit = () =>{
     // const location = useLocation();
     // const { state } = location.state;
-    const { state } = useLocation();
+    let { state } = useLocation();
     let {user, dispatch} = useContext(AuthContext);
     const [users,setUsers] = useState(null)
     const {logout} = useLogout();
+    const [openModal, setOpenModal] = useState(false);
+    const [editField,setEditField] = useState(null)
+    const [fieldData,setFieldData] = useState(null)
     
     useEffect(()=>{
+           
          state && getProfiles()
     },[]);
 
@@ -36,12 +41,32 @@ const ProjectEdit = () =>{
             
         return base64String
     }
+    
+    const handleEdit = (field) =>{
+        Object.keys(state).map(key => {
+            if(key === field) 
+            {
+                setFieldData(state[key])    
+                return state[key]
+            }
+            return ""
+        }) 
+        setEditField(field)
+        setOpenModal(true)
+    }
 
+    const updateState = (data) => {
+        state = data;
+        console.log(state);
+    }
     return (
-        <div>
-            <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button>Edit</button></>:<h2>{state.projectName} </h2>}</h3>
-            <div>Project Status {state.userId === user.user ? <><p>{state.status} </p><button>Start Project</button></>:""}</div>
-            <div>{state.userId !== user.user ? <p>state.desc </p>:<><p>{state.desc}</p> <button>Edit</button></>}</div>
+        <div   onClick={() => setOpenModal(false)}>
+            <div  onClick={(e) => {
+          e.stopPropagation();
+        }}>
+            <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button onClick={() => handleEdit("projectName")} >Edit</button></>:<h2>{state.projectName} </h2>}</h3>
+            <div >Project Status {state.userId === user.user ? <><p>{state.status} </p><button onClick={() => handleEdit("status")} >Start Project</button></>:""}</div>
+            <div>{state.userId !== user.user ? <p>state.desc </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
             <p>{state.maxMembers - state.members.length  +" "} {state &&  state.maxMembers - state.members.length === 1 ?"Space left":"Spaces left"}</p>
              <p>Members</p>
             
@@ -60,6 +85,16 @@ const ProjectEdit = () =>{
                 state.userId !== user.user ? <div><button>Exit group </button></div>:"Remove users"
             }
 
+            <EditModal 
+                open={openModal} 
+                onClose={() => setOpenModal(false)}
+                projectData={state}
+                fieldName={editField}
+                fieldData={ fieldData  }
+                updateState={updateState}
+            />
+
+        </div>
         </div>
     )
 

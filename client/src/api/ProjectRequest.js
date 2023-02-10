@@ -66,3 +66,38 @@ export const getProjectByPostId = async(postId,user,dispatch,logout) =>{
        console.log(err)
    }
 }
+
+
+export const updateProject = async(dataObj,postId,dispatch,logout) =>{
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/project/'+postId,{
+            method:'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               
+            },
+            body: JSON.stringify(dataObj)
+          
+        })
+        console.log(response)
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+                user = JSON.parse(localStorage.getItem('user'))
+                updateProject(dataObj,postId,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}
