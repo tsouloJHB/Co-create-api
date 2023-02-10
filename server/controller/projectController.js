@@ -62,23 +62,24 @@ module.exports.update_project = async(req,res) =>{
         console.log(req.id.id);
         
         const projectCheck = await Project.findOne({_id:req.params.id,userId:req.id.id});
-        console.log(projectCheck);
-        const currentMembers = projectCheck.members.length;
-        console.log(req.body.maxMembers);
-        console.log(currentMembers);
-        if(req.body.maxMembers < currentMembers){
-            res.status(400).json('You cant\'t set members no to less than current members');
-            return;
-        }
         //check if max number changed and is not less that current members
+        if(req.body.maxMembers){
+            const currentMembers = projectCheck.members.length;
+            console.log(req.body.maxMembers);
+            console.log(currentMembers);
+            if(req.body.maxMembers < currentMembers){
+                res.status(400).json('You cant\'t set members no to less than current members');
+                return;
+            }
+        }
+      
+        
         if(projectCheck){
             const updateProject = await Project.findByIdAndUpdate(req.params.id,{
                 $set:req.body,
             });
-            if(req.body.desc){
-                const getProject = await Project.findById(req.params.id);
-                await Post.findByIdAndUpdate(getProject.postId ,{desc:req.body.desc});
-            }
+            await Post.findByIdAndUpdate(updateProject.postId ,{$set:req.body});
+       
             res.status(201).json('Projected has been updated');
         }else{
             res.status(400).json("Incorrect project reference or not valid user ");

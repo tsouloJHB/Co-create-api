@@ -188,12 +188,11 @@ Content-Type: application/json
 ###
 put http://localhost:8080/api/project/63af95b4728c0ed2f6d8c70a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3MjQ5NjEzMiwiZXhwIjoxNjcyNTAzMzMyfQ.nhUNmuIr6XPxT9Wd6-p36oEcWiNAeL-BRXuYUxxiGv8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NTk5NDg2OSwiZXhwIjoxNjc2MDEyODY5fQ.k47Dj3p9NE6MtO9yJwzGu6svcaWMzCFDTTcnVX6fJiU
 
 {
-    "projectName":"The ultimate Students",
-    "desc":"make me better",
-    "maxMembers": 2
+    "projectName":"The ultimate programmer",
+   
 }
 
 ###
