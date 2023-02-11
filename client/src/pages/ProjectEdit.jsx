@@ -9,6 +9,8 @@ import { useLogout } from '../hooks/useLogout'
 import { AuthContext } from '../context/AuthContext';
 import profilePicture from "../images/profile.jpg"
 import EditModal from "../components/EditModal/EditModal";
+import { removeUser } from "../api/ProjectRequest";
+import { getProjectByPostId } from "../api/ProjectRequest";
 
 const ProjectEdit = () =>{
     // const location = useLocation();
@@ -20,16 +22,36 @@ const ProjectEdit = () =>{
     const [openModal, setOpenModal] = useState(false);
     const [editField,setEditField] = useState(null)
     const [fieldData,setFieldData] = useState(null)
+    const [project,setProject] = useState(null) 
     
     useEffect(()=>{
-           
-         state && getProfiles()
+        console.log(state.members)  
+        getProject(); 
+       
     },[]);
 
-    const getProfiles = async() =>{
-        const users = await getUsers(state.members,dispatch,logout);
-        setUsers(users)
+    const getProfiles = async(foundProject) =>{
+ 
+        const newUsers = foundProject.members.filter((member) =>  member !== user.user);
+       
+        if(newUsers.length > 0){
+            const users = await getUsers(newUsers,dispatch,logout);
+       
+            setUsers(users)
+        }
+        
     
+    }
+    //get project
+    const getProject = async() =>{
+        const foundProject = await getProjectByPostId(state.postId,user,dispatch,logout);
+ 
+        if(foundProject){
+            console.log(foundProject)
+            setProject(foundProject)
+            getProfiles(foundProject)
+        }
+
     }
 
 
@@ -59,6 +81,24 @@ const ProjectEdit = () =>{
         state = data;
         console.log(state);
     }
+    const handleRemoveUser = async(data) => {
+
+        const deleteUser = await removeUser(data._id,state._id,dispatch,logout);
+        if(deleteUser){
+            const newUsers = users.filter((user) => user._id !== data._id);
+            console.log(newUsers)
+            setUsers(newUsers)
+            //parent state project
+            
+            //edit state
+            const newMembers = state.members.filter((member) =>  member !== data._id);
+            state.members = newMembers
+            console.log(state.members)
+
+        }
+      
+       
+    }
     return (
         <div   onClick={() => setOpenModal(false)}>
             <div  onClick={(e) => {
@@ -70,20 +110,24 @@ const ProjectEdit = () =>{
             <p>{state.maxMembers - state.members.length  +" "} {state &&  state.maxMembers - state.members.length === 1 ?"Space left":"Spaces left"}</p>
              <p>Members</p>
             
+             {
+                state.userId !== user.user ? <div><button>Exit group </button></div>:""
+            }
             {
-               state.members.length > 0?
-                users  &&  users.map(LocalUser =>(
+                users && <p>{users.length}</p>
+            }
+            {
+               users  && users.length > 0?
+                 users.map(LocalUser =>(
                     <div key={LocalUser._id}>
-                          
-                     {LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
+                     
+                     {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
                     <p>{LocalUser.name} {LocalUser.surname}</p>
+                    <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button>
                     </div>
                 )):"NO members yet"
             }
 
-            {
-                state.userId !== user.user ? <div><button>Exit group </button></div>:"Remove users"
-            }
 
             <EditModal 
                 open={openModal} 

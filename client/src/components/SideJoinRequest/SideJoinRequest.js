@@ -58,8 +58,8 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
         //the joins are are late
         setJoinRequest(joinRequest)
              
-        if(joinRequest){
-        // console.log(joinRequest)
+        if(joinRequest.length > 0){
+                        
             const projectData = await fetchProjectData(joinRequest);
         }
  
@@ -128,7 +128,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     return (
         <div >
             {closeParent}
-            
+            {joins && joins.length === 0?<p>No joins</p>:""}
             {joinRequests && joins && joins.map((project,index)=>(
                 <div key={project._id}   data-values={index}  data-projects={project._id} className="workout-details" onClick={handleOpenModal} >
                      <h4 data-values={index}>   {project.projectName}</h4> 

@@ -163,7 +163,7 @@ module.exports.get_all_join_requests = async(req,res) =>{
            
 	        res.status(200).json(foundJoin)
 	    }else{
-	        res.status(400).json("No joins found")
+	        res.status(200).json({})
 	    }
     } catch (err) {
         res.status(500).json(err);

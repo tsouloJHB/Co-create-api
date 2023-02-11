@@ -54,10 +54,10 @@ const Projects = () =>{
               if(lJoins){
                
                 let data = [];
-             
+                //check if the user has joined any of the post if so don't display the post
                 json && json.forEach(post => {
                 let returnObject = post
-                if(lJoins){
+                if(lJoins.length > 0){
                   
                   lJoins.some((join) => join.postId !== post._id ? "": returnObject = "" ) 
                   //lJoins.some((join) => join.status === "Pending" ? "": returnObject = "")
@@ -123,6 +123,16 @@ const Projects = () =>{
     const postDetailsModalSetTrue = () =>{
       setPostDetailsModal(true);
     }
+
+    const convertBinaryToString = (image)=>{
+      
+      const base64String = btoa(
+          String.fromCharCode(...new Uint8Array(image.data.data) )
+      );
+          
+      return base64String
+  }
+
     return (
       <div   onClick={() => setCloseParent(true)}   >
           <CreateProject updateParentPost={updateParentPost}/>  
@@ -131,7 +141,7 @@ const Projects = () =>{
             <div className="workouts" onClick={(e) => {
           e.stopPropagation();
         }}>
-              <p>Join request</p>
+              <h3>Join requests</h3>
               <SideJoinRequest closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/>
             </div>  
           </div>    
@@ -142,12 +152,7 @@ const Projects = () =>{
           e.stopPropagation();
         }}>
             
-              {/* {post && post.map((post) => {
-                  let returnObject = <PostDetails key={post._id} post={post} />
-                  joins && joins.some((join) => join.postId !== post._id ? "": returnObject = "" )
-              return  returnObject
-              })} */}
-              <div>{user.token}</div>
+            
               
               {posts && posts.map((post) => (
                 
