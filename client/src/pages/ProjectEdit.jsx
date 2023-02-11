@@ -11,6 +11,7 @@ import profilePicture from "../images/profile.jpg"
 import EditModal from "../components/EditModal/EditModal";
 import { removeUser } from "../api/ProjectRequest";
 import { getProjectByPostId } from "../api/ProjectRequest";
+import ProfileModal from "../components/profileModal/ProfileModal";
 
 const ProjectEdit = () =>{
     // const location = useLocation();
@@ -20,9 +21,11 @@ const ProjectEdit = () =>{
     const [users,setUsers] = useState(null)
     const {logout} = useLogout();
     const [openModal, setOpenModal] = useState(false);
+    const [openProfileModal, setOpenProfileModal] = useState(false);
     const [editField,setEditField] = useState(null)
     const [fieldData,setFieldData] = useState(null)
     const [project,setProject] = useState(null) 
+    const [modalUser,setModalUser] = useState(null)
     
     useEffect(()=>{
         console.log(state.members)  
@@ -36,7 +39,6 @@ const ProjectEdit = () =>{
        
         if(newUsers.length > 0){
             const users = await getUsers(newUsers,dispatch,logout);
-       
             setUsers(users)
         }
         
@@ -99,8 +101,16 @@ const ProjectEdit = () =>{
       
        
     }
+    const handleViewProfile = async(user) => {
+        setModalUser(user)
+        setOpenProfileModal(true)
+    }
+    const closeModals = ()=>{
+        setOpenModal(false)
+        setOpenProfileModal(false)
+    }
     return (
-        <div   onClick={() => setOpenModal(false)}>
+        <div   onClick={() => closeModals()}>
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
@@ -124,6 +134,7 @@ const ProjectEdit = () =>{
                      {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
                     <p>{LocalUser.name} {LocalUser.surname}</p>
                     <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button>
+                    <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
                     </div>
                 )):"NO members yet"
             }
@@ -136,6 +147,11 @@ const ProjectEdit = () =>{
                 fieldName={editField}
                 fieldData={ fieldData  }
                 updateState={updateState}
+            />
+            <ProfileModal 
+                open={openProfileModal} 
+                onClose={() => setOpenProfileModal(false)}
+                user={modalUser}
             />
 
         </div>
