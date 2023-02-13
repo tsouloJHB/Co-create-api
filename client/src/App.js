@@ -17,6 +17,7 @@ import ProjectView from './pages/ProjectView';
 import ProjectStatus from './pages/ProjectStatus';
 import ViewProject from './pages/ViewProject';
 import ProjectEdit from './pages/ProjectEdit';
+import Profile from './pages/Profile';
 
 
 function App () {
@@ -68,9 +69,14 @@ function App () {
             element={user ? <ViewProject /> :  <Login/>} 
            />
 
-          <Route
+          <Route  
             path="/projectEdit"
             element={user ? <ProjectEdit /> :  <Login/>} 
+           />
+
+          <Route  
+            path="/profile"
+            element={user ? <Profile /> :  <Login/>} 
            />
             
             <Route

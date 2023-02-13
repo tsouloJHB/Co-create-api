@@ -1,11 +1,24 @@
+import { useEffect ,useState} from 'react';
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useLogout } from '../../hooks/useLogout'
+import { getUser } from '../../api/GetUsers';
 
 const Navbar = () => {
    const {logout} = useLogout();
-   const {user} = useAuthContext();
+   const {user,dispatch} = useAuthContext();
+   const [profileUser,setProfileUser] = useState(null)
+   
+   useEffect(()=>{
+     getUserData();
+  },[]);
   
+
+    const getUserData = async() =>{
+        const foundUser = await getUser(user.user,dispatch,logout)
+        if(foundUser) setProfileUser(foundUser)
+    }
+
    const handleClick = () =>{
     logout();
    }
@@ -18,7 +31,8 @@ const Navbar = () => {
           <nav>
             {user && (
               <div>
-                <span>{user.email}dfd</span>
+                <span>{user && profileUser && profileUser.name}</span>
+                <Link to="/profile">Profile</Link>
                 <Link to="/projects">Projects</Link>
                 <Link to="/projects">Project request</Link>
                 <Link to="/posts">Your Project post</Link>

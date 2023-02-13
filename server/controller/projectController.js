@@ -9,7 +9,8 @@ const GroupChatModel = require('../models/GroupChatModel');
 //@access   Public
 module.exports.get_all_projects = async(req,res) =>{
     try {
-        const projects = await Project.find();
+        const projects = await Project.find()
+        
         res.status(200).json(projects);
     } catch (err) {
         res.status(400).json(err);
@@ -59,14 +60,10 @@ module.exports.get_projectByPostId = async(req,res) =>{
 module.exports.update_project = async(req,res) =>{
     try {
         //check if project id is valid
-        console.log(req.id.id);
-        
         const projectCheck = await Project.findOne({_id:req.params.id,userId:req.id.id});
         //check if max number changed and is not less that current members
         if(req.body.maxMembers){
             const currentMembers = projectCheck.members.length;
-            console.log(req.body.maxMembers);
-            console.log(currentMembers);
             if(req.body.maxMembers < currentMembers){
                 res.status(400).json('You cant\'t set members no to less than current members');
                 return;
@@ -101,9 +98,9 @@ module.exports.delete_project = async(req,res) =>{
         if(checkProject){
             const deleteProject = await Project.findByIdAndDelete(req.params.id);
             // delete group chat
-
-            //delete project
-
+            const deleteGroupChat = await GroupChatModel.findOneAndDelete({postId:checkProject._id})
+            //delete post
+            const deletePost = await Post.findByIdAndDelete(checkProject.postId)
 
             res.status(201).json("Project was deleted"); 
         }else{

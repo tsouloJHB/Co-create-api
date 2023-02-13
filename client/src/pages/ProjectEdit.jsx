@@ -1,5 +1,5 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation,  useNavigate } from "react-router-dom";
 import {format} from "timeago.js";
 
 import { useContext,useState } from 'react';
@@ -9,9 +9,9 @@ import { useLogout } from '../hooks/useLogout'
 import { AuthContext } from '../context/AuthContext';
 import profilePicture from "../images/profile.jpg"
 import EditModal from "../components/EditModal/EditModal";
-import { removeUser } from "../api/ProjectRequest";
-import { getProjectByPostId } from "../api/ProjectRequest";
+import { getProjectByPostId ,removeUser, deleteProject, exitProject } from "../api/ProjectRequest";
 import ProfileModal from "../components/profileModal/ProfileModal";
+import SideAcceptUsers from "../components/SideAcceptUsers/SideAcceptUsers";
 
 const ProjectEdit = () =>{
     // const location = useLocation();
@@ -26,10 +26,13 @@ const ProjectEdit = () =>{
     const [fieldData,setFieldData] = useState(null)
     const [project,setProject] = useState(null) 
     const [modalUser,setModalUser] = useState(null)
+    const navigate = useNavigate();
+    const [membersCount,setMembersCount] = useState(0);
     
     useEffect(()=>{
-        console.log(state.members)  
+        
         getProject(); 
+        setMembersCount(state.maxMembers - state.members.length)
        
     },[]);
 
@@ -52,6 +55,7 @@ const ProjectEdit = () =>{
             console.log(foundProject)
             setProject(foundProject)
             getProfiles(foundProject)
+            
         }
 
     }
@@ -109,20 +113,40 @@ const ProjectEdit = () =>{
         setOpenModal(false)
         setOpenProfileModal(false)
     }
+    const handleDeleteProject = async() =>{
+        const projectDelete = await deleteProject(state._id,dispatch,logout)
+
+        if(projectDelete){
+            console.log(state._id)
+            navigate(-1)
+        }
+     
+    }
+    const updateParentUser = () =>{
+        getProject();
+    }
+
+    const updateMembers = () =>{
+        setMembersCount(membersCount - 1)
+    }
+    const handleExitProject = async() =>{
+        const exitProjectResponse = await exitProject(state._id,dispatch,logout);
+        if(exitProjectResponse){
+            navigate(-1)
+        }
+    }
     return (
         <div   onClick={() => closeModals()}>
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
+             {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
             <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button onClick={() => handleEdit("projectName")} >Edit</button></>:<h2>{state.projectName} </h2>}</h3>
             <div >Project Status {state.userId === user.user ? <><p>{state.status} </p><button onClick={() => handleEdit("status")} >Start Project</button></>:""}</div>
-            <div>{state.userId !== user.user ? <p>state.desc </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
-            <p>{state.maxMembers - state.members.length  +" "} {state &&  state.maxMembers - state.members.length === 1 ?"Space left":"Spaces left"}</p>
+            <div>{state.userId !== user.user ? <p>{state.desc} </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
+            <p>{membersCount +" "} {state &&  membersCount === 1 ?"Space left":"Spaces left"}</p>
              <p>Members</p>
-            
-             {
-                state.userId !== user.user ? <div><button>Exit group </button></div>:""
-            }
+           
             {
                 users && <p>{users.length}</p>
             }
@@ -133,13 +157,20 @@ const ProjectEdit = () =>{
                      
                      {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
                     <p>{LocalUser.name} {LocalUser.surname}</p>
-                    <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button>
+                    {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
                     <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
                     </div>
                 )):"NO members yet"
             }
 
-
+               
+            {
+                state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
+            }
+             
+             {
+                state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
+            }
             <EditModal 
                 open={openModal} 
                 onClose={() => setOpenModal(false)}

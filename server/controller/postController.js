@@ -81,7 +81,7 @@ module.exports.get_all_posts = async(req,res) =>{
             }
         })
       );
-      res.status(200).json(posts);
+      res.status(200).json(newPosts);
     } catch (err) {
       console.log(err);
       res.status(400).json("No posts found")

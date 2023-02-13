@@ -136,3 +136,141 @@ export const removeUser = async(userId,projectId,dispatch,logout) =>{
         console.log(err)
     }
 }
+
+export const deleteProject = async(projectId,dispatch,logout) =>{
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/project/'+projectId,{
+            method:'DELETE',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               
+            },
+        
+          
+        })
+   
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+         
+                deleteProject(projectId,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+
+export const getProjectJoinRequest = async(postId,dispatch,logout) =>{
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+       const response = await fetch('http://localhost:8080/api/join/'+postId,{
+           method:'GET',
+           headers: { 
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+              
+           }
+       
+         
+       })
+       console.log(response)
+       if(response.ok){
+           const json = await response.json();
+           return json
+         }
+       
+         if(response.status === 401){
+             const refreshResponse = await RefreshToken(logout,user,dispatch);
+           if(refreshResponse){
+          
+               getProjectByPostId(postId,user,dispatch,logout);
+              
+           }  
+         }
+         return [];
+   } catch (err) {
+       console.log(err)
+   }
+}
+
+
+export const acceptUser = async(postId,joinId,status,dispatch,logout) =>{
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/join/',{
+            method:'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               
+            },
+            body: JSON.stringify({postId,joinId,status})
+          
+        })
+        console.log(response)
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+              
+                acceptUser(postId,joinId,status,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const exitProject = async(projectId,dispatch,logout) =>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/project/exitproject/'+projectId,{
+            method:'DELETE',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               
+            },
+        
+          
+        })
+   
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+         
+                exitProject (projectId,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}

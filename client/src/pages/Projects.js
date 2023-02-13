@@ -37,12 +37,6 @@ const Projects = () => {
     }
     return ( 
         <div>
-            <div>
-                <form>
-                    <input type="file"/>
-                    <button>Submit</button>
-                </form>
-            </div>    
             <CreateProject updateParentPost={fetchPosts}/>  
             <h3>Projects </h3>
             <div>
@@ -80,6 +74,17 @@ const Projects = () => {
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
         ))}    
+
+        { projects && projects.filter((pro) => {
+                return pro.userId === user.user
+                }).map((item,index) =>(
+                    index === 0 ?
+                    <div key={item._id}>
+                        <h5>Your projects </h5>
+                        <ProjectDetails key={item._id} project={item}/>
+                    </div> :     
+                    <ProjectDetails key={item._id} project={item}/>
+        ))} 
     
         </div>
     </div> );

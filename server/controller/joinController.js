@@ -107,7 +107,7 @@ module.exports.join_response = async(req,res) =>{
         }
 
     } catch (err) {
-
+        
         res.status(500).json("The Server application encountered an error"); 
     }
 }
@@ -132,9 +132,12 @@ module.exports.get_join_requests  = async(req,res)  =>{
                   obj = {
                     joinId:el.id,
                     name:user.name,
+                    surname:user.surname,
+                    image:user.image,
                     bio:user.desc,
                     occupation:user.occupation,
-                    email:user.email
+                    email:user.email,
+                    status:el.status
                   }
                   return obj;
                 })
@@ -173,8 +176,8 @@ module.exports.get_all_join_requests = async(req,res) =>{
 const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
     returnResponse.message ="Project not updated";
    
-    if(status == 'Accept'){
-        console.log(status); 
+    if(status == 'Accepted'){
+      
         try {
             const foundProject = await Project.findOne({postId:postId,userId:projectUserId});
             
@@ -205,6 +208,7 @@ const addAcceptedUserToProject = async(status,userId,postId,projectUserId)=>{
         }
        
     }
+    returnResponse.response = false
     return returnResponse;
 }
 

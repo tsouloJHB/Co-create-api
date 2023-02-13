@@ -149,7 +149,11 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
        
         navigate("/projectEdit",{state:project});
     }
-
+     project && console.log()
+    
+     if(project && project.members.includes(user.user) && project.userId !== user.user ){
+        return null
+     }
     return(
         <div>
             {/* convertBinaryToString(profile.image)  */}

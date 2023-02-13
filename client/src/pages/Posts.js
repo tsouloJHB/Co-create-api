@@ -33,7 +33,7 @@ const Projects = () =>{
     useEffect(()=>{
 
         //check if user is logged in if not refresh the token
-        console.log(userState);
+
         setUserState(user);
         
        
@@ -50,7 +50,7 @@ const Projects = () =>{
           
               
               const lJoins =  await fetchAllJoinRequest()
-              console.log(lJoins)
+           
               if(lJoins){
                
                 let data = [];
@@ -71,6 +71,7 @@ const Projects = () =>{
               });
             
               if(data){
+                console.log(data)
                 postDispatch({type:'SET_POSTS',payload:data});
                 setlocalPost(data); 
                
@@ -155,12 +156,7 @@ const Projects = () =>{
             
               
               {posts && posts.map((post) => (
-                
-                 
-                  <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div>
-                
-              
-                  
+                  <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div> 
               ))}
             </div>
             

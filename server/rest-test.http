@@ -191,7 +191,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NTk5NDg2OSwiZXhwIjoxNjc2MDEyODY5fQ.k47Dj3p9NE6MtO9yJwzGu6svcaWMzCFDTTcnVX6fJiU
 
 {
-    "projectName":"The ultimate programmer",
+    "projectName":"The ultimate programmer"
    
 }
 
