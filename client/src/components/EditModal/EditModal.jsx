@@ -17,7 +17,11 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
     
     useEffect(()=>{
         setField(fieldData)
-     
+        if(fieldName === "name&surname"){
+          setField(fieldData.split("/")[1])
+          setSecondField(fieldData.split("/")[2])
+          console.log(fieldData.split("/")[2])
+        }
     
     },[fieldData]);
 
@@ -67,6 +71,10 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
      const profileUpdate = await updateUserProfile(jsObj,dispatch,logout);
       if(profileUpdate){
           projectData[fieldName] = field
+          if(fieldName === "name&surname") {
+            projectData["name"] = field
+            projectData["surname"] = secondField
+          }
           updateState(projectData)
           onClose(); 
       }
@@ -106,8 +114,8 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
             :""}
 
             {fieldType === "profile"? fieldName !== "name&surname"? <input type="text" value={field} className="input_style"   onChange={(e) => setField(e.target.value)} />
-              : <><input type="text" value={fieldData.split("/")[1]} className="input_style"   onChange={(e) => setField(e.target.value)} />
-                <input type="text"  value={fieldData.split("/")[2]} className="input_style"   onChange={(e) => setSecondField(e.target.value)} /></>
+              : <><input type="text" value={field} className="input_style"   onChange={(e) => setField(e.target.value)} />
+                <input type="text"  value={secondField} className="input_style"   onChange={(e) => setSecondField(e.target.value)} /></>
             :""}
            
             <br/>
