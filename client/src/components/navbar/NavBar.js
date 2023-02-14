@@ -10,7 +10,7 @@ const Navbar = () => {
    const [profileUser,setProfileUser] = useState(null)
    
    useEffect(()=>{
-     getUserData();
+   user && getUserData();
   },[]);
   
 
@@ -31,7 +31,7 @@ const Navbar = () => {
           <nav>
             {user && (
               <div>
-                <span>{user && profileUser && profileUser.name}</span>
+                <span>{ profileUser && profileUser.name}</span>
                 <Link to="/profile">Profile</Link>
                 <Link to="/projects">Projects</Link>
                 <Link to="/projects">Project request</Link>

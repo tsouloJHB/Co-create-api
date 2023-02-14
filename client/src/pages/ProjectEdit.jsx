@@ -178,6 +178,7 @@ const ProjectEdit = () =>{
                 fieldName={editField}
                 fieldData={ fieldData  }
                 updateState={updateState}
+                fieldType="project"
             />
             <ProfileModal 
                 open={openProfileModal} 

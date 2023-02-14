@@ -55,3 +55,39 @@ export const getUsers = async(users,dispatch,logout) =>{
     
 
 }   
+
+
+
+export const updateUserProfile = async(dataObj,dispatch,logout) =>{
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/users/',{
+            method:'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               
+            },
+            body: JSON.stringify(dataObj)
+          
+        })
+        console.log(response)
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+              
+                updateUserProfile(dataObj,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}
