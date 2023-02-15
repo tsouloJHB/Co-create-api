@@ -2,11 +2,13 @@
 import { RefreshToken } from "./RefreshToken";
 
 export const getUser = async(user,dispatch,logout) =>{
+    
     try {
         const response = await fetch('http://localhost:8080/api/users/'+user,{
 	        method:'GET',
 	        headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`},
 	    })
+
         if(response.ok){
             const json = await response.json();
             return json
@@ -83,6 +85,40 @@ export const updateUserProfile = async(dataObj,dispatch,logout) =>{
             if(refreshResponse){
               
                 updateUserProfile(dataObj,dispatch,logout)
+               
+            }  
+          }
+          return [];
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+export const updateUserProfilePicture = async(image,dispatch,logout) =>{
+    console.log(image)
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const response = await fetch('http://localhost:8080/api/users/upload',{
+            method:'PUT',
+            headers: { 
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+            },
+            body: image
+            
+          
+        })
+        
+        if(response.ok){
+            const json = await response.json();
+            return json
+          }
+        
+          if(response.status === 401){
+              const refreshResponse = await RefreshToken(logout,user,dispatch);
+            if(refreshResponse){
+              
+                updateUserProfilePicture(image,dispatch,logout)
                
             }  
           }

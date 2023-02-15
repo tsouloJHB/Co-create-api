@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const ProjectDetails = ({project}) => {
     const navigate = useNavigate();
     let { user ,dispatch} = useContext(AuthContext);
+   
     
     const handleClick = () =>{
         navigate("/projectEdit",{state:project});     
@@ -23,7 +24,7 @@ const ProjectDetails = ({project}) => {
             <p>{project.desc}{project.desc}</p>
             <p>{project.status}</p>
             <p>Created {format(project.createdAt)} </p>
-            {project.status === "InProgress"? <Link to="/projectView" state={{ project: project } }>View Project</Link>  :""}
+            {project.status === "InProgress"? <Link to="/projectView" state={{ project: project } }>Open</Link>  :""}
             {project.status === "NotStarted"? <Link to="/projectStatus" state={{ project: project } }>Project status</Link>  :""}
             &nbsp;
             <button onClick={handleClick}>Settings</button>

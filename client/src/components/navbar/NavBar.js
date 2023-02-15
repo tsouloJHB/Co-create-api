@@ -10,12 +10,14 @@ const Navbar = () => {
    const [profileUser,setProfileUser] = useState(null)
    
    useEffect(()=>{
-   user && getUserData();
+    getUserData()
   },[]);
   
 
     const getUserData = async() =>{
-        const foundUser = await getUser(user.user,dispatch,logout)
+        const users = JSON.parse(localStorage.getItem('user'))
+        const foundUser = await getUser(users.user,dispatch,logout)
+        console.log("here")
         if(foundUser) setProfileUser(foundUser)
     }
 

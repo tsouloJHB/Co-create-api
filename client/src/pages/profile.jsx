@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState} from "react";
 
 import { AuthContext } from '../context/AuthContext';
-import { getUser } from "../api/GetUsers";
+import { getUser,updateUserProfilePicture } from "../api/GetUsers";
 import { useLogout } from '../hooks/useLogout'
 import profilePicture from "../images/profile.jpg"
 import EditModal from "../components/EditModal/EditModal";
@@ -13,12 +13,15 @@ const Profile = () => {
     const [openModal, setOpenModal] = useState(false);
     const [editField,setEditField] = useState(null)
     const [fieldData,setFieldData] = useState(null)
+    const [imageValue,setImageValue] = useState(null)
+    const [image,setImage] = useState(null)
 
     useEffect(()=>{
         getUserData();
     },[]);
 
     const getUserData = async() =>{
+        
         const foundUser = await getUser(user.user,dispatch,logout)
         if(foundUser) setProfileUser(foundUser)
     }
@@ -58,6 +61,19 @@ const Profile = () => {
         console.log(profileUser);
     }
 
+    const handleClick = async(e) =>{
+     
+        e.preventDefault()
+       
+        const formData = new FormData()
+        formData.append("imageUpload", imageValue)
+      
+        const profileP = await updateUserProfilePicture(formData,dispatch,logout)   
+        if(profileP){
+            //get updated profile data 
+            getUserData();
+        }
+    }
     return (
         <div>
             <h4>Profile</h4>
@@ -73,11 +89,12 @@ const Profile = () => {
                  <button onClick={() => handleEdit("occupation")}>Edit occupation </button>
                 <br/>
                  {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                 <form>
-                    <input type="file" id="myFile" name="filename"/>
-                    <input type="submit"/>
+                
+                 <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
+                    <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
+                    <input type="submit"  />
                 </form>
-
+                { image && <img alt="" src={image}/>}
                 <EditModal 
                 open={openModal} 
                 onClose={() => setOpenModal(false)}
