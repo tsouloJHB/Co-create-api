@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NavBar from './components/navbar/NavBar'
 import { AuthContext } from './context/AuthContext';
-import Posts from './pages/Posts';
+import Posts from './pages/Posts/Posts';
 import Projects from './pages/Projects';
 import { useContext } from "react";
 import { RefreshToken } from './api/RefreshToken';

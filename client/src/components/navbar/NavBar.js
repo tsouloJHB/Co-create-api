@@ -16,9 +16,13 @@ const Navbar = () => {
 
     const getUserData = async() =>{
         const users = JSON.parse(localStorage.getItem('user'))
-        const foundUser = await getUser(users.user,dispatch,logout)
-        console.log("here")
-        if(foundUser) setProfileUser(foundUser)
+        if(users){
+          const foundUser = await getUser(users.user,dispatch,logout)
+          console.log("here")
+          if(foundUser) setProfileUser(foundUser)
+        }
+   
+       
     }
 
    const handleClick = () =>{

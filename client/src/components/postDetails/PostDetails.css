@@ -1,0 +1,91 @@
+.feeddark {
+    background: #000000;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  }
+  
+  .feeddark .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .feeddark .header .user {
+    display: flex;
+    gap: 0.4rem;
+  }
+  
+  .feeddark .header .user img {
+    width: 4.2rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .feeddark .header .user .userinfo h3 {
+    color: #ffffff;
+  }
+  
+  .feeddark .header .user .userinfo small {
+    color: gray;
+  }
+  
+  .feeddark .header .edit i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.4rem;
+    color: #ffffff;
+  }
+  
+  .feeddark .header .edit i:hover {
+    background: #cfcfcf57;
+  }
+  
+  .feeddark .image img {
+    margin: 1rem 0.2rem;
+    border-radius: 1rem;
+    cursor: zoom-in;
+  }
+  
+  .feeddark .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    margin: 0.2rem;
+  }
+  
+  .feeddark .buttons i {
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.4rem;
+    color: #ffffff;
+  }
+  
+  .feeddark .buttons i:hover {
+    background: #cfcfcf57;
+  }
+  
+  .feeddark .buttons .rightbuttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .feeddark .caption {
+    color: #ffffff;
+  }
+  
+  .feeddark .viewcomments {
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .feeddark .viewcomments:hover {
+    text-decoration: underline;
+  }
+  

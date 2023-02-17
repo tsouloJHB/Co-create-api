@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import PostDetails from "../components/postDetails/PostDetails";
-import { AuthContext } from '../context/AuthContext';
-import { PostContext } from "../context/PostContext";
-import * as PostsApi from "../api/PostRequest";
-import { useLogout } from '../hooks/useLogout'
-import { RefreshToken } from "../api/RefreshToken";
-import CreateProject from "../components/CreateProjects/CreateProject";
-import SideJoinRequest from "../components/SideJoinRequest/SideJoinRequest";
+import PostDetails from "../../components/postDetails/PostDetails";
+import { AuthContext } from '../../context/AuthContext';
+import { PostContext } from "../../context/PostContext";
+import * as PostsApi from "../../api/PostRequest";
+import { useLogout } from '../../hooks/useLogout'
+import { RefreshToken } from "../../api/RefreshToken";
+import CreateProject from "../../components/CreateProjects/CreateProject";
+import SideJoinRequest from "../../components/SideJoinRequest/SideJoinRequest";
 
 const Projects = () =>{
     const { user,dispatch } = useContext(AuthContext);
@@ -135,11 +135,11 @@ const Projects = () =>{
   }
 
     return (
-      <div   onClick={() => setCloseParent(true)}   >
-          <CreateProject updateParentPost={updateParentPost}/>  
+      <div  className="container"  onClick={() => setCloseParent(true)}   >
+        
           {/* side post*/}
-          <div className="home">
-            <div className="workouts" onClick={(e) => {
+          <div className="left-sidebar">
+            <div  onClick={(e) => {
           e.stopPropagation();
         }}>
               <h3>Join requests</h3>
@@ -147,9 +147,9 @@ const Projects = () =>{
             </div>  
           </div>    
           {/* center post*/}
-          <div className="home" >
-          
-            <div className="workouts" onClick={(e) => {
+          <div className="main-content" >
+          <CreateProject updateParentPost={updateParentPost}/>  
+            <div  onClick={(e) => {
           e.stopPropagation();
         }}>
             
@@ -161,6 +161,44 @@ const Projects = () =>{
             </div>
             
           </div>
+          <div class="right-sidebar">
+                <div class="sidebar-title">
+                    <h4>Events</h4>
+                    <a href="#">See All</a>
+                </div>
+                <div class="event">
+                    <div class="left-event">
+                        <h3>18</h3>
+                        <span>March</span>
+                    </div>
+                    <div class="right-event">
+                        <h4>Social Media</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
+                        <a href="#">More Info</a>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="left-event">
+                        <h3>22</h3>
+                        <span>June</span>
+                    </div>
+                    <div class="right-event">
+                        <h4>Mobile Marketing</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
+                        <a href="#">More Info</a>
+                    </div>
+                </div>
+                <div class="sidebar-title">
+                    <h4>Advertisement</h4>
+                    <a href="#">close</a>
+                </div>
+               
+                <div class="sidebar-title">
+                    <h4>Conversation</h4>
+                    <a href="#">Hide Chat</a>
+                </div>
+               
+            </div>
       </div>
     );
     

@@ -8,9 +8,9 @@ import { useLogout } from '../../hooks/useLogout'
 const CreateProject =  ({updateParentPost}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
     const {logout} = useLogout();
-    const [projectName, setProjectName] = useState(null);
-    const [desc, setDesc] = useState(null);
-    const [maxNumber, setMaxNumber] = useState(null); 
+    const [projectName, setProjectName] = useState("");
+    const [desc, setDesc] = useState("");
+    const [maxNumber, setMaxNumber] = useState(0); 
 
      const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -24,25 +24,27 @@ const CreateProject =  ({updateParentPost}) =>{
         }
      }  
     return (
-        <div>
+        <div className='write-post-container'>
             <h4>Create project post</h4>
-           <form onSubmit={handleSubmit}>
-                <input type="text" 
-                onChange={(e) => setProjectName(e.target.value)}
-                value={projectName}
-                placeholder="projectName"
-                />
-                
-                <textarea cols='35' rows='10'
-                 onChange={(e) => setDesc(e.target.value)}
-                 value={desc}
-                ></textarea>
-                <input type="text" 
-                value={maxNumber}
-                onChange={(e) => setMaxNumber(e.target.value)}    
-                />
-                <button>Create</button>
-           </form>
+            <div class="post-input-container">
+                <form onSubmit={handleSubmit}>
+                        <input type="text" 
+                        onChange={(e) => setProjectName(e.target.value)}
+                        value={projectName}
+                        placeholder="projectName"
+                        />
+                        
+                        <textarea cols='35' rows='4'
+                        onChange={(e) => setDesc(e.target.value)}
+                        value={desc}
+                        ></textarea>
+                        <input type="text" 
+                        value={maxNumber}
+                        onChange={(e) => setMaxNumber(e.target.value)}    
+                        />
+                        <button>Create</button>
+                </form>
+           </div>
         </div>
     )
 }

@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import LinesEllipsis from 'react-lines-ellipsis'
 import profilePicture from "../../images/profile.jpg"
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
+import { Avatar, IconButton, Tooltip } from "@mui/material";
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -157,12 +158,33 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     return(
         <div>
             {/* convertBinaryToString(profile.image)  */}
-            <div className="workout-details"  onClick={handleOpenModal} >
-                {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
-                {profile && profile.image.data && profile.image.data.data !== null ? <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
+            <div className="post-container"  onClick={handleOpenModal} >
+                <dic className="post-row">
+                    <div className="user-row">
+                        <div className="user-profile">
+                        {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
+                        {profile && profile.image.data && profile.image.data.data !== null ?
+                        <Avatar src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
+                            width: 48,
+                            height: 48,
+                        }} />:
+                        // <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> :
+                        <Avatar src={profilePicture} alt="" sx={{
+                            width: 48,
+                            height: 48,
+                        }} />
+                        //  <img alt="fds" src={profilePicture}/>}
+                        }
+
+                        <div>
+                            {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
+                            <span>{format(post.createdAt)} </span>
+                        </div>
+                        </div>
+                    </div>
+                </dic>
                 <h4>{project && project.projectName}</h4> 
-                <p>{project &&
+                <p className="post-text">{project &&
                 //     <LinesEllipsis
                 //     text={project.desc}
                 //     maxLine='1'
@@ -172,12 +194,13 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 //   />
                   <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
-                <p>{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"Space left":"Spaces left"}</p>
-                <p>{format(post.createdAt)} </p>
-                <div onClick={(e) => {
-          e.stopPropagation();
-        }}>
-                {post.userId === user.user ?  <span className="material-symbols-outlined"  onClick={handleOnclickEdit} >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
+                 <div class="post-row">
+                    <div onClick={(e) => {
+                    e.stopPropagation();
+                    }}>
+                            {post.userId === user.user ?  <span className="material-symbols-outlined"  onClick={handleOnclickEdit} >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
+                     </div>
+                    <p>{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"Space left":"Spaces left"}</p>
                 </div>
                 <Modal 
                     open={openModal} 
