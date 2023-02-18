@@ -161,6 +161,7 @@ body{
   align-self: flex-start;
   background: var(--bg-color);
   padding: 20px;
+  border-radius: 17px;
 
 }
 .right-sidebar{
@@ -170,13 +171,13 @@ body{
   align-self: flex-start;
   background: var(--bg-color);
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 17px;
   color: #626262;
 
 }
 .main-content{
   flex-basis: 47%;
-
+  border-radius: 17px;
 }
 .imp-links a, .shortcut-link a{
   text-decoration: none;
@@ -819,7 +820,7 @@ body{
   }
   .main-content{
       flex-basis: 100%;
-
+      border-radius: 17px;
   }
   .story p{
       font-size: 10px;
@@ -847,7 +848,7 @@ body{
 }
 /*----------------------- Media Query For Profile Page------------------------*/
 @media (max-width: 900px){
-  .pofile-container{
+  .profile-container{
       padding: 20px 5%;
 
   }

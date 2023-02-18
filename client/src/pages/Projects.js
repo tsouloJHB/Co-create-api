@@ -6,6 +6,8 @@ import { RefreshToken } from "../api/RefreshToken";
 import { UserProject } from "../api/UserProjects";
 import ProjectDetails from "../components/projectDetails/ProjectDetails";
 import CreateProject from "../components/CreateProjects/CreateProject";
+import {  Button } from "@mui/material";
+
 
 
 const Projects = () => {
@@ -13,6 +15,7 @@ const Projects = () => {
     const {logout} = useLogout();
     const [projects,setProjects] = useState([]);
     const status = ['Pending','Inprogress','NotStarted'];
+    const [viewTypeProject,setViewTypeProject] = useState("YourProjects");
 
 
     useEffect(()=>{
@@ -35,6 +38,23 @@ const Projects = () => {
         }
        
     }
+    const handleClickSetProject = (view) =>{
+            switch (view){
+                case "InProgress":
+                    setViewTypeProject("InProgress");
+                    break;
+                case "NotStarted":
+                    setViewTypeProject("NotStarted");
+                    break;
+
+                case "Pending":
+                    setViewTypeProject("Pending");
+                    break;    
+                default :
+                    setViewTypeProject("YourProjects");
+                    break;        
+            }
+    }
     return ( 
         <div className="container">
               <div className="left-sidebar">
@@ -42,7 +62,10 @@ const Projects = () => {
           e.stopPropagation();
         }}>
               <h3>Join requests</h3>
-              
+              <Button onClick={()=> handleClickSetProject()} variant="outlined" color="success"  >Your projects</Button>
+              <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color="success"  >Inprogress</Button>
+              <Button onClick={()=> handleClickSetProject("NoStarted")} variant="outlined" color="success"  >Not Started</Button>
+              <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color="success"  >Pending</Button>
             </div>  
           </div> 
            
@@ -50,19 +73,21 @@ const Projects = () => {
             <div className="main-content">
             
             <h3>Projects </h3>
-            {projects.length === 0 ?"No Projects Found" :""}   
-            { projects && projects.filter((pro) => {
-                return  pro.status === "InProgress"
-                }).map((item,index)  =>(
-                    index === 0 ?
-                    <div key={item._id}>
-                        <h5>Inprogress </h5>
-                        <ProjectDetails key={item._id} project={item}/>
-                    </div> :     
+            
+            {projects.length === 0 ?"No Projects Found" :""} 
+            
+        { viewTypeProject === "InProgress" ? projects && projects.filter((pro) => {
+            return  pro.status === "InProgress"
+            }).map((item,index)  =>(
+                index === 0 ?
+                <div key={item._id}>
+                    <h5>Inprogress </h5>
                     <ProjectDetails key={item._id} project={item}/>
-        ))}   
-        
-        { projects && projects.filter((pro) => {
+                </div> :     
+                <ProjectDetails key={item._id} project={item}/>
+        )):""}   
+    
+        {  viewTypeProject === "Pending" ? projects && projects.filter((pro) => {
                 return pro.status === "Pending"
                 }).map((item,index) =>(
                     index === 0 ?
@@ -71,10 +96,10 @@ const Projects = () => {
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
-        ))} 
+        )):""} 
 
         
-        { projects && projects.filter((pro) => {
+        {  viewTypeProject === "NotStarted" ? projects && projects.filter((pro) => {
                 return pro.status === "NotStarted"
                 }).map((item,index) =>(
                     index === 0 ?
@@ -83,9 +108,9 @@ const Projects = () => {
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
-        ))}    
+        )) :""}    
 
-        { projects && projects.filter((pro) => {
+        { viewTypeProject === "YourProjects" ? projects && projects.filter((pro) => {
                 return pro.userId === user.user
                 }).map((item,index) =>(
                     index === 0 ?
@@ -94,7 +119,7 @@ const Projects = () => {
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
-        ))} 
+        )):""} 
     
         </div>
         <div class="right-sidebar">

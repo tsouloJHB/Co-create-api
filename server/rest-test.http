@@ -139,7 +139,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzA1MWI1N
 ###
 get http://localhost:8080/api/join/63d03f8c6bccf76ae2e1c874
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NDU5MjAyMiwiZXhwIjoxNjc0NjEwMDIyfQ.rBaQvm94ius_iHTpzLjWVfCFvtK5o5ylU5jmf-AmvxI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NjEzNTQ2NSwiZXhwIjoxNjc2MTUzNDY1fQ.-4XDui38FQOne7ZlFNCj5rb0rY_l1z_OgYb-4tC7A60
 
 ###
 //get join requests

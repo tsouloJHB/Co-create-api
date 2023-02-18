@@ -5,7 +5,7 @@ import {  createProjectPost } from '../../api/ProjectRequest';
 import { useState } from 'react';
 import { useLogout } from '../../hooks/useLogout'  
 import {  Button } from "@mui/material";
-import './CreateProject.css';
+
 
 const CreateProject =  ({updateParentPost}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
@@ -49,7 +49,7 @@ const CreateProject =  ({updateParentPost}) =>{
                         ></textarea>
                         
                         {/* <button>Create</button> */}
-                        <Button size='large' variant="outlined" color="success"  >Create</Button>
+                        <Button  variant="outlined" color="success"  >Create</Button>
                 </form>
            </div>
         </div>
