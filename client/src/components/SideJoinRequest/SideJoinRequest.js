@@ -135,7 +135,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                      <h4 data-values={index}>   {project.projectName}</h4> 
                      <p data-values={index}   >{project.desc} </p>
                      <div onClick={(e) => {e.stopPropagation();}}>
-           
+                     {/* { <span  className="material-symbols-outlined" onClick={()=> handleSubmit(project.postId)} >Cancel</span> } */}
                      <Button onClick={()=> handleSubmit(project.postId)}   variant="outlined" color="success"  >Cancel</Button>
                      </div>
                     <Modal 

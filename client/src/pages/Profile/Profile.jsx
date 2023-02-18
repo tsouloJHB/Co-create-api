@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState} from "react";
 
-import { AuthContext } from '../context/AuthContext';
-import { getUser,updateUserProfilePicture } from "../api/GetUsers";
-import { useLogout } from '../hooks/useLogout'
-import profilePicture from "../images/profile.jpg"
-import EditModal from "../components/EditModal/EditModal";
+import { AuthContext } from '../../context/AuthContext';
+import { getUser,updateUserProfilePicture } from "../../api/GetUsers";
+import { useLogout } from '../../hooks/useLogout'
+import profilePicture from "../../images/profile.jpg"
+import EditModal from "../../components/EditModal/EditModal";
 
 const Profile = () => {
     let { user ,dispatch} = useContext(AuthContext);

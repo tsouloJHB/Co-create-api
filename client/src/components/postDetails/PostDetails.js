@@ -18,6 +18,7 @@ import profilePicture from "../../images/profile.jpg"
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 
+
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
 const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetailsModal,post,updateParentPost,closeParent,openParent}) =>{
