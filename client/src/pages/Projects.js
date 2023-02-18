@@ -36,10 +36,20 @@ const Projects = () => {
        
     }
     return ( 
-        <div>
-            <CreateProject updateParentPost={fetchPosts}/>  
+        <div className="container">
+              <div className="left-sidebar">
+            <div  onClick={(e) => {
+          e.stopPropagation();
+        }}>
+              <h3>Join requests</h3>
+              
+            </div>  
+          </div> 
+           
+            
+            <div className="main-content">
+            
             <h3>Projects </h3>
-            <div>
             {projects.length === 0 ?"No Projects Found" :""}   
             { projects && projects.filter((pro) => {
                 return  pro.status === "InProgress"
@@ -87,6 +97,9 @@ const Projects = () => {
         ))} 
     
         </div>
+        <div class="right-sidebar">
+        <CreateProject updateParentPost={fetchPosts}/> 
+           </div> 
     </div> );
 }
  

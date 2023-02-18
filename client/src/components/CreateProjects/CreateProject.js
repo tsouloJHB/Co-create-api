@@ -4,6 +4,8 @@ import { useContext  } from "react";
 import {  createProjectPost } from '../../api/ProjectRequest';
 import { useState } from 'react';
 import { useLogout } from '../../hooks/useLogout'  
+import {  Button } from "@mui/material";
+import './CreateProject.css';
 
 const CreateProject =  ({updateParentPost}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
@@ -28,21 +30,26 @@ const CreateProject =  ({updateParentPost}) =>{
             <h4>Create project post</h4>
             <div class="post-input-container">
                 <form onSubmit={handleSubmit}>
-                        <input type="text" 
+                        <label>Project name</label>
+                        <input className='input-text' type="text" 
                         onChange={(e) => setProjectName(e.target.value)}
                         value={projectName}
-                        placeholder="projectName"
+                       
                         />
-                        
+                        <label>Max members</label>
+                        <input type="text" 
+                        className='input-text'
+                        value={maxNumber}
+                        onChange={(e) => setMaxNumber(e.target.value)}    
+                        />
+                         <label>Description</label>
                         <textarea cols='35' rows='4'
                         onChange={(e) => setDesc(e.target.value)}
                         value={desc}
                         ></textarea>
-                        <input type="text" 
-                        value={maxNumber}
-                        onChange={(e) => setMaxNumber(e.target.value)}    
-                        />
-                        <button>Create</button>
+                        
+                        {/* <button>Create</button> */}
+                        <Button size='large' variant="outlined" color="success"  >Create</Button>
                 </form>
            </div>
         </div>

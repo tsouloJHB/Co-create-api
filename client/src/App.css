@@ -391,6 +391,9 @@ body{
   padding-top: 20px;
 
 }
+.post-input-container .input-text{
+  width: 100%;
+}
 .post-input-container textarea{
   width: 100%;
   border: 0;

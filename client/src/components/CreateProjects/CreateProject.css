@@ -59,4 +59,9 @@ input{
     width: 20%;
     margin: auto;
 }   
+
+form label{
+    color:rgb(163, 163, 163)
+  }
+  
    

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import LinesEllipsis from 'react-lines-ellipsis'
 import profilePicture from "../../images/profile.jpg"
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
-import { Avatar, IconButton, Tooltip } from "@mui/material";
+import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -198,9 +198,10 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     <div onClick={(e) => {
                     e.stopPropagation();
                     }}>
-                            {post.userId === user.user ?  <span className="material-symbols-outlined"  onClick={handleOnclickEdit} >Edit</span> :  <span className="material-symbols-outlined" onClick={handleSubmit} >Join</span>}
+                       
+                            {post.userId === user.user ?  <Button variant="outlined" color="success"  onClick={handleOnclickEdit}>Edit</Button>  :  <Button variant="outlined" color="success"  onClick={handleSubmit} >Join</Button> }
                      </div>
-                    <p>{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"Space left":"Spaces left"}</p>
+                    <p  className="post-text">{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
                 </div>
                 <Modal 
                     open={openModal} 
