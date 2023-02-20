@@ -143,12 +143,12 @@ const Projects = () =>{
           e.stopPropagation();
         }}>
               <h3>Join requests</h3>
-              <SideJoinRequest closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/>
+              <SideJoinRequest zIndex={0} closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/>
             </div>  
           </div>    
           {/* center post*/}
           <div className="main-content" >
-          <CreateProject updateParentPost={updateParentPost}/>  
+          <CreateProject updateParentPost={updateParentPost} />  
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>

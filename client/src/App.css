@@ -38,14 +38,7 @@
 }
 
 /* Modal */
-.overlay {
 
-  position: fixed;
-  z-index: 100;
-  background-attachment: fixed;
-
-
-}
 
 /** dNEW **/
 *{
@@ -366,22 +359,26 @@ body{
   padding: 20px;
   color: #626262;
 
+
 }
 .user-profile{
   display: flex;
   align-items: center;
+ 
 
 }
+
 .user-profile img{
   width: 45px;
   border-radius: 50%;
   margin-right: 10px;
+
 }
 .user-profile p{
   margin-bottom: -5px;
   font-weight: 500;
   color: #626262;
-
+ 
 }
 .user-profile small{
   font-size: 12px;

@@ -165,7 +165,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         <div className="user-profile">
                         {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
                         {profile && profile.image.data && profile.image.data.data !== null ?
-                        <Avatar src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
+                        <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
                         }} />:

@@ -1,94 +1,64 @@
-.changephoto {
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
-    position: relative;
-  }
+:root{
+  --body-color:#efefef;
+  --nav-color: #1876f2;
+  --bg-color: #fff;
+
+}
+
+.middle-cover{
+  height: 500px;
+
+
+  /* position: sticky; */
+
   
-  .changephoto > label span {
-    font-family: Noto Sans;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 18px;
-    color: #828282;
-    margin-left: 24px;
-  }
+  background: var(--bg-color);
+  border-radius: 17px;
+  padding: 50;
+}
+
+.middle-cover h4{
+  position: relative;
+  top: 40px;
+  margin-bottom: 80px;
+}
+
+.middle-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   
-  .editProfileDiv {
-    margin-bottom: 24px;
-  }
-  
-  .editProfileDiv > label {
-    display: block;
-    font-family: Noto Sans;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 18px;
-    color: #4f4f4f;
-    margin-bottom: 8px;
-  }
-  
-  .editProfileDiv > input {
-    height: 52px;
-    width: 50%;
-    border-radius: 12px;
-    border: 1px solid #828282;
-    padding: 8px;
-  }
-  
-  .editProfileDiv > input::placeholder {
-    font-family: Noto Sans;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 18px;
-    color: #bdbdbd;
-    /* padding-left: 16px; */
-  }
-  
-  .editProfileDiv > input:focus {
-    outline: none;
-  }
-  
-  .noborder {
-    border: none;
-  }
-  
-  .editProfile button {
-    height: 38px;
-    width: 82px;
-    border-radius: 8px;
-    background: #2f80ed;
-    color: #ffffff;
-    border-style: none;
-  }
-  
-  .editProfile button#saveDetails:disabled {
-    background-color: rgba(239, 239, 239, 0.3) !important ;
-    color: rgba(16, 16, 16, 0.3) !important;
-    border-color: rgba(118, 118, 118, 0.3) !important;
-  }
-  
-  .changephotoIcon {
-    position: absolute;
-    left: 8px;
-    color: #ffffff;
-    width: 16px;
-  }
-  
-  .file-input {
-    display: flex;
-    align-items: center;
-  }
-  
-  #file-input {
-    display: none;
-  }
-  
-  @media (max-width: 767px) {
-    .editProfileDiv > input {
-      width: 100%;
-    }
-  }
-  
+ 
+  color: #626262;
+
+}
+form input{
+  width: 100%;
+
+}
+
+.content-row{
+  position: relative;
+  bottom: 60px; 
+
+}
+.content-data{
+display: flex;
+margin-bottom: 10px;
+margin-right: 50px;
+width: 80%;
+
+
+}
+.content-data p{
+  flex-flow:row; 
+
+  left: 110px;
+}
+
+.content-data button{
+  position: absolute;
+  left: 100%;
+  width: 30%;
+}

@@ -138,13 +138,13 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                      {/* { <span  className="material-symbols-outlined" onClick={()=> handleSubmit(project.postId)} >Cancel</span> } */}
                      <Button onClick={()=> handleSubmit(project.postId)}   variant="outlined" color="success"  >Cancel</Button>
                      </div>
-                    <Modal 
+                    <Modal zIndex={1300} 
                     open={openModal} 
                     onClose={() => setOpenModal(false)}
                     projectData={modalProject}
                     user={""}
                     insertComments={false}
-
+               
                     />
                  </div>
                  

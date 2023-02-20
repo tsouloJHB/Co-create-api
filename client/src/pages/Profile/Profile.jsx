@@ -5,6 +5,7 @@ import { getUser,updateUserProfilePicture } from "../../api/GetUsers";
 import { useLogout } from '../../hooks/useLogout'
 import profilePicture from "../../images/profile.jpg"
 import EditModal from "../../components/EditModal/EditModal";
+import './Profile.css';
 
 const Profile = () => {
     let { user ,dispatch} = useContext(AuthContext);
@@ -75,25 +76,40 @@ const Profile = () => {
         }
     }
     return (
-        <div>
-            <h4>Profile</h4>
+        <div className="middle-cover">
+             <h4>Profile</h4>
+        <div className="middle-profile">
            
+          
             {profileUser &&<>
-                 <p>Name : {profileUser.name + " "}{profileUser.surname}</p>
-                 <button onClick={() => handleEdit("name&surname")}>Edit name & surname</button>
-                 <p>City : {profileUser.city && profileUser.city}</p>
-                 <button onClick={() => handleEdit("city")}>Edit city </button>
-                 <p>bio : {profileUser.desc && profileUser.desc}</p>
-                 <button onClick={() => handleEdit("desc")}>Edit bio </button>
-                 <p>Occupation : {profileUser.occupation && profileUser.occupation}</p>
-                 <button onClick={() => handleEdit("occupation")}>Edit occupation </button>
-                <br/>
-                 {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                
-                 <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
-                    <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
-                    <input type="submit"  />
-                </form>
+                <div >
+                    {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                    
+                    <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
+                        <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
+                        <input type="submit"  />
+                    </form>
+                </div>
+                <div className="content-row"> 
+                    <div className="content-data">
+                    <p>Name : {profileUser.name + " "}{profileUser.surname}</p>
+                   
+                    <button onClick={() => handleEdit("name&surname")}>+</button> </div>
+                    <div className="content-data">
+                    <p>City : {profileUser.city && profileUser.city}</p>
+                    <button onClick={() => handleEdit("city")}>+ </button>
+                    </div>
+                    <div className="content-data">
+                    <p>bio : {profileUser.desc && profileUser.desc}</p>
+                    <button onClick={() => handleEdit("desc")}>+ </button>
+                    </div>
+
+                    <div className="content-data">
+                    <p>Occupation : {profileUser.occupation && profileUser.occupation}</p>
+                    <button onClick={() => handleEdit("occupation")}>+</button>
+                    </div>
+                    <br/>
+                </div>
                 { image && <img alt="" src={image}/>}
                 <EditModal 
                 open={openModal} 
@@ -105,8 +121,10 @@ const Profile = () => {
                 fieldType="profile"
             />
                  </>
-            }
 
+            }
+           
+        </div>
         </div>
     )
 }
