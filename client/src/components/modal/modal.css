@@ -32,6 +32,7 @@
     border-radius: 8px;
     overflow: scroll;
     overflow-x: hidden;
+    z-index: 1000;
    
   }
   

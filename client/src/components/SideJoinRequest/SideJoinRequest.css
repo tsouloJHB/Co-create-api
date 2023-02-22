@@ -1,0 +1,23 @@
+.request-bar{
+  
+    height: 65px;
+    width: 100%;
+
+
+    text-align:center;
+    position: relative;
+    overflow:hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  }
+  .request-bar .sub{
+    position: absolute;
+
+    left: 0;
+    width: 100%;
+    background:rgb(6, 203, 6);
+    color: #fff;
+
+    padding: 4px 0;
+  
+  }

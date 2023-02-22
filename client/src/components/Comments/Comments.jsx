@@ -3,6 +3,7 @@ import { useContext,useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { postComment } from '../../api/CommentsRequests';
 import profilePicture from "../../images/profile.jpg"
+import './Comments.css';
 
 const Comments = ({ fetchComments,postId,comments}) => {
     let { dispatch} = useContext(AuthContext);
@@ -29,7 +30,7 @@ const Comments = ({ fetchComments,postId,comments}) => {
     }
 
     return (
-        <div>
+        <div className='comments-container'>
             <div>{comments && comments.map((comment)=>(
                 <div key={comment.comment._id}>
                     { comment.user.image.data.data !== null ? <img alt={comment.user.name} src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`}/> :<img alt="fds" src={profilePicture}/>}

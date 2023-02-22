@@ -168,6 +168,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
+                            
                         }} />:
                         // <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> :
                         <Avatar src={profilePicture} alt="" sx={{
@@ -195,12 +196,15 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 //   />
                   <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
+             
                  <div class="post-row">
                     <div onClick={(e) => {
                     e.stopPropagation();
                     }}>
                        
-                            {post.userId === user.user ?  <Button variant="outlined" color="success"  onClick={handleOnclickEdit}>Edit</Button>  :  <Button variant="outlined" color="success"  onClick={handleSubmit} >Join</Button> }
+                            {post.userId === user.user ?  <Button variant="outlined" color="success" sx={{
+                            zIndex:0
+                        }}   onClick={handleOnclickEdit}>Edit</Button>  :  <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button> }
                      </div>
                     <p  className="post-text">{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
                 </div>

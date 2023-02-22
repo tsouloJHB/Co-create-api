@@ -29,13 +29,18 @@ const Navbar = () => {
     logout();
    }
     return (
-      <header>
-        <div className="container">
-          <Link to="/">
-            <h1>Co-create</h1>
-          </Link>
-          <nav>
-            {user && (
+      <nav>
+      <div class="nav-left">
+       
+          <h3>Co-create</h3>
+    
+         
+      </div>
+      <div class="nav-right">
+        
+            
+              <hr/>
+               {user && (
               <div>
                 <span>{ profileUser && profileUser.name}</span>
                 <Link to="/profile">Profile</Link>
@@ -51,9 +56,35 @@ const Navbar = () => {
                 <Link to="/signup">Signup</Link>
               </div>
             )}
-          </nav>
-        </div>
-      </header>
+          </div>
+ 
+    
+  </nav>
+      // <header>
+      //   <div className="container">
+      //     <Link to="/">
+      //       <h1>Co-create</h1>
+      //     </Link>
+      //     <nav>
+      //       {user && (
+      //         <div>
+      //           <span>{ profileUser && profileUser.name}</span>
+      //           <Link to="/profile">Profile</Link>
+      //           <Link to="/projects">Projects</Link>
+      //           <Link to="/projects">Project request</Link>
+      //           <Link to="/posts">Your Project post</Link>
+      //           <button onClick={handleClick} >Log out</button>
+      //         </div>
+      //       )}
+      //       {!user && (
+      //         <div>
+      //           <Link to="/login">Login</Link>
+      //           <Link to="/signup">Signup</Link>
+      //         </div>
+      //       )}
+      //     </nav>
+      //   </div>
+      // </header>
     )
   }
   

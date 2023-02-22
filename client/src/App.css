@@ -65,22 +65,29 @@ body{
 
 
 }
-/* nav{
+nav{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--nav-color);
+  background:rgb(68, 68, 68);
   padding: 5px 5%;
   position: sticky;
   top: 0;
   z-index: 100;
+  color: white;
 
-} */
+}
 .logo{
   width: 160px;
   margin-right: 45px;
 
 }
+
+.nav-right a{
+  color: white;
+  text-decoration: none;
+}
+
 .nav-left, .nav-right{
   display: flex;
   align-items: center;
@@ -150,6 +157,7 @@ body{
 .left-sidebar{
   flex-basis: 25%;
   position: sticky;
+  z-index: 1;
   top: 70px;
   align-self: flex-start;
   background: var(--bg-color);
@@ -507,14 +515,14 @@ body{
 
 }
 .settings-menu{
-  position: absolute;
+  
   width: 90%;
   max-width: 350px;
   background: var(--bg-color);
   box-shadow: 0 0 10px rgba(0,0,0, 0.4);
   border-radius: 4px;
-  overflow: hidden;
-  top: 108%;
+ 
+  
   right: 5%;
   max-height: 0;
   transition: max-height 0.3s;

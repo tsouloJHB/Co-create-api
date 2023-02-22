@@ -14,7 +14,7 @@ import Modal from "../modal/Modal";
 import ViewProject from "../../pages/ViewProject";
 import {Navigate, Route, Routes, useNavigate ,Link} from 'react-router-dom';
 import {  Button } from "@mui/material";
-
+import "./SideJoinRequest.css"
 
 
 const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
@@ -130,27 +130,32 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
         <div >
             {closeParent}
             {joins && joins.length === 0?<p>No joins</p>:""}
+            {/* <div class="request-bar">
+                <h4 className="sub">March</h4>  
+                <h3>18</h3>
+                <Button riant="outlined" color="success"  >Cancel</Button>
+            </div> */}
             {joinRequests && joins && joins.map((project,index)=>(
                 <div key={project._id}   data-values={index}  data-projects={project._id} className="workout-details" onClick={handleOpenModal} >
                      <h4 data-values={index}>   {project.projectName}</h4> 
                      <p data-values={index}   >{project.desc} </p>
                      <div onClick={(e) => {e.stopPropagation();}}>
                      {/* { <span  className="material-symbols-outlined" onClick={()=> handleSubmit(project.postId)} >Cancel</span> } */}
-                     <Button onClick={()=> handleSubmit(project.postId)}   variant="outlined" color="success"  >Cancel</Button>
+                     <Button onClick={()=> handleSubmit(project.postId)}    color="success"  >Cancel</Button>
                      </div>
-                    <Modal zIndex={1300} 
+                  
+                 </div>
+                 
+            ))}
+       
+                <Modal  
                     open={openModal} 
                     onClose={() => setOpenModal(false)}
                     projectData={modalProject}
                     user={""}
                     insertComments={false}
-               
-                    />
-                 </div>
-                 
-            ))}
-       
-             
+                    
+                    /> 
         </div>
     );
 }
