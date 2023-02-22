@@ -5,6 +5,7 @@ import { getUser,updateUserProfilePicture } from "../../api/GetUsers";
 import { useLogout } from '../../hooks/useLogout'
 import profilePicture from "../../images/profile.jpg"
 import EditModal from "../../components/EditModal/EditModal";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Profile.css';
 
 const Profile = () => {
@@ -93,20 +94,24 @@ const Profile = () => {
                 <div className="content-row"> 
                     <div className="content-data">
                     <p>Name : {profileUser.name + " "}{profileUser.surname}</p>
-                   
-                    <button onClick={() => handleEdit("name&surname")}>+</button> </div>
+                    <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("name&surname")} color="primary" />
+                    {/* <button onClick={() => handleEdit("name&surname")}>+</button> */}
+                    </div> 
                     <div className="content-data">
                     <p>City : {profileUser.city && profileUser.city}</p>
-                    <button onClick={() => handleEdit("city")}>+ </button>
+                    {/* <button onClick={() => handleEdit("city")}>+ </button> */}
+                    <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer' }} onClick={() => handleEdit("city")} color="primary" />
                     </div>
                     <div className="content-data">
                     <p>bio : {profileUser.desc && profileUser.desc}</p>
-                    <button onClick={() => handleEdit("desc")}>+ </button>
+                    {/* <button onClick={() => handleEdit("desc")}>+ </button> */}
+                    <AddCircleIcon className="save-button"  sx={{ cursor: 'pointer' }} onClick={() => handleEdit("desc")} color="primary" />
                     </div>
 
                     <div className="content-data">
                     <p>Occupation : {profileUser.occupation && profileUser.occupation}</p>
-                    <button onClick={() => handleEdit("occupation")}>+</button>
+                    <AddCircleIcon className="save-button" sx={{ cursor: 'pointer' }}  onClick={() => handleEdit("occupation")} color="primary" />
+                    {/* <button onClick={() => handleEdit("occupation")}>+</button> */}
                     </div>
                     <br/>
                 </div>

@@ -164,8 +164,8 @@ const Projects = () =>{
           </div>
           <div class="right-sidebar">
                 <div class="sidebar-title">
-                    <h4>Events</h4>
-                    <a href="#">See All</a>
+                    <h4>Notifications</h4>
+                    <a href="#">All</a>
                 </div>
                 <div class="event">
                     <div class="left-event">

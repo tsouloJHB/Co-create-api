@@ -9,7 +9,7 @@ import Signup from './pages/Signup';
 import NavBar from './components/navbar/NavBar'
 import { AuthContext } from './context/AuthContext';
 import Posts from './pages/Posts/Posts';
-import Projects from './pages/Projects';
+import Projects from './pages/Projects/Projects';
 import { useContext } from "react";
 import { RefreshToken } from './api/RefreshToken';
 import { useLogout } from './hooks/useLogout';

@@ -27,7 +27,10 @@ const CreateProject =  ({updateParentPost}) =>{
      }  
     return (
         <div className='write-post-container'>
-            <h4>Create project post</h4>
+               <div class="sidebar-title">
+                    <h4>Create project</h4>
+                 
+                </div>
             <div class="post-input-container">
                 <form onSubmit={handleSubmit}>
                         <label>Project name</label>

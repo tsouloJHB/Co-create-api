@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { AuthContext } from '../context/AuthContext';
-import { useLogout } from '../hooks/useLogout'
-import { RefreshToken } from "../api/RefreshToken";
-import { UserProject } from "../api/UserProjects";
-import ProjectDetails from "../components/projectDetails/ProjectDetails";
-import CreateProject from "../components/CreateProjects/CreateProject";
+import { AuthContext } from '../../context/AuthContext';
+import { useLogout } from '../../hooks/useLogout'
+import { RefreshToken } from "../../api/RefreshToken";
+import { UserProject } from "../../api/UserProjects";
+import ProjectDetails from "../../components/projectDetails/ProjectDetails";
+import CreateProject from "../../components/CreateProjects/CreateProject";
 import {  Button } from "@mui/material";
-
+import './Project.css'
 
 
 const Projects = () => {
@@ -61,11 +61,14 @@ const Projects = () => {
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
-              <h3>Join requests</h3>
-              <Button onClick={()=> handleClickSetProject()} variant="outlined" color="success"  >Your projects</Button>
-              <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color="success"  >Inprogress</Button>
-              <Button onClick={()=> handleClickSetProject("NoStarted")} variant="outlined" color="success"  >Not Started</Button>
-              <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color="success"  >Pending</Button>
+              <div class="sidebar-title">
+                    <h4>Projects</h4>
+                    <a href="#">All</a>
+                </div>
+              <Button onClick={()=> handleClickSetProject()} variant="outlined" color="success"  >Your projects</Button><br/>
+              <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color="success"  >Inprogress</Button><br/>
+              <Button onClick={()=> handleClickSetProject("NoStarted")} variant="outlined" color="success"  >Not Started</Button><br/>
+              <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color="success"  >Pending</Button><br/>
             </div>  
           </div> 
            

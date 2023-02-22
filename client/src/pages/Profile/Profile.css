@@ -62,3 +62,7 @@ width: 80%;
   left: 100%;
   width: 30%;
 }
+.save-button{
+  position: absolute;
+  left: 280px;
+}
