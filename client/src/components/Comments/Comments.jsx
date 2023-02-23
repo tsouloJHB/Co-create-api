@@ -39,17 +39,16 @@ const Comments = ({ fetchComments,postId,comments}) => {
                 </div>
             ))}
             </div>
-            <div>
-        
-           <form onSubmit={handleSubmit}>   
-           <br/>
-                <textarea cols='35' rows='2'
-                 onChange={(e) => setComment(e.target.value)}
-                 
-                ></textarea>
+            <div className='commentsSection'>
+                <form  className="comment-form" onSubmit={handleSubmit}>   
                 <br/>
-                <button>Comment</button>
-           </form>
+                        <textarea className='comment-input' cols='70'
+                        onChange={(e) => setComment(e.target.value)}
+                        
+                        ></textarea>
+                        <br/>
+                        <button className='comment-btn'>Comment</button>
+                </form>
             </div>
         </div>
     )

@@ -66,6 +66,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
           <div className='btnContainer'>
         
           </div>
+       
         </div>
       </div>
     </div>
