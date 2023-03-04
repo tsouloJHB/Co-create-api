@@ -76,6 +76,10 @@ const Profile = () => {
             getUserData();
         }
     }
+    const removeSelectedImage = () => {
+        setImageValue();
+    };
+
     return (
         <div className="middle-cover">
              <h4>Profile</h4>
@@ -84,12 +88,25 @@ const Profile = () => {
           
             {profileUser &&<>
                 <div >
-                    {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                    
+                    {/* {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                     */}
                     <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
                         <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
                         <input type="submit"  />
                     </form>
+
+                    {imageValue && (
+                        <div className='preview'>
+                            <img
+                                src={URL.createObjectURL(imageValue)}
+                                className='image'
+                                alt="Thumb"
+                            />
+                            <button onClick={removeSelectedImage} className="delete">
+                                Remove This Image
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <div className="content-row"> 
                     <div className="content-data">

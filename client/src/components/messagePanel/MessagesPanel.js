@@ -37,7 +37,7 @@ const MessagesPanel = ({project}) =>{
     }
 
     useEffect(()=>{
-        console.log(project)
+    
         try {
            socket.current = io('ws://localhost:8800');
    

@@ -66,3 +66,16 @@ width: 80%;
   position: absolute;
   left: 280px;
 }
+.preview {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  }
+.image { max-width: 100%; max-height: 320 }
+.delete{
+  cursor: pointer;
+  padding: 15;
+  background: red;  
+  color: white;
+  border: none
+}

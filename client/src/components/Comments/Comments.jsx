@@ -31,14 +31,15 @@ const Comments = ({ fetchComments,postId,comments}) => {
 
     return (
         <div className='comments-container'>
-            <div>{comments && comments.map((comment)=>(
-                <div key={comment.comment._id}>
+            <div className='comments'>{comments && comments.map((comment)=>(
+                <div className='comment' key={comment.comment._id}>
                     { comment.user.image.data.data !== null ? <img alt={comment.user.name} src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                    <p>{comment.user.name}</p>
-                    <p>{comment.comment.text}</p>
+                    <p className='comment-author'>{comment.user.name}</p>
+                    <p className='comment-text'>{comment.comment.text}</p>
                 </div>
             ))}
             </div>
+            
             <div className='commentsSection'>
                 <form  className="comment-form" onSubmit={handleSubmit}>   
                 <br/>
