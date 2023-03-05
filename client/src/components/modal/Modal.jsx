@@ -47,103 +47,58 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className=' modalContainer'
+        className=' modalContainer modal'
       >
         
-       
+        <div class="modal-content">
         <div className='modalRight'>
          
           <div className="modal-header">
-            <div
-              className="dropdown-item d-flex rounded"
-              type="button"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="left"
-              data-bs-content='
-              <div>
-                <div className="popover-body d-flex flex-column p-0">
-                  <div className="d-flex align-items-center dropdown-item p-2 rounded pointer">
-                    <i className="far fa-comment me-3 fs-4"></i>
-                    <p className="m-0">Open Messenger App</p>
-                  </div>
-                  <div className="d-flex align-items-center dropdown-item p-2 rounded pointer">
-                    <i className="far fa-user me-3 fs-4"></i>
-                    <p className="m-0">Open Messenger App</p>
-                  </div>
-                  <hr>
-                  <div className="d-flex align-items-center dropdown-item p-2 rounded pointer">
-                    <i className="fas fa-fill-drip me-3 fs-4"></i>
-                    <p className="m-0">Color</p>
-                  </div>
-                  <div className="d-flex align-items-center dropdown-item p-2 rounded pointer">
-                    <i className="far fa-smile-beam me-3 fs-4"></i>
-                    <p className="m-0">Emoji</p>
-                  </div>
-                  <div className="d-flex align-items-center dropdown-item p-2 rounded pointer">
-                    <i className="fas fa-pencil-alt me-3 fs-4"></i>
-                    <p className="m-0">Nicknames</p>
-                  </div>
-                </div>
-              </div>
-              '
-              data-bs-html="true"
-            >
+            
 
-              <div class="position-relative">
-              
-                <span
-                  className="
-                    position-absolute
-                    bottom-0
-                    translate-middle
-                    p-1
-                    bg-success
-                    border border-light
-                    rounded-circle
-                  "
-                 
-                >
-                  <span class="visually-hidden">New alerts</span>
-                </span>
-              </div>
+            
      
-              <div>
-                <p className="m-0">Mike <i class="fas fa-angle-down"></i></p>
-                <span class="text-muted fs-7">Active Now</span>
-              </div>
-            </div>
-    
-            <i className="fas fa-video mx-2 text-muted pointer"></i>
-            <i className="fas fa-phone-alt mx-2 text-muted pointer"></i>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+          <h5 class="modal-title">Modal title</h5>
+        
           </div>
 
           <p className='closeBtn' onClick={onClose}>
             X
           </p>
-          <div className='content'>
+          <div className='modal-body content'>
           {user && user.image.data && user.image.data.data !== null ? <img alt={user.name} src={`data:image/png;base64,${convertBinaryToString(user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
             <p>{user && user.name}</p>
             <p>{projectData && projectData.projectName}</p>
             <p>{projectData && projectData._id}</p>
             <p>{projectData && projectData.desc}</p>
             <h3>Comments</h3>
-            <div class="float-end mt-2 pt-1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+               ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+Section 1.10.32 of de Finibus Bonorum et Malorum, written by Cicero in 45 BC
+"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+ inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+  magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+   labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure 
+reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+<div class="modal-footer modal-footer--sticky">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+            <div className="modal-footer">
+    
+            {/* <div class="float-end mt-2 pt-1">
               <button type="button" class="btn btn-primary btn-sm">Post comment</button>
               <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+            </div> */}
+              <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
             </div>
-            <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
           </div>
           <div className='btnContainer'>
         
           </div>
-       
+        </div>
         </div>
       </div>
     </div>

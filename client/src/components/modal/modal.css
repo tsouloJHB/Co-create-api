@@ -1,0 +1,10 @@
+.modal-footer{
+    
+}
+
+.modal-footer--sticky {
+    position: sticky;
+    bottom: 0;
+    background-color: inherit;
+    z-index: 1055;
+  }

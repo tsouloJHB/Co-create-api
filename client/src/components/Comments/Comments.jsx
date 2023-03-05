@@ -31,6 +31,10 @@ const Comments = ({ fetchComments,postId,comments}) => {
 
     return (
         <div className='comments-container'>
+            <div class="modal-footer modal-footer--sticky">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
             <div className='comments'>{comments && comments.map((comment)=>(
                 <div className='comment' key={comment.comment._id}>
                     { comment.user.image.data.data !== null ? <img alt={comment.user.name} src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
@@ -40,10 +44,10 @@ const Comments = ({ fetchComments,postId,comments}) => {
             ))}
             </div>
             
-            <div className='commentsSection'>
+            <div className='commentsSection '>
                 <form  className="comment-form" onSubmit={handleSubmit}>   
                 <br/>
-                        <textarea className='comment-input' cols='70'
+                        <textarea className='comment-input' cols='70 form-control border-0 rounded-pill bg-gray'
                         onChange={(e) => setComment(e.target.value)}
                         
                         ></textarea>
