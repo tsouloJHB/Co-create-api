@@ -3,37 +3,50 @@
 
 
 .commentsSection{
-    position:fixed;
-    bottom: 0px;
+    position: relative;
+    
     width: 110%;
-    height:10   0px;
+    height:10 0px;
     
     display: flex;
     align-items: center;
-    margin-top: 10px;
+   
 }
 .comment-form{
     display: flex;
     align-items: center;
-    margin-top: 10px;
+ 
 }
+
 
 .comment-input {
     flex: 1;
-    padding: 10px;
+    padding: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     resize: none;
     background-color: #f0f2f5;
+    width: 70%;
+    left: 7px;
+    margin: 30px;
+    position: absolute;
   }
-  
+ textarea:focus{  
+  border-color: #3B5998;
+ }
+ .comment-input:focus{
+
+  border: none;
+ 
+ } 
   .comment-btn {
+    position: relative;
     background-color: #4267B2;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 10px;
+    margin-right: 20px;
     cursor: pointer;
   }
   
@@ -45,7 +58,7 @@
   .comments {
     margin-bottom: 10px;
    
-    
+
   }
   
 .comment {
@@ -53,10 +66,20 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    
   }
   
 .comment-author {
     font-weight: bold;
     margin-bottom: 5px;
   }
+
+
+.comments-container{
+  position:absolute;
+  background-color: red;
+  width: 90%;
+}  
+
+
   

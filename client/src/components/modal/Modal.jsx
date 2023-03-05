@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 import Comments from '../Comments/Comments';
 import './modal.css';
 import profilePicture from "../../images/profile.jpg"
+import { Avatar} from "@mui/material";
 
 const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
     let { dispatch} = useContext(AuthContext);
@@ -53,51 +54,72 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
         <div class="modal-content">
         <div className='modalRight'>
          
-          <div className="modal-header">
+          <div className="modal-header modal-header--sticky">
             
 
-            
-     
-          <h5 class="modal-title">Modal title</h5>
-        
+          <h5 class="modal-title text-center">{user.name}'s post</h5>  
+       
+          
+          <span className='closeBtnModal'  onClick={onClose}>x</span> 
           </div>
 
-          <p className='closeBtn' onClick={onClose}>
-            X
-          </p>
-          <div className='modal-body content'>
-          {user && user.image.data && user.image.data.data !== null ? <img alt={user.name} src={`data:image/png;base64,${convertBinaryToString(user.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-            <p>{user && user.name}</p>
-            <p>{projectData && projectData.projectName}</p>
-            <p>{projectData && projectData._id}</p>
-            <p>{projectData && projectData.desc}</p>
-            <h3>Comments</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-               ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+         
+          <div className='modal-body contentModal'>
+            <div className="user-profile">
+              {user && user.image.data && user.image.data.data !== null ? 
+              <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(user.image)}`} alt="" sx={{
+                width: 48,
+                height: 48,
+                
+            }} />
+              :<Avatar src={profilePicture} alt="" sx={{
+                width: 48,
+                height: 48,
+            }} />}
+              
+                     
+                        
 
-Section 1.10.32 of de Finibus Bonorum et Malorum, written by Cicero in 45 BC
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
- inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-  magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-   labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure 
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-<div class="modal-footer modal-footer--sticky">
+                    
+              <p>{user && user.name}</p>
+              <p>{projectData && projectData.projectName}</p>
+            
+            </div>
+           
+              <p>{projectData && projectData.desc}</p>
+              <hr/>
+          
+           
+{/* <div class="modal-footer modal-footer--sticky">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-            <div className="modal-footer">
-    
+           </div> */}
+           
+            <div>
+
+          
             {/* <div class="float-end mt-2 pt-1">
               <button type="button" class="btn btn-primary btn-sm">Post comment</button>
               <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
             </div> */}
               <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
+              </div>
+           
+          </div>
+          
+          <div className='modal-footer modal-footer--sticky'>
+                <form  className="comment-form " >   
+                <br/>
+                        <textarea placeholder="write commment" className='comment-input' cols='40 form-control border-0 rounded-pill bg-gray'
+                      
+                        
+                        ></textarea>
+                        <br/>
+                        <button className='comment-btn'>Comment</button>
+                </form>
             </div>
-          </div>
-          <div className='btnContainer'>
-        
-          </div>
+          
+         
         </div>
         </div>
       </div>

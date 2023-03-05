@@ -17,7 +17,7 @@
   
   
   
-  .modalContainerMain {
+  .modalContainer {
     max-width: 600px;
     width: 100%;
     position: fixed;
@@ -46,9 +46,18 @@
   }
   
   .closeBtn {
-    position: fixed;
+  position: fixed;
     top: 8px;
     right: 8px;
+  }
+
+  .closeBtnModal{
+    font-size:23px;
+    font-weight: 500;
+    top: 8px;
+    color: gray;
+    right: 8px;
+    cursor: pointer;
   }
   
   .content {
