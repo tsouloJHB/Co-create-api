@@ -32,9 +32,9 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
 
     const convertBinaryToString = (image)=>{
       
-      const base64String = btoa(
-          String.fromCharCode(...new Uint8Array(image.data.data) )
-      );
+      const base64String =  btoa(new Uint8Array(image.data.data).reduce(function (data, byte) {
+            return data + String.fromCharCode(byte);
+        }, ''));
           
       return base64String
   }
@@ -47,7 +47,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='modal-content border-0 shadow modalContainer'
+        className=' modalContainer'
       >
         
        
