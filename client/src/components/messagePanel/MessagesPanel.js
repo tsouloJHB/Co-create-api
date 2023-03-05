@@ -1,11 +1,11 @@
-
+import React from "react";
 import { useEffect, useState,useRef } from "react";
 import { AuthContext } from '../../context/AuthContext';
 import { useLogout } from '../../hooks/useLogout'  
 import { useContext } from "react";
 import { getUsers ,getUser} from "../../api/GetUsers";
 import { getGroupMessages, sendMessage } from "../../api/GroupMessages";
-import Lottie from 'react-lottie'
+
 import animationData from "../../animations/typing.json";
 import {io} from "socket.io-client";
 import {format} from "timeago.js";
@@ -166,7 +166,7 @@ const MessagesPanel = ({project}) =>{
                 </div>
             ))}
             {typing && 
-            <><Lottie options={defaultOptions} height={20} width={'15%'} /><p>
+            <>Typing<p>
                 {typingData && members && members.map((member,index) =>(
                 
                 <span>{ member._id === typingData.senderId?member.name + " is typing":""}</span>

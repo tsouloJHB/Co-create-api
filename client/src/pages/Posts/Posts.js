@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import PostDetails from "../../components/postDetails/PostDetails";

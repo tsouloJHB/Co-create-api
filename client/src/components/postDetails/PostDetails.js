@@ -1,5 +1,5 @@
+import React from "react";
 import { useContext, useEffect } from "react";
-
 import { AuthContext } from '../../context/AuthContext';
 import { useRefreshToken } from "../../hooks/useRefreshToken";
 import { RefreshToken } from "../../api/RefreshToken";
@@ -139,10 +139,11 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     }
 
     const convertBinaryToString = (image)=>{
-      
-        const base64String = btoa(
-            String.fromCharCode(...new Uint8Array(image.data.data) )
-        );
+        
+        
+        const base64String = btoa(new Uint8Array(image.data.data).reduce(function (data, byte) {
+            return data + String.fromCharCode(byte);
+        }, ''));
             
         return base64String
     }

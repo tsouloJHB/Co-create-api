@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useEffect, useState} from "react";
 
 import { AuthContext } from '../../context/AuthContext';
@@ -31,8 +32,9 @@ const Profile = () => {
 
     const convertBinaryToString = (image)=>{
       
-        const base64String = btoa(
-            String.fromCharCode(...new Uint8Array(image.data.data) )
+        const base64String = btoa(new Uint8Array(image.data.data).reduce(function (data, byte) {
+            return data + String.fromCharCode(byte);
+        }, '')
         );
             
         return base64String
@@ -88,8 +90,8 @@ const Profile = () => {
           
             {profileUser &&<>
                 <div >
-                    {/* {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                     */}
+                    {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                    
                     <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
                         <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
                         <input type="submit"  />

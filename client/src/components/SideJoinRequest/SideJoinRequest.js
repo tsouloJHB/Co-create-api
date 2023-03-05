@@ -15,6 +15,7 @@ import ViewProject from "../../pages/ViewProject";
 import {Navigate, Route, Routes, useNavigate ,Link} from 'react-router-dom';
 import {  Button } from "@mui/material";
 import "./SideJoinRequest.css"
+import React from "react";
 
 
 const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
@@ -127,7 +128,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     }
 
     return (
-        <div >
+        <div>
             {closeParent}
             {joins && joins.length === 0?<p>No joins</p>:""}
             {/* <div class="request-bar">
