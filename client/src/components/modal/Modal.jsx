@@ -100,7 +100,8 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
                         
                         ></textarea>
                         <br/>
-                        <button className='comment-btn'>Comment</button>
+                        <p className="pressEnter">Press Enter to continue</p>
+                        {/* <button className='comment-btn'>Comment</button> */}
       </form>
     </div>
       </div>

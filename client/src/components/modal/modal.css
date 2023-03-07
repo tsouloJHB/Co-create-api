@@ -1,7 +1,7 @@
 .modal__header,
 .modal__footer {
-    height: 50px;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+    height: 70px;
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.08);
    
 }
 .modal__content,
@@ -11,8 +11,8 @@
 }
 .modal__content {
     padding: 20px;
-    bottom: 50px;
-    top: 50px;
+    bottom: 70px;
+    top: 70px;
     overflow-y: auto;
 }
 .modal__footer {
@@ -34,9 +34,34 @@
   bottom: 0;
 }
 
+.pressEnter{
+  position: relative;
+  top:45px;
+  left:40px;
+  font-size: 12px;
+  color: gray;
+  border: none;
+}
+textarea:focus{
+  outline: red;
+}
+.comment-form textarea::placeholder{
+  margin-right: 20px;
+  position: relative;
+  left: 10px;
+  top: 5px;
+  color: gray;
+  font-size: 15px;
+}
+
 .modal-footers{
   position: absolute;
   height: 80px;
+}
+
+.modal-title{
+  position: relative;
+  top: 20px;
 }
 .modal-footer--sticky {
     position: sticky;

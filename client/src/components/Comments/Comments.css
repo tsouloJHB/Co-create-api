@@ -26,9 +26,10 @@
     border-radius: 50px;
     resize: none;
     background-color: #f0f2f5;
-    width: 70%;
+    width: 90%;
     left: 7px;
-    bottom: 5;
+    
+    bottom: -4px;
     margin: 30px;
     position: absolute;
     height: 35px
