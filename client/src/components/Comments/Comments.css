@@ -62,6 +62,8 @@
 
   .comments {
     margin-bottom: 10px;
+    
+    width: 500px;
    
 
   }
@@ -71,10 +73,16 @@
     border-radius: 10px;
     padding: 5px;
     margin-bottom: 10px;
-    width: 93%;
-    
+    width: 90%;
+    height: 20%;
   }
   
+.comment-text{
+  position: relative;
+  bottom: 5px;
+  color: black;
+ 
+}  
 .comment-author {
     font-weight: bold;
    

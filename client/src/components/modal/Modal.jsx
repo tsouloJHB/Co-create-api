@@ -80,7 +80,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
             
             </div>
            
-              <p>{projectData && projectData.desc}</p>
+              <p className="postDescription">{projectData && projectData.desc}</p>
               <hr/>
           
            

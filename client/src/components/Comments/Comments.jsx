@@ -53,9 +53,9 @@ const Comments = ({ fetchComments,postId,comments}) => {
                         width: 48,
                         height: 48,
                     }} />}
-                    <p className='comment-author'>{comment.comment.text}</p>
+                    <span className='comment-author'>{comment.user.name}</span>
                     </div>
-                    <p className='comment-text'>{comment.comment.text}</p>
+                    <span className='comment-text'>{comment.comment.text}</span>
                 </div>
             ))}
             </div>
