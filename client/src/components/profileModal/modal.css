@@ -22,7 +22,7 @@
     width: 100%;
     position: fixed;
     height: 600px;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -54,9 +54,11 @@
   .closeBtnModal{
     font-size:23px;
     font-weight: 500;
-    top: 8px;
+    position: relative;
+    bottom: 23px;
+    right: 20px;
     color: gray;
-    right: 8px;
+    float: right;
     cursor: pointer;
   }
   

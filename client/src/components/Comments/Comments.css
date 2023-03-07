@@ -20,16 +20,18 @@
 
 
 .comment-input {
-    flex: 1;
-    padding: 5px;
+   
+   
     border: none;
     border-radius: 50px;
     resize: none;
     background-color: #f0f2f5;
     width: 70%;
     left: 7px;
+    bottom: 5;
     margin: 30px;
     position: absolute;
+    height: 35px
   }
  textarea:focus{  
   border-color: #3B5998;
@@ -40,13 +42,15 @@
  
  } 
   .comment-btn {
+ 
     position: relative;
     background-color: #4267B2;
+    left: 450px;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin-right: 20px;
+    margin-right: 0px;
     cursor: pointer;
   }
   
@@ -64,21 +68,21 @@
 .comment {
     background-color: #f0f2f5;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 10px;
+    width: 93%;
     
   }
   
 .comment-author {
     font-weight: bold;
-    margin-bottom: 5px;
+   
   }
 
 
 .comments-container{
   position:absolute;
-  background-color: red;
-  width: 90%;
+  
 }  
 
 

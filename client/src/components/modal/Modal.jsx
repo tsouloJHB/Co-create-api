@@ -51,21 +51,15 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
         className=' modalContainer modal'
       >
         
-        <div class="modal-content">
-        <div className='modalRight'>
-         
-          <div className="modal-header modal-header--sticky">
-            
-
-          <h5 class="modal-title text-center">{user.name}'s post</h5>  
+        <div className="modal__header">
+        <h5 class="modal-title text-center">{user.name}'s post</h5>  
        
           
-          <span className='closeBtnModal'  onClick={onClose}>x</span> 
-          </div>
-
-         
-          <div className='modal-body contentModal'>
-            <div className="user-profile">
+       <span className='closeBtnModal'  onClick={onClose}>x</span> 
+       
+        </div>
+    <div className="modal__content">
+    <div className="user-profile">
               {user && user.image.data && user.image.data.data !== null ? 
               <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(user.image)}`} alt="" sx={{
                 width: 48,
@@ -95,34 +89,22 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
               <button type="button" class="btn btn-primary">Save changes</button>
            </div> */}
            
-            <div>
-
           
-            {/* <div class="float-end mt-2 pt-1">
-              <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-              <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-            </div> */}
-              <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
-              </div>
-           
-          </div>
-          
-          <div className='modal-footer modal-footer--sticky'>
-                <form  className="comment-form " >   
+      <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
+    </div>
+    <div className="modal__footer">
+      <form  className="comment-form " >   
                 <br/>
-                        <textarea placeholder="write commment" className='comment-input' cols='40 form-control border-0 rounded-pill bg-gray'
+                        <textarea placeholder="write commment" className='comment-input'
                       
                         
                         ></textarea>
                         <br/>
                         <button className='comment-btn'>Comment</button>
-                </form>
-            </div>
-          
-         
-        </div>
-        </div>
+      </form>
+    </div>
       </div>
+      
     </div>
     )
 }

@@ -42,6 +42,7 @@ const Comments = ({ fetchComments,postId,comments}) => {
          
             <div className='comments'> {comments && comments.map((comment)=>(
                 <div className='comment' key={comment.comment._id}>
+                    <div className="user-profile">
                     { comment.user.image.data.data !== null ? 
                      <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`} alt="" sx={{
                         width: 48,
@@ -52,12 +53,13 @@ const Comments = ({ fetchComments,postId,comments}) => {
                         width: 48,
                         height: 48,
                     }} />}
-                    <p className='comment-author'>{comment.user.name}</p>
+                    <p className='comment-author'>{comment.comment.text}</p>
+                    </div>
                     <p className='comment-text'>{comment.comment.text}</p>
                 </div>
             ))}
             </div>
-            <div className="modal-stick">
+            {/* <div className="modal-stick">
             <div className=' modal-footer--sticky'>
                 <form  className="comment-form " onSubmit={handleSubmit}>   
                 <br/>
@@ -69,7 +71,7 @@ const Comments = ({ fetchComments,postId,comments}) => {
                         <button className='comment-btn'>Comment</button>
                 </form>
             </div>
-            </div>
+            </div> */}
         </div>
     )
 }
