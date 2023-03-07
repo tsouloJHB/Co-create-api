@@ -5,6 +5,7 @@ import { postComment } from '../../api/CommentsRequests';
 import profilePicture from "../../images/profile.jpg"
 import './Comments.css';
 import { Avatar} from "@mui/material";
+import {format} from "timeago.js";
 
 const Comments = ({ fetchComments,postId,comments}) => {
     let { dispatch} = useContext(AuthContext);
@@ -49,11 +50,14 @@ const Comments = ({ fetchComments,postId,comments}) => {
                         height: 48,
                         
                     }} />
-                    :<Avatar src={profilePicture} alt="" sx={{
+                    :<Avatar className="profile-pic" src={profilePicture} alt="" sx={{
                         width: 48,
                         height: 48,
                     }} />}
+                    {console.log(comment)}
                     <span className='comment-author'>{comment.user.name}</span>
+                    <span className="comment-time">{format(comment.comment.createdAt)} </span>
+                    <span className='comment-author'>{comment.user.comments}</span>
                     </div>
                     <span className='comment-text'>{comment.comment.text}</span>
                 </div>

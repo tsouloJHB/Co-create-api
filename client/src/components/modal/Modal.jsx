@@ -2,16 +2,20 @@
 
 import React from "react";import { useContext,useState } from 'react';
 import { useEffect } from 'react';
-import { getComments } from '../../api/CommentsRequests';
+import { getComments,postComment } from '../../api/CommentsRequests';
 import { AuthContext } from '../../context/AuthContext';
 import Comments from '../Comments/Comments';
 import './modal.css';
 import profilePicture from "../../images/profile.jpg"
 import { Avatar} from "@mui/material";
+import {format} from "timeago.js";
+
+
 
 const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
     let { dispatch} = useContext(AuthContext);
     const [comments,setComments] = useState(null);
+    const [comment,setComment] = useState(null);
 
     useEffect(() =>{
       
@@ -39,7 +43,17 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
           
       return base64String
   }
-  
+
+   const submitComment = async() =>{
+      const commentResponse = await postComment(comment,projectData._id);
+      console.log(commentResponse
+          );
+      if(commentResponse){
+          //reload post
+          setComment("");
+          fetchComments()
+      }
+   }
     return (
 
          <div onClick={onClose} className="overlay">
@@ -76,7 +90,8 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
 
                     
               <p>{user && user.name}</p>
-              <p>{projectData && projectData.projectName}</p>
+              <span className="postTime">{format(projectData.createdAt)}</span>
+              <p className="projectName">{projectData && projectData.projectName}</p>
             
             </div>
            
@@ -96,11 +111,11 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
       <form  className="comment-form " >   
                 <br/>
                         <textarea placeholder="write commment" className='comment-input'
-                      
+                         onChange={(e) => setComment(e.target.value)}
                         
                         ></textarea>
                         <br/>
-                        <p className="pressEnter">Press Enter to continue</p>
+                        <p  className="pressEnter" onClick={submitComment}>Click to submit</p>
                         {/* <button className='comment-btn'>Comment</button> */}
       </form>
     </div>

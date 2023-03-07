@@ -111,3 +111,20 @@ textarea:focus{
     color: black;
     font-size: 20px;
   }
+  .postTime{
+    position:absolute;
+    top: 55px;
+    left: 67px;
+  }
+.projectName{
+  text-align: center;
+  position: relative;
+  left: 23%;
+}
+.pressEnter{
+  cursor: pointer;
+  
+}
+.pressEnter:hover{
+  color: blue;
+}
