@@ -1,6 +1,6 @@
 
 
-import React from "react";import { useContext,useState } from 'react';
+import React from "react";import { useContext,useState,componentDidUpdate } from 'react';
 import { useEffect } from 'react';
 import { getComments,postComment } from '../../api/CommentsRequests';
 import { AuthContext } from '../../context/AuthContext';
@@ -12,22 +12,34 @@ import {format} from "timeago.js";
 
 
 
-const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
+const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
     let { dispatch} = useContext(AuthContext);
     const [comments,setComments] = useState(null);
     const [comment,setComment] = useState(null);
-
+    let prev = "";
     useEffect(() =>{
-      console.log(insertComments);
+   
       if(insertComments){
+        console.log(fromCom);
+       // console.log(insertComments);
         //fetch comments
-      
+        console.log(projectData);
+        // componentDidUpdate(prev,projectData){
+        //   console.log("Yes");
+        // }
         projectData && fetchComments()
+        prev = projectData
       }
     },[]);
     
     const fetchComments = async() =>{
-      const foundComments = await getComments(projectData._id,dispatch);
+      let foundComments = "" 
+      if(fromCom === 'postDetails'){
+        foundComments = await getComments(projectData._id,dispatch);
+      }else{
+        foundComments = await getComments(projectData.postId,dispatch);
+      }
+     
       console.log(foundComments);
       if(foundComments.length > 0)  setComments(foundComments)
      

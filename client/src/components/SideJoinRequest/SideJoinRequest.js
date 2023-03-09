@@ -114,8 +114,9 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             return
         }
         const index = e.target.getAttribute("data-values");
-        
+        console.log(joins[index]);
         setModalProject(joins[index])
+       
 
         if(screenWidth > 700){
             setOpenModal(true)
@@ -151,14 +152,15 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                  
             ))}
        
-                <Modal  
+               {modalProject && <Modal  
                     open={openModal} 
                     onClose={() => setOpenModal(false)}
                     projectData={modalProject}
                     user={profile}
                     insertComments={true}
+                    fromCom={'sideJoin'}
+                    />  }
                     
-                    /> 
         </div>
     );
 }

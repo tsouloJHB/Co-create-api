@@ -218,7 +218,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     projectData={post}
                     user={profile}
                     insertComments={comments}
-           
+                    fromCom={'postDetails'}
                     />
                    
             </div>
