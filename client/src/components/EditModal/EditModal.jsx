@@ -93,16 +93,22 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='modalContainer'
+        className='modalContainer modal'
       >
         
+        <div className="modal__header">
+        <h5 class="modal-title text-center">{fieldName}</h5>  
        
+          
+       <span className='closeBtnModal'  onClick={onClose}>x</span> 
+       
+        </div>
         <div className='modalRight'>
-          <p className='closeBtn' onClick={onClose}>
-            X
-          </p>
+         
           <div className='content'>
-            <h3>{fieldName}</h3>
+            
+            <br/>
+            <br/>
             <br/>
             { fieldType === "project"? fieldName !== "status" ? <input type="text" value={field} className="input_style"   onChange={(e) => setField(e.target.value)} />:
              

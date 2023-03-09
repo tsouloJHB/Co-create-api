@@ -187,7 +187,6 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     </div>
                 </dic>
                 <h4>{project && project.projectName}</h4> 
-                <p>{project && console.log(project)}</p>
                 <p className="post-text">{project &&
                 //     <LinesEllipsis
                 //     text={project.desc}

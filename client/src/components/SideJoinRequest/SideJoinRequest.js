@@ -24,7 +24,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     let { user ,dispatch} = useContext(AuthContext);
     let {posts,postDispatch} = useContext(PostContext)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  
+    let [profile, setProfile] = useState(null);
     const {refreshtoken} = useRefreshToken();
     const {logout} = useLogout();
     const [projects ,setProjects] = useState(null);
@@ -106,7 +106,9 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
         }
     }
     
-    const handleOpenModal = e =>{
+    const handleOpenModal = async(e,userId) =>{
+        const foundUser = await getUser(userId,dispatch,logout);
+        setProfile(foundUser)
         if(openModal){
             setOpenModal(false)
             return
@@ -137,7 +139,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                 <Button riant="outlined" color="success"  >Cancel</Button>
             </div> */}
             {joinRequests && joins && joins.map((project,index)=>(
-                <div key={project._id}   data-values={index}  data-projects={project._id} className="workout-details" onClick={handleOpenModal} >
+                <div key={project._id}   data-values={index}  data-projects={project._id} className="workout-details" onClick={(e)=> handleOpenModal(e,project.userId)} >
                      <h4 data-values={index}>   {project.projectName}</h4> 
                      <p data-values={index}   >{project.desc} </p>
                      <div onClick={(e) => {e.stopPropagation();}}>
@@ -153,8 +155,8 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                     open={openModal} 
                     onClose={() => setOpenModal(false)}
                     projectData={modalProject}
-                    user={""}
-                    insertComments={false}
+                    user={profile}
+                    insertComments={true}
                     
                     /> 
         </div>

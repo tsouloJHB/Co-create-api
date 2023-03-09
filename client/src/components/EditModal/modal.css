@@ -124,11 +124,12 @@
     font-size: 18px;
 }
 .editbutton{
-  background-color: #BAB5B2;
+  background-color: blue;
 color: white;
 height: 39px;
 width: 200px;
 font-size: 20px;
+margin: auto;  
 border: 1px solid #BAB5B2;
 border-radius: 3px;
 

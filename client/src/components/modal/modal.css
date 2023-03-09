@@ -62,6 +62,7 @@ textarea:focus{
 .modal-title{
   position: relative;
   top: 20px;
+  text-transform: capitalize;
 }
 .modal-footer--sticky {
     position: sticky;

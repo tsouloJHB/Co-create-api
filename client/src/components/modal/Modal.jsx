@@ -18,9 +18,10 @@ const Modal = ({ open, onClose, projectData, user,insertComments}) =>{
     const [comment,setComment] = useState(null);
 
     useEffect(() =>{
-      
+      console.log(insertComments);
       if(insertComments){
         //fetch comments
+      
         projectData && fetchComments()
       }
     },[]);
