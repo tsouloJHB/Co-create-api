@@ -114,7 +114,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             return
         }
         const index = e.target.getAttribute("data-values");
-        console.log(joins[index]);
+       
         setModalProject(joins[index])
        
 
@@ -123,9 +123,6 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             openParent();
         }else{
             navigate("/viewProject",{state:joins[index]});
-            // const project = e.target.getAttribute("data-projects");
-            // console.log(joins[index])
-            //<Link to="/viewProject" state={{ post: joins[index] } }></Link>
         }
      
     }

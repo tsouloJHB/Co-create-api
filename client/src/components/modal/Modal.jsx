@@ -30,7 +30,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
         projectData && fetchComments()
         prev = projectData
       }
-    },[]);
+    },[projectData]);
     
     const fetchComments = async() =>{
       let foundComments = "" 
