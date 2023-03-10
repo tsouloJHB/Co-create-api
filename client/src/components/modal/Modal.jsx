@@ -20,13 +20,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
     useEffect(() =>{
    
       if(insertComments){
-        console.log(fromCom);
-       // console.log(insertComments);
         //fetch comments
-        console.log(projectData);
-        // componentDidUpdate(prev,projectData){
-        //   console.log("Yes");
-        // }
         projectData && fetchComments()
         prev = projectData
       }
@@ -58,9 +52,12 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
   }
 
    const submitComment = async() =>{
-      const commentResponse = await postComment(comment,projectData._id);
-      console.log(commentResponse
-          );
+      let commentResponse = ""
+      if(fromCom === 'postDetails'){
+        commentResponse = await postComment(comment,projectData._id);
+      }else{
+        commentResponse = await postComment(comment,projectData.postId); 
+      }
       if(commentResponse){
           //reload post
           setComment("");

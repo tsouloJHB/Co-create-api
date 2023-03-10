@@ -8,6 +8,7 @@ import profilePicture from "../../images/profile.jpg"
 import EditModal from "../../components/EditModal/EditModal";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Profile.css';
+import Resizer from "react-image-file-resizer";
 
 const Profile = () => {
     let { user ,dispatch} = useContext(AuthContext);
@@ -18,6 +19,7 @@ const Profile = () => {
     const [fieldData,setFieldData] = useState(null)
     const [imageValue,setImageValue] = useState(null)
     const [image,setImage] = useState(null)
+    const [prevImage,setPrevImage] = useState(null);
 
     useEffect(()=>{
         getUserData();
@@ -77,38 +79,66 @@ const Profile = () => {
             //get updated profile data 
             getUserData();
         }
+        removeSelectedImage()
     }
     const removeSelectedImage = () => {
         setImageValue();
     };
 
+
+    const resizeFile = (file) =>
+        new Promise((resolve) => {
+            Resizer.imageFileResizer(
+            file,
+            400,
+            400,
+            "JPEG",
+            100,
+            0,
+            (uri) => {
+                resolve(uri);
+            },
+            "base64"
+            );
+    });
+
+    const setPreviewImage = async(e) =>{
+        const image = await resizeFile(e.target.files[0]);
+        setImageValue(e.target.files[0])
+        setPrevImage(image)
+    }
+
     return (
         <div className="middle-cover">
-             <h4>Profile</h4>
+            
         <div className="middle-profile">
-           
-          
-            {profileUser &&<>
-                <div >
-                    {profileUser.image.data && profileUser.image.data.data !== null ? <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/> :<img alt="fds" src={profilePicture}/>}
-                    
-                    <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
-                        <input type="file" id="myFile" onChange={(e) => setImageValue(e.target.files[0])} name="filename"/>
-                        <input type="submit"  />
-                    </form>
-
-                    {imageValue && (
+        {/* {imageValue && (
                         <div className='preview'>
                             <img
-                                src={URL.createObjectURL(imageValue)}
-                                className='image'
+                                src={prevImage}
+                                className='image formControl'
                                 alt="Thumb"
                             />
-                            <button onClick={removeSelectedImage} className="delete">
+                            <button onClick={removeSelectedImage} className="formControl delete">
                                 Remove This Image
                             </button>
                         </div>
-                    )}
+                    )} */}
+          
+            {profileUser &&<>
+                <div >
+                    {profileUser.image.data && profileUser.image.data.data !== null ?
+                    prevImage ? <img alt={profileUser.name} src={prevImage}/>:
+                     <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/>
+                      :<img alt="fds" src={profilePicture}/>}
+                    <br/>
+                    <br/>
+                    <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
+                        <input className="browse" type="file" id="myFile" onChange={(e) => setPreviewImage(e)} name="filename"/>
+                        <input type="submit"  />
+                    </form>
+
+                 
                 </div>
                 <div className="content-row"> 
                     <div className="content-data">
@@ -133,7 +163,11 @@ const Profile = () => {
                     {/* <button onClick={() => handleEdit("occupation")}>+</button> */}
                     </div>
                     <br/>
+                    <br/>
+                  
                 </div>
+             
+             
                 { image && <img alt="" src={image}/>}
                 <EditModal 
                 open={openModal} 
