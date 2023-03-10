@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import {format} from "timeago.js";
 import ProjectView from "../../pages/ProjectView";
 import { Link } from 'react-router-dom';
-import ProjectEdit from "../../pages/ProjectEdit";
+import ProjectEdit from "../../pages/projectEdit/ProjectEdit";
 import { useNavigate } from 'react-router-dom';
 
 

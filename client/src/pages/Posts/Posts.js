@@ -149,14 +149,11 @@ const Projects = () =>{
             </div>  
           </div>    
           {/* center post*/}
-          <div className="main-content" >
+          <div className="main-content">
           <CreateProject updateParentPost={updateParentPost} />  
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
-            
-            
-              
               {posts && posts.map((post) => (
                   <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div> 
               ))}

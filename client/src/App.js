@@ -16,7 +16,7 @@ import { useLogout } from './hooks/useLogout';
 import ProjectView from './pages/ProjectView';
 import ProjectStatus from './pages/ProjectStatus';
 import ViewProject from './pages/ViewProject';
-import ProjectEdit from './pages/ProjectEdit';
+import ProjectEdit from './pages/projectEdit/ProjectEdit';
 import Profile from './pages/Profile/Profile';
 
 

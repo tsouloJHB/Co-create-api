@@ -6,6 +6,8 @@ const RefreshToken = require('../models/refreshToken.model');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const fs = require('fs');
+const { findByIdAndUpdate } = require('../models/user');
+const sharp = require('sharp')
 
 //post middleware
 const Storage = multer.diskStorage({
@@ -19,6 +21,15 @@ const Storage = multer.diskStorage({
 const upload = multer({
     storage:Storage
 }).single('imageUpload')
+
+
+const resizeImage = async(name) => {
+    const resize = await sharp('uploads/'+name)
+    .resize(300, 300)
+    .toFile('uploads/resized'+name)
+  
+    console.log(resize)
+  }
 
 //@desc     POST User Profile
 //@route    POST api/users/users/
@@ -177,8 +188,10 @@ module.exports.logout = async(req,res) =>{
  
   try {
      res.cookie('jwt', '',{maxAge:1});
-      await RefreshToken.deleteMany({owner:user});
       //destroy token ?
+      await RefreshToken.deleteMany({owner:user});
+      //set online to false
+    
       res.status(200).json('User logged out');
   } catch (error) {
     res.status(401).json('User not found');
@@ -213,32 +226,47 @@ module.exports.updateProfilePicture = async (req,res)=>{
     // const user = await User.findById(req.id.id);
     //  const userId = req.id.id;
     //  const filename = req.file.filename
-        
+
    try {
-     upload(req,res,async(err)=>{
+    const re = await upload(req,res,async(err)=>{
          if(err){
              console.log(err)
          }else{
             
-            
-             const newImage = await User.findByIdAndUpdate(
+            // const newImage = "";
+              //resize image
+            await resizeImage(req.file.filename)
+            //delete old image
+           
+            const newImage = await User.findByIdAndUpdate(
                 req.id.id,{
                 image:{
-                    data:fs.readFileSync('uploads/'+req.file.filename),
+                    data:fs.readFileSync('uploads/'+"resized"+req.file.filename),
                     contentType:'image/png'
                 }});
-             if(newImage){
-                 res.status(201).json("Successfully");
-             }else{
+            //
+            //await fs.rm('uploads/'+req.file.filename)
+            await fs.rm('uploads/'+req.file.filename,()=>{})    
+            if(!newImage){
                 res.status(401).json("Could not upload file");
-             }
+            }
          }
      })
+     console.log(req.body)
+  
+     res.status(201).json("Successfully");
+  
+
+   
    } catch (err) {
     res.status(500).json(err);
+    console.log(err)
    }
-
-
-
   }
+
+
+const deleteFile = async(filename) =>{
+    console.log(filename)
+    await fs.rm('uploads/'+filename,()=>{})   
+}
    

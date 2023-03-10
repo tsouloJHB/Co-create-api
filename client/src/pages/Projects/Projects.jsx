@@ -76,7 +76,7 @@ const Projects = () => {
             
             <div className="main-content">
             
-            <h3>Projects </h3>
+         
             
             {projects.length === 0 ?"No Projects Found" :""} 
             

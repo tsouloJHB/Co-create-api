@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema({
         data:Buffer,
         contentType:String
     },
+    online:{
+        type:Boolean,
+        default:false,
+    },
     isAdmin: {
         type: Boolean,
         required: true,

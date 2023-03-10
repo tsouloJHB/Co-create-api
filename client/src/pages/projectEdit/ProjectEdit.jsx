@@ -5,14 +5,15 @@ import {format} from "timeago.js";
 
 import { useContext,useState } from 'react';
 import { useEffect } from 'react';
-import { getUsers } from "../api/GetUsers";
-import { useLogout } from '../hooks/useLogout'
-import { AuthContext } from '../context/AuthContext';
-import profilePicture from "../images/profile.jpg"
-import EditModal from "../components/EditModal/EditModal";
-import { getProjectByPostId ,removeUser, deleteProject, exitProject } from "../api/ProjectRequest";
-import ProfileModal from "../components/profileModal/ProfileModal";
-import SideAcceptUsers from "../components/SideAcceptUsers/SideAcceptUsers";
+import { getUsers } from "../../api/GetUsers";
+import { useLogout } from '../../hooks/useLogout'
+import { AuthContext } from '../../context/AuthContext';
+import profilePicture from "../../images/profile.jpg"
+import EditModal from "../../components/EditModal/EditModal";
+import { getProjectByPostId ,removeUser, deleteProject, exitProject } from "../../api/ProjectRequest";
+import ProfileModal from "../../components/profileModal/ProfileModal";
+import SideAcceptUsers from "../../components/SideAcceptUsers/SideAcceptUsers";
+import './ProjectEdit.css';
 
 const ProjectEdit = () =>{
     // const location = useLocation();
@@ -137,57 +138,65 @@ const ProjectEdit = () =>{
         }
     }
     return (
-        <div   onClick={() => closeModals()}>
-            <div  onClick={(e) => {
-          e.stopPropagation();
-        }}>
-             {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
-            <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button onClick={() => handleEdit("projectName")} >Edit</button></>:<h2>{state.projectName} </h2>}</h3>
-            <div >Project Status {state.userId === user.user ? <><p>{state.status} </p><button onClick={() => handleEdit("status")} >Start Project</button></>:""}</div>
-            <div>{state.userId !== user.user ? <p>{state.desc} </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
-            <p>{membersCount +" "} {state &&  membersCount === 1 ?"Space left":"Spaces left"}</p>
-             <p>Members</p>
-           
-            {
-                users && <p>{users.length}</p>
-            }
-            {
-               users  && users.length > 0?
-                 users.map(LocalUser =>(
-                    <div key={LocalUser._id}>
-                     
-                     {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
-                    <p>{LocalUser.name} {LocalUser.surname}</p>
-                    {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
-                    <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
-                    </div>
-                )):"NO members yet"
-            }
-
+        <div className="container" onClick={() => closeModals()}>
+            <div className="left-sidebar" onClick={(e) => {
+            e.stopPropagation();
+            }}>
+            {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
+            </div>
+            <div  className="middle-cover" onClick={(e) => {
+            e.stopPropagation();
+            }}>
+                <div  >
                
-            {
-                state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
-            }
-             
-             {
-                state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
-            }
-            <EditModal 
-                open={openModal} 
-                onClose={() => setOpenModal(false)}
-                projectData={state}
-                fieldName={editField}
-                fieldData={ fieldData  }
-                updateState={updateState}
-                fieldType="project"
-            />
-            <ProfileModal 
-                open={openProfileModal} 
-                onClose={() => setOpenProfileModal(false)}
-                user={modalUser}
-            />
+                <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button onClick={() => handleEdit("projectName")} >Edit</button></>:<h2>{state.projectName} </h2>}</h3>
+                <div >Project Status {state.userId === user.user ? <><p>{state.status} </p><button onClick={() => handleEdit("status")} >Start Project</button></>:""}</div>
+                <div>{state.userId !== user.user ? <p>{state.desc} </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
+                <p>{membersCount +" "} {state &&  membersCount === 1 ?"Space left":"Spaces left"}</p>
+                <p>Members</p>
+            
+                {
+                    users && <p>{users.length}</p>
+                }
+                {
+                users  && users.length > 0?
+                    users.map(LocalUser =>(
+                        <div key={LocalUser._id}>
+                        
+                        {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
+                        <p>{LocalUser.name} {LocalUser.surname}</p>
+                        {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
+                        <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
+                        </div>
+                    )):"NO members yet"
+                }
 
-        </div>
+                
+                {
+                    state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
+                }
+                
+                {
+                    state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
+                }
+                <EditModal 
+                    open={openModal} 
+                    onClose={() => setOpenModal(false)}
+                    projectData={state}
+                    fieldName={editField}
+                    fieldData={ fieldData  }
+                    updateState={updateState}
+                    fieldType="project"
+                />
+                <ProfileModal 
+                    open={openProfileModal} 
+                    onClose={() => setOpenProfileModal(false)}
+                    user={modalUser}
+                />
+
+            </div>
+            </div>
+            
         </div>
     )
 
