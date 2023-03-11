@@ -141,15 +141,17 @@ const ProjectEdit = () =>{
     }
     return (
         <div className="container" onClick={() => closeModals()}>
-            <div className="left-sidebar" onClick={(e) => {
+            <div className="left-sidebar leftProjectEdit" onClick={(e) => {
             e.stopPropagation();
             }}>
-            {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
+            {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:"NO request"}
             </div>
             <div  className="middle-cover" onClick={(e) => {
             e.stopPropagation();
             }}>
+                <p className="projectEditText">Edit project </p>
                 <div className="content-row project-row">
+                    
                 <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" />
                 <div className="content-data" >{state.userId === user.user ?
                  <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
@@ -194,8 +196,12 @@ const ProjectEdit = () =>{
                         }} /></div>}
                           
                         <p>{LocalUser.name} {LocalUser.surname}</p>
-                        <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
-                        {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
+                        <Button variant="outlined" color="success" onClick={() => handleViewProfile(LocalUser)}  >View profile</Button>
+                      
+                        {state.userId === user.user ?
+                        <Button variant="outlined" color="success"  onClick={() => handleRemoveUser(LocalUser)}  >Remove User</Button>
+                        
+                          :""}
                         </div>
                         </div>
                         
@@ -205,7 +211,10 @@ const ProjectEdit = () =>{
 </div>
                 <div className="content-data">
                 {
-                    state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
+                    state.userId === user.user ?
+                    
+                     <div><Button variant="outlined" color="success" onClick={handleDeleteProject}  >Delete Project</Button></div>
+                     :""
                 }
                 
                 {

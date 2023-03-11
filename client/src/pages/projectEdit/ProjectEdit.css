@@ -34,3 +34,12 @@
     margin: auto;
   width: 50%;
 }
+
+.projectEditText{
+    color: gray;
+    font-weight: bold;
+    margin-top: 40px;
+}
+.leftProjectEdit{
+    margin-top: 10px;
+}

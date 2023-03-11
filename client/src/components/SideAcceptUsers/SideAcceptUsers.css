@@ -2,3 +2,8 @@
     margin: auto;
     width: 50%;
 }
+
+.projectJoinText{
+    color: gray;
+    font-weight: bold;
+}

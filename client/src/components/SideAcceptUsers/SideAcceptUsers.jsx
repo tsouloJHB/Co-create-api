@@ -4,7 +4,7 @@ import { getProjectJoinRequest, acceptUser} from "../../api/ProjectRequest";
 import { useLogout } from "../../hooks/useLogout";
 import { AuthContext } from '../../context/AuthContext';  
 import profilePicture from "../../images/profile.jpg"
-import { Avatar } from "@mui/material";
+import { Avatar,Button } from "@mui/material";
 import './SideAcceptUsers.css'
 
 const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
@@ -60,7 +60,7 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
     return (
         <div>
       
-            <h3>Project join request </h3>
+            <p className="projectJoinText">Project join request </p>
             {
                 joinRequests && joinRequests.map(join =>(
                     <div key={join.joinId} className="workout-details" >
@@ -77,11 +77,16 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                         
                     }} />}
                     <p>{join.name + " "}{join.surname} </p>
-                    <button onClick={() => handleAcceptUser(join,'Accepted')} >Accept</button>
-                    <button  onClick={() => handleAcceptUser(join,'Rejected')}>Reject</button>
+                    <Button variant="outlined" color="success"  onClick={() => handleAcceptUser(join,'Accepted')}  >Accept</Button>
+                    <Button variant="outlined" color="success"   onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button>
+                   
                     </div>
-                ))  
+                ))
+               
+               
             }
+             {joinRequests && joinRequests.length === 0 ? "No request":""}
+     
             </div>
         
     )
