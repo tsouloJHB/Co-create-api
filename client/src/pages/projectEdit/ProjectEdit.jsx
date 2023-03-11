@@ -13,6 +13,8 @@ import EditModal from "../../components/EditModal/EditModal";
 import { getProjectByPostId ,removeUser, deleteProject, exitProject } from "../../api/ProjectRequest";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import SideAcceptUsers from "../../components/SideAcceptUsers/SideAcceptUsers";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import './ProjectEdit.css';
 
 const ProjectEdit = () =>{
@@ -147,31 +149,59 @@ const ProjectEdit = () =>{
             <div  className="middle-cover" onClick={(e) => {
             e.stopPropagation();
             }}>
-                <div  >
-               
-                <h3>{state.userId === user.user ? <><h2>{state.projectName} </h2><button onClick={() => handleEdit("projectName")} >Edit</button></>:<h2>{state.projectName} </h2>}</h3>
-                <div >Project Status {state.userId === user.user ? <><p>{state.status} </p><button onClick={() => handleEdit("status")} >Start Project</button></>:""}</div>
-                <div>{state.userId !== user.user ? <p>{state.desc} </p>:<><p>{state.desc}</p> <button onClick={() => handleEdit("desc")}>Edit</button></>}</div>
-                <p>{membersCount +" "} {state &&  membersCount === 1 ?"Space left":"Spaces left"}</p>
-                <p>Members</p>
+                <div className="content-row">
+                <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" />
+                <div className="content-data" >{state.userId === user.user ?
+                 <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
+                 :<p>{state.projectName} </p>}
+                </div>
+
+                <div className="content-data">Project Status {state.userId === user.user 
+                    ? <><p>{state.status} </p> <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("status")} color="primary" /></>
+                    :""}
+                </div>
+                <div className="content-data">
+                    {state.userId !== user.user 
+                    ? <p>{state.desc} </p>
+                    :<><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></>}
+                </div>
+                 <div className="content-data">
+                <p> {state &&  membersCount === 1 ?"Space left":"Spaces left"} {" "+membersCount }</p>
+                </div>
+                <div className="content-data">
+                <p>Current Members {" "}:</p>
             
                 {
-                    users && <p>{users.length}</p>
+                    users && <p> {" "+users.length}</p>
                 }
+                </div>
+                <div className="content-data">
                 {
                 users  && users.length > 0?
                     users.map(LocalUser =>(
                         <div key={LocalUser._id}>
-                        
-                        {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? <div><img alt={LocalUser.name} src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
+                       
+                        {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? 
+                        <div><Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`} alt="" sx={{
+                            width: 48,
+                            height: 48,
+                            
+                        }} /></div>
+                        :<div> <Avatar className="profile-pic" src={profilePicture} alt="" sx={{
+                            width: 48,
+                            height: 48,
+                            
+                        }} /></div>}    
                         <p>{LocalUser.name} {LocalUser.surname}</p>
+                        
                         {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
                         <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
                         </div>
+                        
                     )):"NO members yet"
                 }
 
-                
+</div>
                 {
                     state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
                 }
@@ -179,6 +209,7 @@ const ProjectEdit = () =>{
                 {
                     state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
                 }
+               
                 <EditModal 
                     open={openModal} 
                     onClose={() => setOpenModal(false)}

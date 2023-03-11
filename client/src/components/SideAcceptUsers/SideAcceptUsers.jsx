@@ -4,7 +4,7 @@ import { getProjectJoinRequest, acceptUser} from "../../api/ProjectRequest";
 import { useLogout } from "../../hooks/useLogout";
 import { AuthContext } from '../../context/AuthContext';  
 import profilePicture from "../../images/profile.jpg"
-
+import { Avatar } from "@mui/material";
 
 const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
     const [joinRequests,setJoinRequests] = useState(null);
@@ -63,8 +63,18 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
             {
                 joinRequests && joinRequests.map(join =>(
                     <div key={join.joinId} className="workout-details" >
-
-                    {join.image && join.image.data && join.image.data.data !== null ? <img alt={join.name} src={`data:image/png;base64,${convertBinaryToString(join.image)}`}/> :<img alt="fds" src={profilePicture}/>}
+                     
+                    {join.image && join.image.data && join.image.data.data !== null ? 
+                    <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(join.image)}`} alt="" sx={{
+                        width: 48,
+                        height: 48,
+                        
+                    }} />
+                    : <Avatar className="profile-pic" src={profilePicture} alt="" sx={{
+                        width: 48,
+                        height: 48,
+                        
+                    }} />}
                     <p>{join.name + " "}{join.surname} </p>
                     <button onClick={() => handleAcceptUser(join,'Accepted')} >Accept</button>
                     <button  onClick={() => handleAcceptUser(join,'Rejected')}>Reject</button>
