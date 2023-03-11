@@ -63,13 +63,14 @@ const Projects = () => {
           e.stopPropagation();
         }}>
               <div class="sidebar-title">
-                    <h4>Projects</h4>
-                    <a href="#">All</a>
+                    <p className="yourProject">Projects</p>
+                    <span className="projectTime">All</span>
                 </div>
-              <Button onClick={()=> handleClickSetProject()} variant="outlined" color="success"  >Your projects</Button><br/>
-              <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color="success"  >Inprogress</Button><br/>
-              <Button onClick={()=> handleClickSetProject("NoStarted")} variant="outlined" color="success"  >Not Started</Button><br/>
-              <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color="success"  >Pending</Button><br/>
+               
+              <Button onClick={()=> handleClickSetProject()} variant="outlined" color={viewTypeProject === "YourProjects"?"info":"success"}  >Your projects</Button><br/>
+              <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color={viewTypeProject === "InProgress"?"info":"success"}  >Inprogress</Button><br/>
+              <Button onClick={()=> handleClickSetProject("NotStarted")} variant="outlined" color={viewTypeProject === "NotStarted"?"info":"success"}  >Not Started</Button><br/>
+              <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color={viewTypeProject === "Pending"?"info":"success"}  >Pending</Button><br/>
             </div>  
           </div> 
            
@@ -85,7 +86,7 @@ const Projects = () => {
             }).map((item,index)  =>(
                 index === 0 ?
                 <div key={item._id}>
-                    <h5>Inprogress </h5>
+                  
                     <ProjectDetails key={item._id} project={item}/>
                 </div> :     
                 <ProjectDetails key={item._id} project={item}/>
@@ -96,7 +97,7 @@ const Projects = () => {
                 }).map((item,index) =>(
                     index === 0 ?
                     <div key={item._id}>
-                        <h5>Pending </h5>
+                      
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
@@ -108,7 +109,7 @@ const Projects = () => {
                 }).map((item,index) =>(
                     index === 0 ?
                     <div key={item._id}>
-                        <h5>Not Started </h5>
+                      
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>
@@ -119,7 +120,7 @@ const Projects = () => {
                 }).map((item,index) =>(
                     index === 0 ?
                     <div key={item._id}>
-                        <h5>Your projects </h5>
+                       
                         <ProjectDetails key={item._id} project={item}/>
                     </div> :     
                     <ProjectDetails key={item._id} project={item}/>

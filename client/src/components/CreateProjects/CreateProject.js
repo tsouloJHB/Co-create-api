@@ -29,10 +29,10 @@ const CreateProject =  ({updateParentPost}) =>{
     return (
         <div className='write-post-container'>
                <div class="sidebar-title">
-                    <h4>Create project</h4>
+                    <p className="yourProject">Create project</p>
                  
                 </div>
-            <div class="post-input-container">
+            <div class="post-input-container-project">
                 <form onSubmit={handleSubmit}>
                         <label>Project name</label>
                         <input className='input-text' type="text" 
@@ -43,7 +43,6 @@ const CreateProject =  ({updateParentPost}) =>{
                         <label>Max members</label>
                         <input type="text" 
                         className='input-text'
-                        value={maxNumber}
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
                          <label>Description</label>

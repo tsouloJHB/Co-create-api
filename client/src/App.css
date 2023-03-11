@@ -151,7 +151,8 @@ nav{
 .container{
   display: flex;
   justify-content: space-between;
-  padding: 13px 5%;
+  margin: 0px;
+  padding: 7px 0;
 
 }
 .left-sidebar{
@@ -468,6 +469,12 @@ nav{
   align-items: center;
   justify-content: space-between;
 
+}
+.post-row-right{
+  display: flex;
+  flex-flow: row-reverse;
+  position: relative;
+  bottom: 35px;
 }
 .activity-icons div img{
   width: 18px;

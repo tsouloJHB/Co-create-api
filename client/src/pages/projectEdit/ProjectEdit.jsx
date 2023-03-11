@@ -144,12 +144,13 @@ const ProjectEdit = () =>{
             <div className="left-sidebar leftProjectEdit" onClick={(e) => {
             e.stopPropagation();
             }}>
-            {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:"NO request"}
+            {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
             </div>
             <div  className="middle-cover" onClick={(e) => {
             e.stopPropagation();
             }}>
-                <p className="projectEditText">Edit project </p>
+             
+                <p className="yourProject">Edit project</p>
                 <div className="content-row project-row">
                     
                 <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" />

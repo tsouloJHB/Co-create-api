@@ -64,4 +64,12 @@ form label{
     color:rgb(163, 163, 163)
   }
   
+.post-input-container-project{
+    padding-left: 55px;
+    padding-top: 20px;
+}  
+.post-input-container-project{
+    padding-left: 0;
+
+}
    

@@ -60,7 +60,8 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
     return (
         <div>
       
-            <p className="projectJoinText">Project join request </p>
+            
+            <p className="yourProject">Project join request</p>
             {
                 joinRequests && joinRequests.map(join =>(
                     <div key={join.joinId} className="workout-details" >

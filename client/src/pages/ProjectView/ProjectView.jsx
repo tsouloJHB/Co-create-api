@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
-import { getUsers} from "../api/GetUsers";
-import { AuthContext } from '../context/AuthContext';
-import { useLogout } from '../hooks/useLogout'
+import { getUsers} from "../../api/GetUsers";
+import { AuthContext } from '../../context/AuthContext';
+import { useLogout } from '../../hooks/useLogout'
 import { useContext } from "react";
-import MessagesPanel from "../components/messagePanel/MessagesPanel";
+import MessagesPanel from "../../components/messagePanel/MessagesPanel";
+import "./ProjectView.css"
 
 const ProjectView = () => {
     const {  user ,dispatch} = useContext(AuthContext);
@@ -28,8 +29,8 @@ const ProjectView = () => {
       }
 
     return (  
-        <div>
-    
+      <div className="container">
+            <div className="middle-cover">
            <p>{project.projectName}</p>
            <p>{project.desc}</p>
            <p>Members no: {project.members.length}</p>
@@ -46,6 +47,7 @@ const ProjectView = () => {
      
        {project &&  <MessagesPanel project={project} /> }
         </div>  
+      </div>  
     );
 
 }

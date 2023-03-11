@@ -13,7 +13,7 @@ import Projects from './pages/Projects/Projects';
 import { useContext } from "react";
 import { RefreshToken } from './api/RefreshToken';
 import { useLogout } from './hooks/useLogout';
-import ProjectView from './pages/ProjectView';
+import ProjectView from './pages/ProjectView/ProjectView';
 import ProjectStatus from './pages/ProjectStatus';
 import ViewProject from './pages/ViewProject';
 import ProjectEdit from './pages/projectEdit/ProjectEdit';
