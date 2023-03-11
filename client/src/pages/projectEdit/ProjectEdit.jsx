@@ -149,7 +149,7 @@ const ProjectEdit = () =>{
             <div  className="middle-cover" onClick={(e) => {
             e.stopPropagation();
             }}>
-                <div className="content-row">
+                <div className="content-row project-row">
                 <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" />
                 <div className="content-data" >{state.userId === user.user ?
                  <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
@@ -180,7 +180,7 @@ const ProjectEdit = () =>{
                 users  && users.length > 0?
                     users.map(LocalUser =>(
                         <div key={LocalUser._id}>
-                       
+                       <div className="profile-info">  
                         {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? 
                         <div><Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`} alt="" sx={{
                             width: 48,
@@ -191,17 +191,19 @@ const ProjectEdit = () =>{
                             width: 48,
                             height: 48,
                             
-                        }} /></div>}    
+                        }} /></div>}
+                          
                         <p>{LocalUser.name} {LocalUser.surname}</p>
-                        
-                        {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
                         <button onClick={() => handleViewProfile(LocalUser)}>View profile</button>
+                        {state.userId === user.user ? <button onClick={() => handleRemoveUser(LocalUser)}>Remove User</button> :""}
+                        </div>
                         </div>
                         
                     )):"NO members yet"
                 }
 
 </div>
+                <div className="content-data">
                 {
                     state.userId === user.user ? <div><button onClick={handleDeleteProject}>Delete Project </button></div>:""
                 }
@@ -209,6 +211,7 @@ const ProjectEdit = () =>{
                 {
                     state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
                 }
+                </div>
                
                 <EditModal 
                     open={openModal} 

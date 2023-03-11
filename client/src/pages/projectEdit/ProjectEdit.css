@@ -2,3 +2,35 @@
     margin: 10px;
     background-color: red;
 }
+.content-data button{
+    position: relative;
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profile-info button{
+    position: relative;
+    left:30%;
+    margin-left: 20px;
+    height: 30px;
+}
+.profile-info p{
+   margin-left: 0px;
+    
+  
+}
+.project-row{
+    position: relative;
+    top: 30px;
+    padding: 20px;
+    padding-bottom: 50px;
+    margin: auto;
+  width: 50%;
+}
