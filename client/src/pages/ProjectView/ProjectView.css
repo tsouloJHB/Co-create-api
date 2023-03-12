@@ -1,0 +1,17 @@
+:root{
+    --body-color:#efefef;
+    --nav-color: #1876f2;
+    --bg-color: #fff;
+  
+  }
+.left-sidebar-view{
+    flex-basis: 50%;
+    position: sticky;
+    z-index: 1;
+    top: 70px;
+    align-self: flex-start;
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 17px;
+  
+  }

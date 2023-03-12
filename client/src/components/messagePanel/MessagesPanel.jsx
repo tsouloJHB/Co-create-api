@@ -9,6 +9,7 @@ import { getGroupMessages, sendMessage } from "../../api/GroupMessages";
 import animationData from "../../animations/typing.json";
 import {io} from "socket.io-client";
 import {format} from "timeago.js";
+import './MessagePanel.css'
 
 const MessagesPanel = ({project}) =>{
 
@@ -155,13 +156,61 @@ const MessagesPanel = ({project}) =>{
    }
 
     return (
-        <div>
+        <div  className="">
+          
+          <section  class="chat">
+        <div  className="header-chat">
+          <i  className="icon fa fa-user-o" aria-hidden="true"></i>
+          <p  className="name">Megan Leib</p>
+          <i  className="icon clickable fa fa-ellipsis-h right" aria-hidden="true"></i>
+        </div>
+        <div  className="messages-chat">
+          <div  className="message">
+            <div  className="photo" >
+              <div  className="online"></div>
+            </div>
+            <p  className="text"> Hi, how are you ? </p>
+          </div>
+          <div  className="message text-only">
+            <p  className="text"> What are you doing tonight ? Want to go take a drink ?</p>
+          </div>
+          <p  className="time"> 14h58</p>
+          <div  className="message text-only">
+            <div  className="response">
+              <p  className="text"> Hey Megan ! It's been a while </p>
+            </div>
+          </div>
+          <div  className="message text-only">
+            <div  className="response">
+              <p  className="text"> When can we meet ?</p>
+            </div>
+          </div>
+          <p  className="response-time time"> 15h04</p>
+
+          <div  className="message">
+            <div  className="photo" >
+              <div  className="online"></div>
+            </div>
+            <p className="text"> 9 pm at the bar if possible </p>
+          </div>
+          <p class="time"> 15h09</p>
+        </div>
+        <div  className="footer-chat">
+          <i  className="icon fa fa-smile-o clickable"  aria-hidden="true"></i>
+          <input type="text" class="write-message" placeholder="Type your message here"></input>
+          <i  className="icon send fa fa-paper-plane-o clickable" aria-hidden="true"></i>
+        </div>
+      
             <h4>Group Chat</h4>
         
             {groupChat && groupChat.map((chat) => (
-                <div key={chat._id}>
+                <div className="messages-chat" key={chat._id}>
                 { members.map(member =>(
-                    <div key={member._id}>{member._id === chat.senderId ? chat.text + " " + member.name + " "+format(chat.createdAt) : ""}</div>
+                    <div key={member._id}>
+                    <div className="message"  >{member._id === chat.senderId
+                       ?  <p className="text"> {chat.text} {member.name}</p> : ""}</div>
+                       <p class="time"> {format(chat.createdAt)}</p>
+                    </div>   
                 ))}
                 </div>
             ))}
@@ -182,6 +231,7 @@ const MessagesPanel = ({project}) =>{
                 ))}
                 </div>
             ))} */}
+            
             <div>
                 <p>Send message</p>
                 <form className="signup" onSubmit={handleSubmit}>
@@ -197,6 +247,7 @@ const MessagesPanel = ({project}) =>{
             
                 </form>
             </div>    
+</section>
         </div>  
     );
 

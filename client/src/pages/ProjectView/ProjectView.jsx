@@ -30,8 +30,8 @@ const ProjectView = () => {
 
     return (  
       <div className="container">
-            <div className="middle-cover">
-           <p>{project.projectName}</p>
+         <div className="left-sidebar-view">
+         <p>{project.projectName}</p>
            <p>{project.desc}</p>
            <p>Members no: {project.members.length}</p>
             <h5>Side bar</h5>
@@ -44,6 +44,9 @@ const ProjectView = () => {
             
           </li>
         ))}
+         </div>
+            <div className="middle-cover">
+          
      
        {project &&  <MessagesPanel project={project} /> }
         </div>  
