@@ -57,7 +57,7 @@ const Projects = () => {
             }
     }
     return ( 
-        <div className="container">
+        <div className="container project-root">
               <div className="left-sidebar">
             <div  onClick={(e) => {
           e.stopPropagation();

@@ -160,8 +160,8 @@
   
   .chat .messages-chat .message {
     display:flex;
-    align-items: center;
-    margin-bottom: 8px;
+    
+    margin-bottom: 0px;
   }
   
   .chat .messages-chat .message .photo {
@@ -177,7 +177,7 @@
   }
   
   .chat .messages-chat .text {
-    margin: 0 35px;
+    margin: 0 5px;
     background-color: #f6f6f6;
     padding: 15px;
     border-radius: 12px;
@@ -190,8 +190,9 @@
   .time {
     font-size: 10px;
     color:lightgrey;
-    margin-bottom:10px;
-    margin-left: 85px;
+    margin-bottom:0px;
+    margin-left: 0px;
+  
   }
   
   .response-time {

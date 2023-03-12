@@ -9,6 +9,7 @@ import { useLogout } from '../../hooks/useLogout'
 import { RefreshToken } from "../../api/RefreshToken";
 import CreateProject from "../../components/CreateProjects/CreateProject";
 import SideJoinRequest from "../../components/SideJoinRequest/SideJoinRequest";
+import "./Post.css"
 
 const Projects = () =>{
     const { user,dispatch } = useContext(AuthContext);
@@ -136,7 +137,7 @@ const Projects = () =>{
   }
 
     return (
-      <div  className="container"  onClick={() => setCloseParent(true)}   >
+      <div  className="container post-root"  onClick={() => setCloseParent(true)}   >
         
           {/* side post*/}
           <div className="left-sidebar">

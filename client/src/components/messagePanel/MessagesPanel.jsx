@@ -182,10 +182,11 @@ const MessagesPanel = ({project}) =>{
                   
                     <div key={member._id}>
                       { member._id === user.user ?
+                      <>
                          <div className="message"  >{member._id === chat.senderId
                           ?  <>
                           { member.image !== null ?
-                            <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
+                            <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,
                                 
@@ -196,7 +197,7 @@ const MessagesPanel = ({project}) =>{
                                 height: 48,
                             }} />
                          }
-                          <p className="text"> {chat.text} {member.name}</p>  <p class="time"> {format(chat.createdAt)}</p></>: ""}</div>
+                          <p className="text"> {chat.text} {member.name}</p><p class="time"> {format(chat.createdAt)}</p>  </>: ""}</div></>
                        :<div  className="message ">
                           <div  className="response">
                             <>
