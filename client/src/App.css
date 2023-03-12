@@ -156,7 +156,7 @@ nav{
 
 }
 .left-sidebar{
-  flex-basis: 45%;
+  flex-basis: 25%;
   position: sticky;
   z-index: 1;
   top: 70px;

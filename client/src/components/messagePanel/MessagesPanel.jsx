@@ -5,10 +5,12 @@ import { useLogout } from '../../hooks/useLogout'
 import { useContext } from "react";
 import { getUsers ,getUser} from "../../api/GetUsers";
 import { getGroupMessages, sendMessage } from "../../api/GroupMessages";
-
+import profilePicture from "../../images/profile.jpg"
 import animationData from "../../animations/typing.json";
 import {io} from "socket.io-client";
 import {format} from "timeago.js";
+import { Avatar } from "@mui/material";
+import { convertBinaryToString} from "../../utils/ImageFormating"
 import './MessagePanel.css'
 
 const MessagesPanel = ({project}) =>{
@@ -161,40 +163,10 @@ const MessagesPanel = ({project}) =>{
           <section  class="chat">
         <div  className="header-chat">
           <i  className="icon fa fa-user-o" aria-hidden="true"></i>
-          <p  className="name">Megan Leib</p>
+          <p  className="name">{project.projectName}</p>
           <i  className="icon clickable fa fa-ellipsis-h right" aria-hidden="true"></i>
         </div>
-        <div  className="messages-chat">
-          <div  className="message">
-            <div  className="photo" >
-              <div  className="online"></div>
-            </div>
-            <p  className="text"> Hi, how are you ? </p>
-          </div>
-          <div  className="message text-only">
-            <p  className="text"> What are you doing tonight ? Want to go take a drink ?</p>
-          </div>
-          <p  className="time"> 14h58</p>
-          <div  className="message text-only">
-            <div  className="response">
-              <p  className="text"> Hey Megan ! It's been a while </p>
-            </div>
-          </div>
-          <div  className="message text-only">
-            <div  className="response">
-              <p  className="text"> When can we meet ?</p>
-            </div>
-          </div>
-          <p  className="response-time time"> 15h04</p>
-
-          <div  className="message">
-            <div  className="photo" >
-              <div  className="online"></div>
-            </div>
-            <p className="text"> 9 pm at the bar if possible </p>
-          </div>
-          <p class="time"> 15h09</p>
-        </div>
+     
         <div  className="footer-chat">
           <i  className="icon fa fa-smile-o clickable"  aria-hidden="true"></i>
           <input type="text" class="write-message" placeholder="Type your message here"></input>
@@ -202,18 +174,60 @@ const MessagesPanel = ({project}) =>{
         </div>
       
             <h4>Group Chat</h4>
-        
+            <div className="messages-chat">
             {groupChat && groupChat.map((chat) => (
-                <div className="messages-chat" key={chat._id}>
+                <div  key={chat._id}>
                 { members.map(member =>(
+
+                  
                     <div key={member._id}>
-                    <div className="message"  >{member._id === chat.senderId
-                       ?  <p className="text"> {chat.text} {member.name}</p> : ""}</div>
-                       <p class="time"> {format(chat.createdAt)}</p>
+                      { member._id === user.user ?
+                         <div className="message"  >{member._id === chat.senderId
+                          ?  <>
+                          { member.image !== null ?
+                            <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                                
+                            }} />:
+                        
+                            <Avatar src={profilePicture} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                            }} />
+                         }
+                          <p className="text"> {chat.text} {member.name}</p>  <p class="time"> {format(chat.createdAt)}</p></>: ""}</div>
+                       :<div  className="message ">
+                          <div  className="response">
+                            <>
+                        
+                            <p  className="text"> 
+                            {chat.text} {member.name}</p>
+                            <p class="time"> {format(chat.createdAt)}</p>
+                            { member.image !== undefined ?
+                            <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                                
+                            }} />:
+                        
+                            <Avatar src={profilePicture} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                            }} />
+                         }
+                            </>
+                          </div>
+                       </div>
+                       }
+                   
+                       
                     </div>   
                 ))}
                 </div>
+              
             ))}
+             </div> 
             {typing && 
             <>Typing<p>
                 {typingData && members && members.map((member,index) =>(
