@@ -124,12 +124,13 @@
   }
   
   .chat {
-    
+   
+    height: 630px;
   }
   
   .header-chat {
     background-color: #FFF;
-    height: 90px;
+    height: 70px;
     box-shadow: 0px 3px 2px rgba(0,0,0,0.100);
     display:flex;
     align-items: center;
@@ -160,27 +161,28 @@
   
   .chat .messages-chat .message {
     display:flex;
-    
+
     margin-bottom: 0px;
   }
   
-  .chat .messages-chat .message .photo {
-      display: block;
-      width: 45px;
-      height: 45px;
-      background: #E6E7ED;
-      -moz-border-radius: 50px;
-      -webkit-border-radius: 50px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-  }
+
   
   .chat .messages-chat .text {
     margin: 0 5px;
     background-color: #f6f6f6;
     padding: 15px;
     border-radius: 12px;
+    font-size: 13px;
+    max-width: 350px;
+  }
+
+  .text span{
+    color: gray;
+    position: relative;
+    bottom: 12px;
+    font-size: 10px;
+    float: right;
+    margin-bottom: 10px;
   }
   
   .text-only {
@@ -191,32 +193,55 @@
     font-size: 10px;
     color:lightgrey;
     margin-bottom:0px;
-    margin-left: 0px;
-  
+    margin-left: 55px; 
+    position: relative;
+    top: 10px; 
+  }
+.time-response {
+    font-size: 10px;
+    color:lightgrey;
+ 
+    position: relative;
+    top: 6px; 
+  float: right  ;
+  margin: 0px;
+  right: 60px;
   }
   
   .response-time {
     float: right;
-    margin-right: 40px !important;
+    margin-left: 30px !important;
   }
   
   .response {
     float: right;
     margin-right: 0px !important;
     margin-left:auto; /* flexbox alignment rule */
+    margin-bottom: 0px;
+    height: 90px;
+  }
+  .response .profile-pic-message{
+    float: right  ;
+    margin: 0px;
+   position: relative;
+   bottom:48px;
+   left: 60px;
   }
   
   .response .text {
     background-color: #e3effd !important;
+    position: relative;
+    right: 50px;
   }
   
   .footer-chat {
     width: calc(65% - 66px);
-    height: 80px;
+    height: 50px;
     display:flex;
     align-items: center;
     position:absolute;
     bottom: 0;
+    padding-top: 10px;
     background-color: transparent;
     border-top: 2px solid #EEE;
     
@@ -280,3 +305,23 @@
   .clickable {
     cursor: pointer;
   }
+
+  .message-footer--sticky {
+    position: sticky;
+    top: 100px;
+
+    background-color: white;
+    z-index: 1055;
+    height: 80px;
+   
+  }
+
+  .messages__content {
+    position:absolute;
+    width: 100%;
+    padding: 20px;
+    bottom: 70px;
+    top: 70px;
+    overflow-y: auto;
+   
+}

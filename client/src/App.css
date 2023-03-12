@@ -858,6 +858,27 @@ nav{
   }
 
 }
+
+/*=========================modal===========================================*/
+
+
+.modalContainer {
+  max-width: 600px;
+  width: 100%;
+  position: fixed;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  z-index: 1000;
+  
+}
+/*=========================modal end=======================================*/
+
 /*----------------------- Media Query For Profile Page------------------------*/
 @media (max-width: 900px){
   .profile-container{

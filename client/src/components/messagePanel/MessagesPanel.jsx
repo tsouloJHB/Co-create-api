@@ -167,14 +167,17 @@ const MessagesPanel = ({project}) =>{
           <i  className="icon clickable fa fa-ellipsis-h right" aria-hidden="true"></i>
         </div>
      
-        <div  className="footer-chat">
+        <div  >
+        <form className="footer-chat" onSubmit={handleSubmit}>
           <i  className="icon fa fa-smile-o clickable"  aria-hidden="true"></i>
-          <input type="text" class="write-message" placeholder="Type your message here"></input>
-          <i  className="icon send fa fa-paper-plane-o clickable" aria-hidden="true"></i>
+          <input type="text" className="write-message"  onChange={handleOnchange} placeholder="Type your message here"></input>
+          
+          <button>submit</button>
+          </form>
         </div>
       
-            <h4>Group Chat</h4>
-            <div className="messages-chat">
+      
+            <div className="messages-chat messages__content">
             {groupChat && groupChat.map((chat) => (
                 <div  key={chat._id}>
                 { members.map(member =>(
@@ -197,22 +200,23 @@ const MessagesPanel = ({project}) =>{
                                 height: 48,
                             }} />
                          }
-                          <p className="text"> {chat.text} {member.name}</p><p class="time"> {format(chat.createdAt)}</p>  </>: ""}</div></>
-                       :<div  className="message ">
+                          <p className="text"> {chat.text} {member.name}</p>  </>: ""}</div>
+                          { member._id === chat.senderId ?<p class="time"> {format(chat.createdAt)}</p>:""}</>
+                       :<><div  className="message ">
                           <div  className="response">
                             <>
                         
-                            <p  className="text"> 
-                            {chat.text} {member.name}</p>
-                            <p class="time"> {format(chat.createdAt)}</p>
+                            <p  className="text"> <span>{member.name}</span>
+                            {chat.text} </p>
+                            <p class="time-response"> {format(chat.createdAt)}</p>
                             { member.image !== undefined ?
-                            <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
+                            <Avatar className="profile-pic-message" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,
                                 
                             }} />:
                         
-                            <Avatar src={profilePicture} alt="" sx={{
+                            <Avatar className="profile-pic-message" src={profilePicture} alt="" sx={{
                                 width: 48,
                                 height: 48,
                             }} />
@@ -220,6 +224,7 @@ const MessagesPanel = ({project}) =>{
                             </>
                           </div>
                        </div>
+                       {/* { member._id !== chat.senderId ?<p class="time-response"> {format(chat.createdAt)}</p>:""} */}</>
                        }
                    
                        
@@ -247,7 +252,7 @@ const MessagesPanel = ({project}) =>{
                 </div>
             ))} */}
             
-            <div>
+            {/* <div>
                 <p>Send message</p>
                 <form className="signup" onSubmit={handleSubmit}>
                     <h3>send message</h3>
@@ -261,7 +266,7 @@ const MessagesPanel = ({project}) =>{
                     <button >Send message</button>
             
                 </form>
-            </div>    
+            </div>     */}
 </section>
         </div>  
     );

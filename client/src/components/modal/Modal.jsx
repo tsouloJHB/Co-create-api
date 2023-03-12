@@ -84,49 +84,35 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
         </div>
     <div className="modal__content">
     <div className="user-profile">
-              {user && user.image.data && user.image.data.data !== null ? 
-              <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(user.image)}`} alt="" sx={{
-                width: 48,
-                height: 48,
-                
-            }} />
-              :<Avatar src={profilePicture} alt="" sx={{
-                width: 48,
-                height: 48,
-            }} />}
-              
-                     
-                        
-
-                    
-              <p>{user && user.name}</p>
-              <span className="postTime">{format(projectData.createdAt)}</span>
-              <p className="projectName">{projectData && projectData.projectName}</p>
-            
-            </div>
-           
-              <p className="postDescription">{projectData && projectData.desc}</p>
-              <hr/>
+        {user && user.image.data && user.image.data.data !== null ? 
+        <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(user.image)}`} alt="" sx={{
+          width: 48,
+          height: 48,
           
-           
-{/* <div class="modal-footer modal-footer--sticky">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-           </div> */}
-           
-          
-      <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
+      }} />
+        :<Avatar src={profilePicture} alt="" sx={{
+          width: 48,
+          height: 48,
+      }} />}
+                          
+        <p>{user && user.name}</p>
+        <span className="postTime">{format(projectData.createdAt)}</span>
+        <p className="projectName">{projectData && projectData.projectName}</p>           
+      </div>
+    <p className="postDescription">{projectData && projectData.desc}</p>
+    <hr/>
+    <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
     </div>
     <div className="modal__footer">
       <form  className="comment-form " >   
-                <br/>
-                        <textarea placeholder="write commment" className='comment-input'
-                         onChange={(e) => setComment(e.target.value)}
-                        
-                        ></textarea>
-                        <br/>
-                        <p  className="pressEnter" onClick={submitComment}>Click to submit</p>
-                        {/* <button className='comment-btn'>Comment</button> */}
+        <br/>
+          <textarea placeholder="write commment" className='comment-input'
+            onChange={(e) => setComment(e.target.value)}
+          
+          ></textarea>
+          <br/>
+          <p  className="pressEnter" onClick={submitComment}>Click to submit</p>
+          {/* <button className='comment-btn'>Comment</button> */}
       </form>
     </div>
       </div>
