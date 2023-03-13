@@ -145,7 +145,7 @@ const Projects = () =>{
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
-              <h3>Join requests</h3>
+              <p className="yourProject">Join requests</p>
               <SideJoinRequest  closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/>
             </div>  
           </div>    

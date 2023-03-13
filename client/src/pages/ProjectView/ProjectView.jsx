@@ -6,7 +6,10 @@ import { AuthContext } from '../../context/AuthContext';
 import { useLogout } from '../../hooks/useLogout'
 import { useContext } from "react";
 import MessagesPanel from "../../components/messagePanel/MessagesPanel";
+import { Avatar } from "@mui/material";
+import { convertBinaryToString} from "../../utils/ImageFormating"
 import "./ProjectView.css"
+import profilePicture from "../../images/profile.jpg"
 
 const ProjectView = () => {
     const {  user ,dispatch} = useContext(AuthContext);
@@ -31,18 +34,35 @@ const ProjectView = () => {
     return (  
       <div className="container">
          <div className="left-sidebar-view">
-         <p>{project.projectName}</p>
+          
+         <p className="projectNameView">{project.projectName}</p>
+         <hr/>
+         <div className="projectDescription">
            <p>{project.desc}</p>
+           
            <p>Members no: {project.members.length}</p>
-            <h5>Side bar</h5>
-             {/* {members && members.name} */}
-
+         </div> 
+        
         {members.map((item,index) => (
-          <li key={index}>
-            {item._id === project.userId?"Group leader":"" }
-            <p>{item.name}</p>
-            
-          </li>
+          <div className="projectUser" key={index}>
+           
+          
+            { item.image !== undefined ?
+            <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(item.image)}`} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                                
+                            }} />:
+                        
+            <Avatar src={profilePicture} alt="" sx={{
+                                width: 48,
+                                height: 48,
+                            }} />
+                          }
+              <span class="dotOnline"></span>            
+              <p>{item.name}  {item._id === project.userId?"Group leader":"" }</p>
+          </div>
+          
         ))}
          </div>
             <div className="middle-cover">

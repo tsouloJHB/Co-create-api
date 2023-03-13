@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import ProjectEdit from "../../pages/projectEdit/ProjectEdit";
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
+import ChatIcon from '@mui/icons-material/Chat';
+import InfoIcon from '@mui/icons-material/Info';
 import "./projectDetails.css"
 
 const ProjectDetails = ({project}) => {
@@ -34,18 +37,20 @@ const ProjectDetails = ({project}) => {
             <br/>
  
             {project.status === "InProgress"? <Link to="/projectView" state={{ project: project } }>
-              
-                <Button variant="outlined" color="success" >Open</Button>
+                <ChatIcon sx={{cursor:"pointer"}} />
+                {/* <Button variant="outlined" color="success" >Open</Button> */}
                 </Link>  
                 :""}
             {project.status === "NotStarted"? <Link to="/projectStatus" state={{ project: project } }>
-                <Button variant="outlined" color="success" >    Project status</Button>
+                <InfoIcon sx={{cursor:"pointer"}}/>
+                {/* <Button variant="outlined" color="success" >    Project status</Button> */}
             
                 </Link>  :""}
             
             &nbsp;
             &nbsp;
-            <Button variant="outlined" color="success"  onClick={handleClick} >Settings</Button>
+            <SettingsIcon onClick={handleClick} sx={{cursor:"pointer"}} />
+           
           
            
             {/* {project && <Link to="/projectEdit" state={{ state: project } }>Settings</Link>  } */}

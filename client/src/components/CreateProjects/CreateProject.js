@@ -50,7 +50,7 @@ const CreateProject =  ({updateParentPost}) =>{
                         onChange={(e) => setDesc(e.target.value)}
                         value={desc}
                         ></textarea>
-                        
+                        <br/>
                         {/* <button>Create</button> */}
                         <Button  variant="outlined" color="success"  >Create</Button>
                 </form>

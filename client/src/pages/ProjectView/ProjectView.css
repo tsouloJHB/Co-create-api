@@ -15,3 +15,46 @@
     border-radius: 17px;
   
   }
+
+.projectNameView{
+  text-transform: uppercase;
+  color: gray;
+  text-align: center;
+  font-size: 14px;
+}  
+.projectUser{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+   
+}
+.projectUser p {
+  margin-top: 12px;
+}
+.dotOffline {
+  height: 15px;
+  width: 15px;
+  background-color:lightgreen;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 32px;
+  margin-right: 13px;
+}
+.dotOnline {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 32px;
+  margin-right: 13px;
+}
+.projectDescription{
+  text-align: center;
+}
+
+
+
+
+  

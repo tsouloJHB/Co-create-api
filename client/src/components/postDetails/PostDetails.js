@@ -17,6 +17,7 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import profilePicture from "../../images/profile.jpg"
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
@@ -203,9 +204,10 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     e.stopPropagation();
                     }}>
                        
-                            {post.userId === user.user ?  <Button variant="outlined" color="success" sx={{
-                            zIndex:0
-                        }}   onClick={handleOnclickEdit}>Edit</Button>  :  <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button> }
+                            {post.userId === user.user ?  <SettingsIcon sx={{
+                            zIndex:0,
+                            cursor:"pointer"    
+                        }}   onClick={handleOnclickEdit}/>  :  <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button> }
                      </div>
                     <p  className="post-text">{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
                 </div>

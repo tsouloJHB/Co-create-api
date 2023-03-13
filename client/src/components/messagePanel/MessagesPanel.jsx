@@ -11,6 +11,7 @@ import {io} from "socket.io-client";
 import {format} from "timeago.js";
 import { Avatar } from "@mui/material";
 import { convertBinaryToString} from "../../utils/ImageFormating"
+import SendIcon from '@mui/icons-material/Send';
 import './MessagePanel.css'
 
 const MessagesPanel = ({project}) =>{
@@ -163,7 +164,15 @@ const MessagesPanel = ({project}) =>{
           <section  class="chat">
         <div  className="header-chat">
           <i  className="icon fa fa-user-o" aria-hidden="true"></i>
-          <p  className="name">{project.projectName}</p>
+          <p  className="name">{project.projectName}</p> 
+          {typing && 
+            <><span className="typing">Typing</span><p>
+                {typingData && members && members.map((member,index) =>(
+                
+                <span className="typing">{ member._id === typingData.senderId?member.name + " is typing":""}</span>
+                ))}
+                </p></>
+            }
           <i  className="icon clickable fa fa-ellipsis-h right" aria-hidden="true"></i>
         </div>
      
@@ -171,8 +180,8 @@ const MessagesPanel = ({project}) =>{
         <form className="footer-chat" onSubmit={handleSubmit}>
           <i  className="icon fa fa-smile-o clickable"  aria-hidden="true"></i>
           <input type="text" className="write-message"  onChange={handleOnchange} placeholder="Type your message here"></input>
-          
-          <button>submit</button>
+          <SendIcon className="sendMessage" color="primary"sx={{ fontSize: "35px",  cursor: 'pointer' }} />
+     
           </form>
         </div>
       
@@ -188,7 +197,7 @@ const MessagesPanel = ({project}) =>{
                       <>
                          <div className="message"  >{member._id === chat.senderId
                           ?  <>
-                          { member.image !== null ?
+                          { member.image !== undefined ?
                             <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,
@@ -234,14 +243,14 @@ const MessagesPanel = ({project}) =>{
               
             ))}
              </div> 
-            {typing && 
+            {/* {typing && 
             <>Typing<p>
                 {typingData && members && members.map((member,index) =>(
                 
                 <span>{ member._id === typingData.senderId?member.name + " is typing":""}</span>
                 ))}
                 </p></>
-            }
+            } */}
 
             {/* {groupChat.map((chat) => (
                 <div key={chat._id}>
