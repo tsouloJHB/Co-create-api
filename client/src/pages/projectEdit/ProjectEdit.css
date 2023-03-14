@@ -45,7 +45,8 @@
     margin-top: 10px;
 }
 .save-button{
- 
+ position: relative;
+ margin-left: 35%;
 }
 .content-data{
     position: relative;
@@ -56,7 +57,4 @@
     display: flex;
     flex-direction: row;
     
-}
-.desc .save-button{
-    position: relative;
 }

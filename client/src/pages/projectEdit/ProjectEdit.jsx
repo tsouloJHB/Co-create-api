@@ -156,7 +156,7 @@ const ProjectEdit = () =>{
                     
 
                 <div className="content-data" >{state.userId === user.user ?
-                 <div><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></div>
+                 <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
                  :<p>{state.projectName} </p>}
                 </div>
 
@@ -167,7 +167,7 @@ const ProjectEdit = () =>{
                 <div className="content-data">
                     {state.userId !== user.user 
                     ? <p>{state.desc} </p>
-                    :<div className="desc"><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></div>}
+                    :<div ><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></div>}
                 </div>
                  <div className="content-data">
                 <p> {state &&  membersCount === 1 ?"Space left":"Spaces left"} {" "+membersCount }</p>
