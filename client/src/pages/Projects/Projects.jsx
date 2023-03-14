@@ -75,7 +75,7 @@ const Projects = () => {
           </div> 
            
             
-            <div className="main-content">
+            <div className="main-content project-main">
             
          
             

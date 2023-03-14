@@ -35,7 +35,7 @@
 .dotOffline {
   height: 15px;
   width: 15px;
-  background-color:lightgreen;
+  background-color:#bbb;
   border-radius: 50%;
   display: inline-block;
   margin-top: 32px;
@@ -44,7 +44,7 @@
 .dotOnline {
   height: 15px;
   width: 15px;
-  background-color: #bbb;
+  background-color:lightgreen;
   border-radius: 50%;
   display: inline-block;
   margin-top: 32px;
@@ -52,6 +52,15 @@
 }
 .projectDescription{
   text-align: center;
+}
+
+.leftProjectEdit{
+  margin-top: 10px;
+}
+.middle-project-view{
+  background-color: red;
+  position: relative;
+  bottom: 8px;
 }
 
 

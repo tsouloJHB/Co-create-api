@@ -14,7 +14,7 @@ import { convertBinaryToString} from "../../utils/ImageFormating"
 import SendIcon from '@mui/icons-material/Send';
 import './MessagePanel.css'
 
-const MessagesPanel = ({project}) =>{
+const MessagesPanel = ({project, updateOnlineUsers}) =>{
 
     const {  user ,dispatch} = useContext(AuthContext);
     const {logout} = useLogout();
@@ -27,6 +27,7 @@ const MessagesPanel = ({project}) =>{
     const [typing,setTyping] = useState(false);
     const [localTyping,setLocalTyping] = useState(false);
     const [typingData,setDataTyping] = useState(false);
+    const [onlineUsers,setOnlineUsers] = useState(null);
     const socket = useRef();
 
 
@@ -61,6 +62,8 @@ const MessagesPanel = ({project}) =>{
    
         socket.current.emit("new-user-add", user.user);
         socket.current.on("get-users", (users) => {
+          setOnlineUsers(users)
+          updateOnlineUsers(users)
           console.log(users);
         });
         socket.current.on("receive-message",(data) => {
@@ -195,7 +198,7 @@ const MessagesPanel = ({project}) =>{
                     <div key={member._id}>
                       { member._id === user.user ?
                       <>
-                         <div className="message"  >{member._id === chat.senderId
+                         <div className="message"  >{member._id === chat.senderId && user.user === chat.senderId
                           ?  <>
                           { member.image !== undefined ?
                             <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{

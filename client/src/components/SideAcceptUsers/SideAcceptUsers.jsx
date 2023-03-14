@@ -67,7 +67,7 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                     <div key={join.joinId} className="workout-details" >
                      
                     {join.image && join.image.data && join.image.data.data !== null ? 
-                    <Avatar className="profile-pic-accept" src={`data:image/png;base64,${convertBinaryToString(join.image)}`} alt="" sx={{
+                    <Avatar className="profile-pic-accept" src={`data:image/png;base64,${convertBinaryToString(join.image.data)}`} alt="" sx={{
                         width: 48,
                         height: 48,
                         

@@ -17,6 +17,7 @@ const ProjectView = () => {
     const location = useLocation();
     const { project } = location.state;
     const [members,setMembers] = useState(null);
+    const [onlineUsers,setOnlineUsers] = useState(null);
 
     useEffect(()=>{       
         const getData = async() =>{
@@ -31,18 +32,23 @@ const ProjectView = () => {
         return <p>Loading...</p>;
       }
 
+    const updateOnlineUsers = (users) =>{
+      setOnlineUsers(users)
+      console.log(users);
+    }  
+
     return (  
       <div className="container">
-         <div className="left-sidebar-view">
+         <div className="left-sidebar-view ">
           
          <p className="projectNameView">{project.projectName}</p>
          <hr/>
          <div className="projectDescription">
            <p>{project.desc}</p>
-           
+        
            <p>Members no: {project.members.length}</p>
          </div> 
-        
+      
         {members.map((item,index) => (
           <div className="projectUser" key={index}>
            
@@ -59,16 +65,21 @@ const ProjectView = () => {
                                 height: 48,
                             }} />
                           }
-              <span class="dotOnline"></span>            
+              {onlineUsers && onlineUsers.find(profile=> profile.userId === item._id) !== undefined 
+                ? <span class="dotOnline"></span> 
+                : <span class="dotOffline"></span> 
+              }            
+                        
               <p>{item.name}  {item._id === project.userId?"Group leader":"" }</p>
+              {/* {onlineUsers && console.log(onlineUsers.find(profile=> profile.userId === item._id) !== undefined)} */}
           </div>
           
         ))}
          </div>
-            <div className="middle-cover">
+            <div className="middle-cover middle-project-view">
           
      
-       {project &&  <MessagesPanel project={project} /> }
+       {project &&  <MessagesPanel project={project} updateOnlineUsers={updateOnlineUsers} /> }
         </div>  
       </div>  
     );

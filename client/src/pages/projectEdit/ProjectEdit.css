@@ -7,6 +7,7 @@
     left: 0px;
     right: 0px;
     margin: 0px;
+ 
 }
 
 .profile-info{
@@ -42,4 +43,20 @@
 }
 .leftProjectEdit{
     margin-top: 10px;
+}
+.save-button{
+ 
+}
+.content-data{
+    position: relative;
+    display: flex;
+    
+}
+.desc{
+    display: flex;
+    flex-direction: row;
+    
+}
+.desc .save-button{
+    position: relative;
 }

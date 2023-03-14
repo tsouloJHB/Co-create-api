@@ -15,6 +15,7 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import SideAcceptUsers from "../../components/SideAcceptUsers/SideAcceptUsers";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
+import { convertBinaryToString} from "../../utils/ImageFormating"
 import './ProjectEdit.css';
 
 const ProjectEdit = () =>{
@@ -65,14 +66,14 @@ const ProjectEdit = () =>{
     }
 
 
-    const convertBinaryToString = (image)=>{
+    // const convertBinaryToString = (image)=>{
       
-        const base64String = btoa(
-            String.fromCharCode(...new Uint8Array(image.data.data) )
-        );
+    //     const base64String = btoa(
+    //         String.fromCharCode(...new Uint8Array(image.data.data) )
+    //     );
             
-        return base64String
-    }
+    //     return base64String
+    // }
     
     const handleEdit = (field) =>{
         Object.keys(state).map(key => {
@@ -153,9 +154,9 @@ const ProjectEdit = () =>{
                 <p className="yourProject">Edit project</p>
                 <div className="content-row project-row">
                     
-                <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" />
+
                 <div className="content-data" >{state.userId === user.user ?
-                 <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
+                 <div><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></div>
                  :<p>{state.projectName} </p>}
                 </div>
 
@@ -166,7 +167,7 @@ const ProjectEdit = () =>{
                 <div className="content-data">
                     {state.userId !== user.user 
                     ? <p>{state.desc} </p>
-                    :<><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></>}
+                    :<div className="desc"><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></div>}
                 </div>
                  <div className="content-data">
                 <p> {state &&  membersCount === 1 ?"Space left":"Spaces left"} {" "+membersCount }</p>

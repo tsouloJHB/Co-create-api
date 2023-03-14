@@ -4,3 +4,8 @@
 .project-root{
     text-align: center;
 }
+
+.project-main{
+    position: relative;
+    bottom: 20px;
+}
