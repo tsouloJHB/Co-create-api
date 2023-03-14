@@ -43,6 +43,7 @@
 }
 .leftProjectEdit{
     margin-top: 10px;
+    text-align: center;
 }
 .save-button{
  position: relative;
@@ -53,8 +54,16 @@
     display: flex;
     
 }
-.desc{
+
+.userInfo-Edit-Project{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 20px;
+  
+}
+.userInfo-Edit-Project .userButton{
     
+    position: relative;
+    left:-20px;
 }

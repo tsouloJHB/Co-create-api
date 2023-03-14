@@ -9,6 +9,7 @@ import { useLogout } from '../../hooks/useLogout'
 import { RefreshToken } from "../../api/RefreshToken";
 import CreateProject from "../../components/CreateProjects/CreateProject";
 import SideJoinRequest from "../../components/SideJoinRequest/SideJoinRequest";
+import Notifications from "../../components/notifications/Notifications";
 import "./Post.css"
 
 const Projects = () =>{
@@ -137,7 +138,7 @@ const Projects = () =>{
   }
 
     return (
-      <div  className="container post-root"  onClick={() => setCloseParent(true)}   >
+      <div  className="container "  onClick={() => setCloseParent(true)}   >
         
           {/* side post*/}
           <div className="left-sidebar">
@@ -150,7 +151,7 @@ const Projects = () =>{
             </div>  
           </div>    
           {/* center post*/}
-          <div className="main-content">
+          <div className="main-content post-root">
           <CreateProject updateParentPost={updateParentPost} />  
             <div  onClick={(e) => {
           e.stopPropagation();
@@ -162,41 +163,8 @@ const Projects = () =>{
             
           </div>
           <div class="right-sidebar">
-                <div class="sidebar-title">
-                    <h4>Notifications</h4>
-                    <a href="#">All</a>
-                </div>
-                <div class="event">
-                    <div class="left-event">
-                        <h3>18</h3>
-                        <span>March</span>
-                    </div>
-                    <div class="right-event">
-                        <h4>Social Media</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
-                        <a href="#">More Info</a>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="left-event">
-                        <h3>22</h3>
-                        <span>June</span>
-                    </div>
-                    <div class="right-event">
-                        <h4>Mobile Marketing</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Willson Tech Park</p>
-                        <a href="#">More Info</a>
-                    </div>
-                </div>
-                <div class="sidebar-title">
-                    <h4>Advertisement</h4>
-                    <a href="#">close</a>
-                </div>
-               
-                <div class="sidebar-title">
-                    <h4>Conversation</h4>
-                    <a href="#">Hide Chat</a>
-                </div>
+            <Notifications />
+                
                
             </div>
       </div>

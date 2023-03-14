@@ -1,0 +1,36 @@
+.project-status-cover{
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    height: 704px;
+}
+.backGroundImage{
+    width: 80%;
+    position:fixed;
+    left: 10%;
+    z-index: 1;
+}
+.project-status-cover .cover-image{
+    background-color:white;   
+    height: 600px;
+    width: 100%;
+    left: 0px;
+    position: absolute;
+    top:300px;
+    z-index: 2;
+}
+
+.projectStatus-profiles{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 5%;
+}
+.projectStatus-profiles p {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.cover-image h4{
+    color: gray;
+    font-size: 16px;
+}

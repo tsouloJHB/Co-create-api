@@ -77,7 +77,7 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                         height: 48,
                         
                     }} />}
-                    <p>{join.name + " "}{join.surname} </p>
+                    <p className="side-name">{join.name + " "}{join.surname} </p>
                     <Button variant="outlined" color="success"  onClick={() => handleAcceptUser(join,'Accepted')}  >Accept</Button>
                     <Button variant="outlined" color="success"   onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button>
                    

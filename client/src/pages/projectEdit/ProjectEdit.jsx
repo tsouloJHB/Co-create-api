@@ -196,14 +196,18 @@ const ProjectEdit = () =>{
                             height: 48,
                             
                         }} /></div>}
-                          
-                        <p>{LocalUser.name} {LocalUser.surname}</p>
-                        <Button variant="outlined" color="success" onClick={() => handleViewProfile(LocalUser)}  >View profile</Button>
-                      
-                        {state.userId === user.user ?
-                        <Button variant="outlined" color="success"  onClick={() => handleRemoveUser(LocalUser)}  >Remove User</Button>
+
+                         <div className="userInfo-Edit-Project"> 
+                            <p>{LocalUser.name} {LocalUser.surname}</p>
+                            <Button  className="userButton" variant="outlined" color="success" onClick={() => handleViewProfile(LocalUser)}  >View profile</Button>
                         
-                          :""}
+                            {state.userId === user.user ?
+                            <Button className="userButton" variant="outlined" color="success"  onClick={() => handleRemoveUser(LocalUser)}  >Remove User</Button>
+                            
+                            :""}
+                            
+                          </div>
+                          
                         </div>
                         </div>
                         

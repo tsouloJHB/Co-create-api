@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { RefreshToken } from './api/RefreshToken';
 import { useLogout } from './hooks/useLogout';
 import ProjectView from './pages/ProjectView/ProjectView';
-import ProjectStatus from './pages/ProjectStatus';
+import ProjectStatus from './pages/projectStatus/ProjectStatus';
 import ViewProject from './pages/ViewProject';
 import ProjectEdit from './pages/projectEdit/ProjectEdit';
 import Profile from './pages/Profile/Profile';

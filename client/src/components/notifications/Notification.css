@@ -1,0 +1,19 @@
+.sidebar-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  
+  }
+  .sidebar-title h4{
+    color: gray;
+    font-size: 14px;
+    font-weight: 400;
+  
+  }
+  .sidebar-title a{
+    text-decoration: none;
+    color: #1876f2;
+    font-size: 12px;
+  
+  }

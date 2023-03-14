@@ -7,3 +7,9 @@
     color: gray;
     font-weight: bold;
 }
+
+.side-name{
+    position: relative;
+    top: 5px;
+  
+}
