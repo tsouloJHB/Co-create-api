@@ -18,7 +18,8 @@ import profilePicture from "../../images/profile.jpg"
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
-
+import './PostDetails.css'
+import forestPicture  from  '../../images/forest.jpg'
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -168,6 +169,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
         <div>
             {/* convertBinaryToString(profile.image)  */}
             <div className="post-container"  onClick={handleOpenModal} >
+                <div className="post-border">
                 <dic className="post-row">
                     <div className="user-row">
                     <div className="user-profile">
@@ -204,23 +206,29 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 //   />
                   <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
+                 <img alt={project && project.projectName} className="postImage" src={forestPicture}  />
              
                  <div class="post-row">
                     <div onClick={(e) => {
                     e.stopPropagation();
                     }}>
-                       
+                       {/* <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button>  */}
                             {post.userId === user.user ?  <SettingsIcon sx={{
                             zIndex:0,
+                            color:"red",
                             cursor:"pointer"    
-                        }}   onClick={handleOnclickEdit}/>  :  <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button> }
+                        }}   onClick={handleOnclickEdit}/>  :  <button  onClick={handleSubmit} class="btn btn-primary   mb-8">Join</button>}
                      </div>
                     
-                    <p  className="post-text"><span id="comments-count">{commentsAmount} comments</span> {project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
+                    <p  className="post-text"><span id="comments-count">{commentsAmount} comments</span>  <span className="space">{project &&  project.maxMembers - project.members.length  +" "}{project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</span></p>
                   
                 </div>
                 <hr/>
-                <p id="view-comments">Comments</p> 
+                <div className="postFooter">
+                <button   class="btn btn-primary post-tags">Science</button>
+                <p id="view-comments">Comments</p>  
+                </div>
+               
                 <Modal 
                     open={openModal} 
                     onClose={() => {
@@ -234,6 +242,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     commentsCount={commentsCount}
                     />
                    
+            </div>
             </div>
        </div> 
     )

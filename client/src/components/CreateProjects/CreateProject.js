@@ -47,28 +47,42 @@ const CreateProject =  ({updateParentPost}) =>{
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form> */}
+            {/* import EmojiPicker from 'emoji-picker-react';
+
+function App() {
+  return (
+    <div>
+      <EmojiPicker />
+    </div>
+  );
+} */}
                 <form onSubmit={handleSubmit} class="form-inline create-from">
                   
-                        <label>Project name</label>
-                        <input class="form-control" type="text" 
+                        {/* <label>Project name</label> */}
+                        <input class="form-control form-input" type="text" placeholder="Project name"
                         onChange={(e) => setProjectName(e.target.value)}
                         value={projectName}
                        
                         />
                    
-                        <label>Max members</label>
+                        
                         <input type="text" 
-                        class="form-control"
+                        class="form-control max-input"
+                        placeholder="max"
+                        value={7}
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
-                         <label>Description</label>
-                        <textarea cols='35' rows='4'
+                        
+                         
+                        <textarea cols='35' rows='3' class="form-control"
+                        id="textarea-create"
+                        placeholder="Description"
                         onChange={(e) => setDesc(e.target.value)}
                         value={desc}
                         ></textarea>
-                        <br/>
-                    
-                        <Button  variant="outlined" color="success"  >Create</Button>
+                        
+                        <button id='submitCreate' type="submit" class="btn btn-primary mb-8">Create</button>
+                       
                 </form>
                    {/* <form class="form-inline">
                     <div class="form-group mb-2">

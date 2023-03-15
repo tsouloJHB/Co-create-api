@@ -24,6 +24,7 @@ const ProjectDetails = ({project}) => {
 
     return ( 
         <div className="post-container">
+            <div className="post-border">
             <div className="post-row">
                 <p className="projectTime">Created {format(project.createdAt)} </p>
             </div>
@@ -55,6 +56,7 @@ const ProjectDetails = ({project}) => {
            
             {/* {project && <Link to="/projectEdit" state={{ state: project } }>Settings</Link>  } */}
              
+        </div>
         </div>
      );
 }

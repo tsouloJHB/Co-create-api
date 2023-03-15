@@ -10,3 +10,10 @@
     bottom: 20px;
     
 }
+
+.button-status{
+    width: 50%;
+}
+.project-border{
+    background-color: red;
+}

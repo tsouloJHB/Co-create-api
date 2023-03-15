@@ -89,3 +89,33 @@
     text-decoration: underline;
   }
   
+.post-text{
+  color: #9a9a9a;
+  margin: 15px 0;
+  font-size: 15px;
+
+}
+.post-text span{
+  color: #ea6161;
+  font-weight: 500;
+}
+.post-text a{
+  color: #1876f2;
+  text-decoration: none;
+
+}
+.space{}
+.postImage{
+  width: 90%;
+}
+
+.post-tags{
+  background-color: red;
+  width: 70px;
+}
+.post-border .postFooter{
+  display: inline;
+  background-color: red;
+  width: 100%;
+}
+
