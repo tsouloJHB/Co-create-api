@@ -64,6 +64,7 @@ body{
   transition: background 0.3s;
 
 
+
 }
 nav{
   display: flex;
@@ -127,7 +128,7 @@ nav{
 
 }
 .search-box input{
-  width: 100%;
+ 
   background: transparent;
   padding: 10px;
   outline: none;
@@ -361,21 +362,21 @@ nav{
 .user-profile{
   display: flex;
   align-items: center;
- 
+  
 
 }
 
 .user-profile img{
-  width: 45px;
-  border-radius: 50%;
-  margin-right: 10px;
+  
 
 }
 .user-profile p{
   margin-bottom: -5px;
   font-weight: 500;
   color: #626262;
- 
+  margin-right: 10px;
+  position: relative;
+  right: 16px;
 }
 .user-profile small{
   font-size: 12px;
@@ -429,7 +430,7 @@ nav{
 .user-profile span{
   font-size: 13px;
   color: #9a9a9a;
-
+  margin-left: 10px;
 }
 .post-text{
   color: #9a9a9a;

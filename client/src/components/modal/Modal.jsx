@@ -12,7 +12,7 @@ import {format} from "timeago.js";
 
 
 
-const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
+const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commentsCount}) =>{
     let { dispatch} = useContext(AuthContext);
     const [comments,setComments] = useState(null);
     const [comment,setComment] = useState(null);
@@ -35,9 +35,10 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom}) =>{
       }
      
       console.log(foundComments);
-      if(foundComments.length > 0)  setComments(foundComments)
-     
-   
+      if(foundComments.length > 0){
+        setComments(foundComments)
+        commentsCount(foundComments.length)
+      }
     }
 
     if (!open) return null;

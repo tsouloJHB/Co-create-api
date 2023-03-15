@@ -33,16 +33,32 @@ const CreateProject =  ({updateParentPost}) =>{
                  
                 </div>
             <div class="post-input-container-project">
-                <form onSubmit={handleSubmit}>
+            {/* <form class="form-inline" action="/action_page.php">
+            <div class="form-group create-from">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email"/>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd"/>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox"/> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form> */}
+                <form onSubmit={handleSubmit} class="form-inline create-from">
+                  
                         <label>Project name</label>
-                        <input className='input-text' type="text" 
+                        <input class="form-control" type="text" 
                         onChange={(e) => setProjectName(e.target.value)}
                         value={projectName}
                        
                         />
+                   
                         <label>Max members</label>
                         <input type="text" 
-                        className='input-text'
+                        class="form-control"
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
                          <label>Description</label>
@@ -51,9 +67,20 @@ const CreateProject =  ({updateParentPost}) =>{
                         value={desc}
                         ></textarea>
                         <br/>
-                        {/* <button>Create</button> */}
+                    
                         <Button  variant="outlined" color="success"  >Create</Button>
                 </form>
+                   {/* <form class="form-inline">
+                    <div class="form-group mb-2">
+                        <label for="staticEmail2" class="sr-only">Email</label>
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com"/>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">Password</label>
+                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+                    </form> */}
            </div>
         </div>
     )

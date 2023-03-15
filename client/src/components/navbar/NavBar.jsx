@@ -9,8 +9,14 @@ import FeedIcon from '@mui/icons-material/Feed';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope,faHouse,faDiagramProject} from '@fortawesome/free-solid-svg-icons'
+import GroupsIcon from '@mui/icons-material/Groups';
+import { Avatar } from "@mui/material";
+import profilePicture from "../../images/profile.jpg"
+import { convertBinaryToString} from "../../utils/ImageFormating"
 
 import "./Navbar.css"
+import { color } from "@mui/system";
+import { blue } from "@mui/material/colors";
 
 const Navbar = () => {
    const {logout} = useLogout();
@@ -40,35 +46,58 @@ const Navbar = () => {
       <nav>
       <div class="nav-left">
        
-          <h3 className="logo-name">Co-create</h3>
+          <h3 className="logo-name">CO-CREATE</h3>
     
          
       </div>
       <div class="nav-middle">
-        <Link to="/posts">
-        <FontAwesomeIcon className="homeButton" size="1x" icon={faHouse} />
-        </Link>
-        <Link to="/projects">
-        <FontAwesomeIcon className="homeButton" size="1x" icon={faDiagramProject} />
-         
-        </Link>
+        <div className="link-group">
+          <Link className="nav-link" to="/posts">
+          <FontAwesomeIcon className="homeButton" icon={faHouse} />
+          <p>Home</p>   
+          </Link>
+        </div>
+
+        <div className="link-group">
+          <Link className="nav-link" to="/projects">
+          {/* <FontAwesomeIcon className="homeButton" size="1x" icon={faDiagramProject} /> */}
+          <GroupsIcon className="projectButton" color="primary" sx={{fontSize:30,color:'blue'}} />
+          <p>Projects</p> 
+          </Link>
+        </div>
+       
+        
       </div>                  
       <div class="nav-right">
-        
-            
+                <Link to="/profile">
+              { profileUser && profileUser.image !== null ?
+                  <Avatar className="photo-nav" src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`} alt="" sx={{
+                      width: 28,
+                      height: 28,
+                      
+                  }} />:
+              
+                  <Avatar className="photo-nav" src={profilePicture} alt="" sx={{
+                      width: 28,
+                      height: 28,
+                  }} />
+              }
+              </Link>
               <hr/>
                {user && (
-              <div>
-                <span>{ profileUser && profileUser.name}</span>
-                <Link to="/profile">Profile</Link>
+              <div className="">
+                {/* <span>{ profileUser && profileUser.name}</span> */}
+                {/* <Link to="/profile">Profile</Link> */}
+               
                   {/* <Link to="/projects">Projects</Link>
                   <Link to="/projects">Project request</Link>
                   <Link to="/posts">Your Project post</Link> */}
                 <LogoutIcon onClick={handleClick}  color="primary" sx={{
-                            width: 38,
-                            height: 38,
+                            width: 22,
+                            height: 22,
                             
                         }} />
+                 
                 {/* <button onClick={handleClick}  >Log out</button> */}
               </div>
             )}

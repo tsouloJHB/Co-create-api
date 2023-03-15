@@ -35,6 +35,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
     const comments = true;
+    const [commentsAmount,setCommentAmount] = useState(0);
    
     useEffect(()=>{
    
@@ -158,13 +159,18 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
      if(project && project.members.includes(user.user) && project.userId !== user.user ){
         return null
      }
+
+
+    const commentsCount  = (amount)=>{
+            setCommentAmount(amount)
+    } 
     return(
         <div>
             {/* convertBinaryToString(profile.image)  */}
             <div className="post-container"  onClick={handleOpenModal} >
                 <dic className="post-row">
                     <div className="user-row">
-                        <div className="user-profile">
+                    <div className="user-profile">
                         {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
                         {profile && profile.image.data && profile.image.data.data !== null ?
                         <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
@@ -179,7 +185,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         }} />
                         //  <img alt="fds" src={profilePicture}/>}
                         }
-
+                     
                         <div>
                             {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
                             <span>{format(post.createdAt)} </span>
@@ -209,8 +215,12 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                             cursor:"pointer"    
                         }}   onClick={handleOnclickEdit}/>  :  <Button variant="outlined" color="success"   onClick={handleSubmit} >Join</Button> }
                      </div>
-                    <p  className="post-text">{project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
+                    
+                    <p  className="post-text"><span id="comments-count">{commentsAmount} comments</span> {project &&  project.maxMembers - project.members.length  +" "} {project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</p>
+                  
                 </div>
+                <hr/>
+                <p id="view-comments">Comments</p> 
                 <Modal 
                     open={openModal} 
                     onClose={() => {
@@ -221,6 +231,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                     user={profile}
                     insertComments={comments}
                     fromCom={'postDetails'}
+                    commentsCount={commentsCount}
                     />
                    
             </div>

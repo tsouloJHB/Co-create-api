@@ -6,9 +6,39 @@
 }
 .homeButton{
     margin-left: 20px;
+    font-size: 22px;
+    color: blue;
 }
+
+.projectButton{
+    margin-left: 20px;
+    width: 40px;
+    margin-top: -10px;
+    position: relative;
+    bottom: -3px;
+    left: 3px;
+}
+
 .logo-name{
-    color: rgb(51, 51, 250);
+    color:#19e683;
     font-weight: 500;
     font-size: 16px;
+    margin-top: 10px;
+}
+.link-group p{
+    font-size: 10px;
+    margin:auto;
+    width: 15%;
+    color: blue;
+}
+.nav-middle{
+    display: flex;
+    flex-direction: row;
+}
+.nav-link{
+    text-decoration: none;
+}
+
+.photo-nav{
+    margin-right: 20px;
 }
