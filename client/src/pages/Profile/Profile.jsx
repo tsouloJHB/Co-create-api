@@ -9,6 +9,7 @@ import EditModal from "../../components/EditModal/EditModal";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Profile.css';
 import Resizer from "react-image-file-resizer";
+import { Avatar } from "@mui/material";
 
 const Profile = () => {
     let { user ,dispatch} = useContext(AuthContext);
@@ -112,6 +113,7 @@ const Profile = () => {
         <div className="middle-cover">
             
         <div className="middle-profile">
+         
         {/* {imageValue && (
                         <div className='preview'>
                             <img
@@ -124,13 +126,26 @@ const Profile = () => {
                             </button>
                         </div>
                     )} */}
-          
+
+
             {profileUser &&<>
                 <div >
                     {profileUser.image.data && profileUser.image.data.data !== null ?
-                    prevImage ? <img alt={profileUser.name} src={prevImage}/>:
-                     <img alt={profileUser.name} src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`}/>
-                      :<img alt="fds" src={profilePicture}/>}
+                    prevImage ? 
+                    <Avatar className="profilePhoto" src={prevImage} alt={profileUser.name}sx={{
+                                            width: 250,
+                                            height: 250,
+                                            
+                                        }} />:
+                    <Avatar className="profilePhoto" src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`} alt="" sx={{
+                        width: 250,
+                        height: 250,
+                        
+                    }} />
+                      :<Avatar className="profilePhoto" src={profilePicture} alt="" sx={{
+                        width: 250,
+                        height: 250,
+                    }} />}
                     <br/>
                     <br/>
                     <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">

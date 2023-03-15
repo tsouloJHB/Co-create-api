@@ -109,3 +109,9 @@ form{
   visibility: hidden;
 }
 
+.profilePhoto{
+  margin-left: 30px;
+  position: relative;
+  top: 30px;
+}
+

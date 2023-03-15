@@ -67,3 +67,12 @@
     position: relative;
     left:-20px;
 }
+
+.yourProjectEdit{
+    color: gray;
+    font-size: 14px;
+    margin: 10px;  
+    margin-left: 110px;
+    position: relative;
+    top: 30px; 
+}

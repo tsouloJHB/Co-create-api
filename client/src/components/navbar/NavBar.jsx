@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useLogout } from '../../hooks/useLogout'
 import { getUser } from '../../api/GetUsers';
+import HomeIcon from '@mui/icons-material/Home';
+import FeedIcon from '@mui/icons-material/Feed';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope,faHouse,faDiagramProject} from '@fortawesome/free-solid-svg-icons'
+
+import "./Navbar.css"
 
 const Navbar = () => {
    const {logout} = useLogout();
@@ -33,10 +40,19 @@ const Navbar = () => {
       <nav>
       <div class="nav-left">
        
-          <h3>Co-create</h3>
+          <h3 className="logo-name">Co-create</h3>
     
          
       </div>
+      <div class="nav-middle">
+        <Link to="/posts">
+        <FontAwesomeIcon className="homeButton" size="1x" icon={faHouse} />
+        </Link>
+        <Link to="/projects">
+        <FontAwesomeIcon className="homeButton" size="1x" icon={faDiagramProject} />
+         
+        </Link>
+      </div>                  
       <div class="nav-right">
         
             
@@ -45,10 +61,15 @@ const Navbar = () => {
               <div>
                 <span>{ profileUser && profileUser.name}</span>
                 <Link to="/profile">Profile</Link>
-                <Link to="/projects">Projects</Link>
-                <Link to="/projects">Project request</Link>
-                <Link to="/posts">Your Project post</Link>
-                <button onClick={handleClick} >Log out</button>
+                  {/* <Link to="/projects">Projects</Link>
+                  <Link to="/projects">Project request</Link>
+                  <Link to="/posts">Your Project post</Link> */}
+                <LogoutIcon onClick={handleClick}  color="primary" sx={{
+                            width: 38,
+                            height: 38,
+                            
+                        }} />
+                {/* <button onClick={handleClick}  >Log out</button> */}
               </div>
             )}
             {!user && (

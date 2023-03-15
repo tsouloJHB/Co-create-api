@@ -151,7 +151,7 @@ const ProjectEdit = () =>{
             e.stopPropagation();
             }}>
              
-                <p className="yourProject">Edit project</p>
+                <p className="yourProjectEdit">Edit project</p>
                 <div className="content-row project-row">
                     
 
