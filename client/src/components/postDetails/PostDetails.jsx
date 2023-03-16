@@ -170,7 +170,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
             {/* convertBinaryToString(profile.image)  */}
             <div className="post-container"  onClick={handleOpenModal} >
                 <div className="post-border">
-                <dic className="post-row">
+                <div className="post-row">
                     <div className="user-row">
                     <div className="user-profile">
                         {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
@@ -194,7 +194,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         </div>
                         </div>
                     </div>
-                </dic>
+                </div>
                 <h4>{project && project.projectName}</h4> 
                 <p className="post-text">{project &&
                 //     <LinesEllipsis
@@ -225,8 +225,9 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 </div>
                 <hr/>
                 <div className="postFooter">
-                <button   class="btn btn-primary post-tags">Science</button>
+               
                 <p id="view-comments">Comments</p>  
+                <button   class="btn btn-primary btn-xs post-tags">Science</button>
                 </div>
                
                 <Modal 

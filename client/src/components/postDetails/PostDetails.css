@@ -110,12 +110,13 @@
 }
 
 .post-tags{
-  background-color: red;
+    
   width: 70px;
 }
-.post-border .postFooter{
+.postFooter{
   display: inline;
   background-color: red;
   width: 100%;
 }
+
 
