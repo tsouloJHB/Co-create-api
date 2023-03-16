@@ -74,7 +74,7 @@ form label{
 }
 .write-post-container{
     border: 0 !important;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 15px;
+  
 }
 .create-from .form-input{
     width: 45%;
@@ -99,6 +99,26 @@ form label{
 }
 
 #submitCreate{
-    width: 60%;
+    margin-left: 0px;
+    margin-right: 0px;
+    position: relative;
+    left: 20%;
+    right: 0px;
+    width: 39%;
     margin-top: 10px;
+}
+.projectUpload{
+    width: 20%;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 0px;
+    position: relative;
+    left: 21%;
+    margin-top: 10px;
+}
+.formFooter{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 10;
 }

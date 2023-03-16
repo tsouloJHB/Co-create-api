@@ -61,7 +61,7 @@ const Navbar = () => {
         <div className="link-group">
           <Link className="nav-link" to="/projects">
           {/* <FontAwesomeIcon className="homeButton" size="1x" icon={faDiagramProject} /> */}
-          <GroupsIcon className="projectButton" color="primary" sx={{fontSize:30,color:'blue'}} />
+          <GroupsIcon className="projectButton" color="primary" sx={{fontSize:30,color:'black'}} />
           <p>Projects</p> 
           </Link>
         </div>

@@ -1,7 +1,7 @@
 
 import { RefreshToken } from "./RefreshToken";
 
-export const createProjectPost = async(projectName,desc,maxMembers,user,dispatch,logout) =>{
+export const createProjectPost = async(formData,user,dispatch,logout) =>{
    
     try {
         const response = await fetch('http://localhost:8080/api/posts',{
@@ -11,7 +11,7 @@ export const createProjectPost = async(projectName,desc,maxMembers,user,dispatch
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
                
             },
-            body: JSON.stringify({projectName,desc,maxMembers})
+            body: formData
           
         })
         console.log(response)
@@ -24,7 +24,7 @@ export const createProjectPost = async(projectName,desc,maxMembers,user,dispatch
               const refreshResponse = await RefreshToken(logout,user,dispatch);
             if(refreshResponse){
                 user = JSON.parse(localStorage.getItem('user'))
-                createProjectPost(projectName,desc,maxMembers,user,dispatch,logout);
+                createProjectPost(formData,user,dispatch,logout);
                
             }  
           }

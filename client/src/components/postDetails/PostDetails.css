@@ -106,17 +106,43 @@
 }
 .space{}
 .postImage{
-  width: 90%;
+  width: 100%;
 }
 
 .post-tags{
     
   width: 70px;
 }
-.postFooter{
-  display: inline;
-  background-color: red;
+ #postFooter{
+ 
+  margin-bottom: 0px;
   width: 100%;
+  position: relative;
+  bottom: 15px;
+  left:4%;
+}
+
+#postFooter .science{
+  position: relative;
+  
+  right: 210px;
+  margin: 5px;
+  
+  width: 55px;
+  font-size: 10px;
+  color: white;
+}
+
+
+#postFooter .tech{
+  position: relative;
+  
+  right: 210px;
+  margin: 5px;
+  
+  width: 74px;
+  font-size: 10px;
+  color: white;
 }
 
 

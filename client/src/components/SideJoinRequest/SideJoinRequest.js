@@ -128,7 +128,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     }
 
     return (
-        <div className="SideJoinRequest">
+        <div className="SideJoinRequest post-border">
             {closeParent}
             {joins && joins.length === 0?<p>No joins</p>:""}
             {/* <div class="request-bar">
@@ -145,8 +145,9 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                      
                      <button  onClick={()=> handleSubmit(project.postId)} class="btn btn-danger mb-8">Cancel</button>
                      </div>
-                  
+                     < hr id="divider"/>   
                  </div>
+                 
                  
             ))}
        
@@ -158,7 +159,8 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                     insertComments={true}
                     fromCom={'sideJoin'}
                     />  }
-                    
+
+                 
         </div>
     );
 }

@@ -19,7 +19,7 @@ import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import './PostDetails.css'
-import forestPicture  from  '../../images/forest.jpg'
+import forestPicture  from  '../../images/MVI_9962_Moment(3).jpg'
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
@@ -224,10 +224,12 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                   
                 </div>
                 <hr/>
-                <div className="postFooter">
+                <p id="view-comments">Comments</p> 
+                <div id="postFooter">
                
-                <p id="view-comments">Comments</p>  
-                <button   class="btn btn-primary btn-xs post-tags">Science</button>
+              
+                <button   class="btn btn-info btn-xs science">Science</button>
+                <button   class="btn btn-success btn-xs tech">Technology</button>
                 </div>
                
                 <Modal 

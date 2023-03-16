@@ -87,9 +87,8 @@ const Projects = () => {
         { viewTypeProject === "InProgress" ? projects && projects.filter((pro) => {
             return  pro.status === "InProgress"
             }).map((item,index)  =>(
-                <div className="project-border">     
-                    <ProjectDetails key={item._id} project={item}/>
-                </div>
+                     
+                <ProjectDetails key={item._id} project={item}/>
         )):""}   
     
         {  viewTypeProject === "Pending" ? projects && projects.filter((pro) => {

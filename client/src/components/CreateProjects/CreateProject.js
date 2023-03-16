@@ -8,16 +8,24 @@ import { useLogout } from '../../hooks/useLogout'
 import {  Button } from "@mui/material";
 
 
+
 const CreateProject =  ({updateParentPost}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
     const {logout} = useLogout();
     const [projectName, setProjectName] = useState("");
     const [desc, setDesc] = useState("");
     const [maxNumber, setMaxNumber] = useState(0); 
+    const [imageValue,setImageValue] = useState(null)
+
 
      const handleSubmit = async(e) =>{
         e.preventDefault();
-        const post = await createProjectPost(projectName,desc,maxNumber,user,dispatch,logout);
+        const formData = new FormData()
+        formData.append("imageUpload", imageValue)
+        formData.append("projectName", projectName)
+        formData.append("desc", desc)
+        formData.append("maxNumber", maxNumber)
+        const post = await createProjectPost(formData,user,dispatch,logout);
         if(post){
             //reload post
             setDesc("");
@@ -26,8 +34,14 @@ const CreateProject =  ({updateParentPost}) =>{
             updateParentPost();
         }
      }  
+
+     const setImage = async(e) =>{
+       
+        setImageValue(e.target.files[0])
+     
+    }
     return (
-        <div className='write-post-container'>
+        <div className='write-post-container post-border'>
                <div class="sidebar-title">
                     <p className="yourProject">Create project</p>
                  
@@ -69,7 +83,7 @@ function App() {
                         <input type="text" 
                         class="form-control max-input"
                         placeholder="max"
-                        value={7}
+                        value={7    }
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
                         
@@ -80,8 +94,12 @@ function App() {
                         onChange={(e) => setDesc(e.target.value)}
                         value={desc}
                         ></textarea>
+                        <div className="formFooter">
                         
                         <button id='submitCreate' type="submit" class="btn btn-primary mb-8">Create</button>
+                        <input type="file" className=" form-control projectUpload" onChange={(e) => setImage(e)} />
+                        </div>
+                        
                        
                 </form>
                    {/* <form class="form-inline">

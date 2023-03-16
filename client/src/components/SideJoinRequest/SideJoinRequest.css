@@ -25,3 +25,7 @@
   .SideJoinRequest{
     text-align: center  ;
   }
+  #divider{
+    background-color: rgb(255, 255, 255);
+    color: rgb(165, 165, 165);
+  }
