@@ -24,7 +24,7 @@ const CreateProject =  ({updateParentPost}) =>{
         formData.append("imageUpload", imageValue)
         formData.append("projectName", projectName)
         formData.append("desc", desc)
-        formData.append("maxNumber", maxNumber)
+        formData.append("maxMembers", maxNumber)
         const post = await createProjectPost(formData,user,dispatch,logout);
         if(post){
             //reload post
@@ -83,7 +83,7 @@ function App() {
                         <input type="text" 
                         class="form-control max-input"
                         placeholder="max"
-                        value={7    }
+                        
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
                         

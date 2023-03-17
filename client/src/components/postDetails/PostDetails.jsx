@@ -206,7 +206,11 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 //   />
                   <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
-                 <img alt={project && project.projectName} className="postImage" src={forestPicture}  />
+                 {project && project.image !== undefined ?
+                    <img alt={project && project.projectName} className="postImage" src={forestPicture}  />
+                    :""
+                 }
+                 
              
                  <div class="post-row">
                     <div onClick={(e) => {

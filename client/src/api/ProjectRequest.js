@@ -2,12 +2,12 @@
 import { RefreshToken } from "./RefreshToken";
 
 export const createProjectPost = async(formData,user,dispatch,logout) =>{
-   
+    
     try {
         const response = await fetch('http://localhost:8080/api/posts',{
             method:'POST',
             headers: { 
-                'Content-Type': 'application/json',
+                
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
                
             },
