@@ -115,6 +115,7 @@ form label{
     position: relative;
     left: 21%;
     margin-top: 10px;
+    background-color: #ec9b5e;
 }
 .formFooter{
     display: flex;
@@ -122,3 +123,25 @@ form label{
     margin: auto;
     width: 10;
 }
+
+
+.projectUpload::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  .projectUpload::before {
+    content: 'Image optional';
+    display: inline-block;
+  
+  
+  
+    padding-top: 3px;
+    color: white;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+   
+  
+
+  }  

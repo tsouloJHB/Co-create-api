@@ -6,6 +6,7 @@ import {  createProjectPost } from '../../api/ProjectRequest';
 import { useState } from 'react';
 import { useLogout } from '../../hooks/useLogout'  
 import {  Button } from "@mui/material";
+import AlertDialog from "../DialogBox/DialogBox";
 
 
 
@@ -14,31 +15,58 @@ const CreateProject =  ({updateParentPost}) =>{
     const {logout} = useLogout();
     const [projectName, setProjectName] = useState("");
     const [desc, setDesc] = useState("");
-    const [maxNumber, setMaxNumber] = useState(0); 
+    const [maxNumber, setMaxNumber] = useState(null); 
     const [imageValue,setImageValue] = useState(null)
+    const [tags,setTags] = useState(null)
+    const [trigger, setTrigger] = useState(0);
 
 
      const handleSubmit = async(e) =>{
         e.preventDefault();
-        const formData = new FormData()
+        setTrigger((trigger) => trigger + 1);
+      
+        // const formData = new FormData()
+        // formData.append("imageUpload", imageValue)
+        // formData.append("projectName", projectName)
+        // formData.append("desc", desc)
+        // formData.append("maxMembers", maxNumber)
+        // const post = await createProjectPost(formData,user,dispatch,logout);
+        // if(post){
+        //     //reload post
+        //     setDesc("");
+        //     setProjectName("");
+        //     setMaxNumber("");
+        //     updateParentPost();
+        // }
+     }
+     const submitCreatePost = (tags) =>{
+         const formData = new FormData()
         formData.append("imageUpload", imageValue)
         formData.append("projectName", projectName)
         formData.append("desc", desc)
         formData.append("maxMembers", maxNumber)
-        const post = await createProjectPost(formData,user,dispatch,logout);
-        if(post){
-            //reload post
-            setDesc("");
-            setProjectName("");
-            setMaxNumber("");
-            updateParentPost();
-        }
+        formData.append("tags",tags)
+        console.log(formData)
+        console.log(tags)
+        // const post = await createProjectPost(formData,user,dispatch,logout);
+        // if(post){
+        //     //reload post
+        //     setDesc("");
+        //     setProjectName("");
+        //     setMaxNumber("");
+        //     updateParentPost();
+        // }
      }  
 
      const setImage = async(e) =>{
        
         setImageValue(e.target.files[0])
      
+    }
+
+    const updateTags = (obj) => {
+        setTags(obj)
+        console.log(obj)
     }
     return (
         <div className='write-post-container post-border'>
@@ -83,7 +111,7 @@ function App() {
                         <input type="text" 
                         class="form-control max-input"
                         placeholder="max"
-                        
+                        value={maxNumber}
                         onChange={(e) => setMaxNumber(e.target.value)}    
                         />
                         
@@ -102,6 +130,7 @@ function App() {
                         
                        
                 </form>
+                <AlertDialog updateTags={updateTags}  trigger={trigger} submitCreatePost={submitCreatePost} />
                    {/* <form class="form-inline">
                     <div class="form-group mb-2">
                         <label for="staticEmail2" class="sr-only">Email</label>
