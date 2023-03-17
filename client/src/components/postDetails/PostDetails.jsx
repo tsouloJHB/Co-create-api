@@ -207,7 +207,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                   <ResponsiveEllipsis text={project.desc} maxLine={1} />
                 }</p>
                  {project && project.image !== undefined ?
-                    <img alt={project && project.projectName} className="postImage" src={forestPicture}  />
+                    <img alt={project && project.projectName} className="postImage"  src={`data:image/png;base64,${convertBinaryToString(project.image)}`}  />
                     :""
                  }
                  
