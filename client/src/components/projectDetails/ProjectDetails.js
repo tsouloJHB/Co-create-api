@@ -29,8 +29,8 @@ const ProjectDetails = ({project}) => {
                 <p className="projectTime">Created {format(project.createdAt)} </p>
             </div>
             <div className="post-row-right">
-                <p className="projectTime">{project.status}</p>
-                {project.userId === user.user?<span className="projectTime">Your project</span>:""}
+                <p className="projectStatus">{project.status}</p>
+                {project.userId === user.user?<span className="yourProjectStatus">Your project</span>:""}
             </div>
             <h5>{project.projectName}</h5>
             <br/>
@@ -50,7 +50,7 @@ const ProjectDetails = ({project}) => {
             
             &nbsp;
             &nbsp;
-            <SettingsIcon onClick={handleClick} sx={{cursor:"pointer"}} />
+            <SettingsIcon onClick={handleClick} sx={{cursor:"pointer",color:"red"}} />
            
           
            

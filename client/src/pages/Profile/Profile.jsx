@@ -111,8 +111,8 @@ const Profile = () => {
 
     return (
         <div className="middle-cover">
-            
-        <div className="middle-profile">
+             
+        <div className="middle-profile post-border">
          
         {/* {imageValue && (
                         <div className='preview'>

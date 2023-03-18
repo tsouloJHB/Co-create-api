@@ -119,7 +119,8 @@
   width: 100%;
   position: relative;
   bottom: 15px;
-  left:4%;
+  left:40%;
+  top: 5px;
 }
 
 #postFooter .science{
@@ -127,19 +128,31 @@
   
   right: 210px;
   margin: 5px;
-  
+  background-color: blue;
   width: 55px;
   font-size: 10px;
   color: white;
 }
 
 
-#postFooter .tech{
+#postFooter .technology{
   position: relative;
   
   right: 210px;
   margin: 5px;
+  background-color: red;
+  width: 74px;
+  font-size: 10px;
+  color: white;
+}
+
+
+#postFooter .art{
+  position: relative;
   
+  right: 210px;
+  margin: 5px;
+  background-color: orange;
   width: 74px;
   font-size: 10px;
   color: white;

@@ -16,13 +16,19 @@ export default function AlertDialog({updateTags,trigger, submitCreatePost}) {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const submitForm = () =>{
+    console.log(tags)
     submitCreatePost(tags)
+    setOpen(false);
+  }
+  const handleClose = () => {
+    console.log(tags)
+    // submitCreatePost(tags)
     setOpen(false);
   };
   const handleSetTags = () =>{
-    const tags = ['science','technology'];
-    setTags(tags)
+    // const tags = ['science','technology'];
+    // setTags(tags)
     updateTags(tags)
   }
 
@@ -33,15 +39,19 @@ export default function AlertDialog({updateTags,trigger, submitCreatePost}) {
   }, [trigger]);
 
   const handleOnChange = (tag) =>{
-    //  setNames(current => [...current, 'Carl']);
-    setTags(tags.push(tag))
-    console.log(tags)
+    //setTags(current => [...current, tag]);
+    if(!tags.includes(tag)){
+      setTags([...tags, tag]);
+    }else{
+     const newTag = tags.filter((t) => t !== tag)
+     setTags(newTag)
+    }
+    
+    // console.log(tags)
   }
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
+  
       <Dialog
         open={open}
         onClose={handleClose}
@@ -49,22 +59,24 @@ export default function AlertDialog({updateTags,trigger, submitCreatePost}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"Project Categories"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-            <input type="Checkbox" name="blue" value="yes" Checked onChange={handleOnChange("Art")}/>Art
-            <input type="Checkbox" name="red" value="yes" onChange={handleOnChange("technology")}/>technology
-            <input type="Checkbox" name="science" value="yes"   onChange={handleOnChange("science")}/>science
+            Please select the catagories of your project<br/>
+            {trigger ? <>
+            <input type="Checkbox" name="blue"  onChange={(e) =>handleOnChange("Art")}/>Art<br/>
+            <input type="Checkbox" name="red"  onChange={(e) =>handleOnChange("technology")}/>technology<br/>
+            <input type="Checkbox" name="science"   onChange={(e) =>handleOnChange("science")}/>science</>
+              :""
+          }
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSetTags}>Set Tags</Button>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
+       
+          {/* <Button onClick={handleClose}>Disagree</Button> */}
+          <Button onClick={submitForm} autoFocus>
+            Create Post
           </Button>
         </DialogActions>
       </Dialog>

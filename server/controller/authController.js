@@ -8,19 +8,19 @@ const multer = require('multer');
 const fs = require('fs');
 const { findByIdAndUpdate } = require('../models/user');
 const sharp = require('sharp')
-
+const {upload} = require('../middleware/uploadMiddleware')
 //post middleware
-const Storage = multer.diskStorage({
-    destination:"uploads",
-    filename : (req,file,cb) =>{
-        cb(null,Date.now()+file.originalname);
-        // cb(null,file.originalname);
-    },
-});
+// const Storage = multer.diskStorage({
+//     destination:"uploads",
+//     filename : (req,file,cb) =>{
+//         cb(null,Date.now()+file.originalname);
+//         // cb(null,file.originalname);
+//     },
+// });
 
-const upload = multer({
-    storage:Storage
-}).single('imageUpload')
+// const upload = multer({
+//     storage:Storage
+// }).single('imageUpload')
 
 
 const resizeImage = async(name) => {

@@ -115,7 +115,8 @@ const Projects = () =>{
 
     const updateParentPost = async() =>{
         const data = await PostsApi.fetchPosts(user,dispatch,logout);
-       // console.log(data);
+       console.log(data);
+
         setlocalPost(data);
         dispatch({type:'SET_POSTS',payload:data});
     }
@@ -128,14 +129,7 @@ const Projects = () =>{
       setPostDetailsModal(true);
     }
 
-    const convertBinaryToString = (image)=>{
-      
-      const base64String = btoa(
-          String.fromCharCode(...new Uint8Array(image.data.data) )
-      );
-          
-      return base64String
-  }
+
 
     return (
       <div  className="container "  onClick={() => setCloseParent(true)}   >
@@ -152,11 +146,11 @@ const Projects = () =>{
           </div>    
           {/* center post*/}
           <div className="main-content post-root">
-          <CreateProject updateParentPost={updateParentPost} />  
+          <CreateProject updateParentPost={updateParentPost} callerComponent="post" />  
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
-              {posts && posts.map((post) => (
+              {localPost && localPost.map((post) => (
                   <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div> 
               ))}
             </div>

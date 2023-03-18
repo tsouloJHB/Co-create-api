@@ -10,7 +10,7 @@ import AlertDialog from "../DialogBox/DialogBox";
 
 
 
-const CreateProject =  ({updateParentPost}) =>{
+const CreateProject =  ({updateParentPost,callerComponent}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
     const {logout} = useLogout();
     const [projectName, setProjectName] = useState("");
@@ -39,23 +39,22 @@ const CreateProject =  ({updateParentPost}) =>{
         //     updateParentPost();
         // }
      }
-     const submitCreatePost = (tags) =>{
+     const submitCreatePost = async(tags) =>{
          const formData = new FormData()
         formData.append("imageUpload", imageValue)
         formData.append("projectName", projectName)
         formData.append("desc", desc)
         formData.append("maxMembers", maxNumber)
         formData.append("tags",tags)
-        console.log(formData)
-        console.log(tags)
-        // const post = await createProjectPost(formData,user,dispatch,logout);
-        // if(post){
-        //     //reload post
-        //     setDesc("");
-        //     setProjectName("");
-        //     setMaxNumber("");
-        //     updateParentPost();
-        // }
+   
+        const post = await createProjectPost(formData,user,dispatch,logout);
+        if(post){
+            //reload post
+            setDesc("");
+            setProjectName("");
+            setMaxNumber("");
+            updateParentPost();
+        }
      }  
 
      const setImage = async(e) =>{
@@ -97,7 +96,8 @@ function App() {
       <EmojiPicker />
     </div>
   );
-} */}
+} */}           
+                {callerComponent === "post"?                    
                 <form onSubmit={handleSubmit} class="form-inline create-from">
                   
                         {/* <label>Project name</label> */}
@@ -123,13 +123,54 @@ function App() {
                         value={desc}
                         ></textarea>
                         <div className="formFooter">
-                        
+
                         <button id='submitCreate' type="submit" class="btn btn-primary mb-8">Create</button>
+                     
                         <input type="file" className=" form-control projectUpload" onChange={(e) => setImage(e)} />
                         </div>
                         
                        
                 </form>
+                  :
+                        <form onSubmit={handleSubmit} class=" create-from">
+                        
+                        {/* <label>Project name</label> */}
+                        <input class="form-control form-input-project" type="text" placeholder="Project name"
+                        onChange={(e) => setProjectName(e.target.value)}
+                        value={projectName}
+                        
+                        />
+                    
+                        <br/>
+                        <input type="text" 
+                        class="form-control max-input-project"
+                        placeholder="max"
+                        value={maxNumber}
+                        onChange={(e) => setMaxNumber(e.target.value)}    
+                        />
+                        
+                        
+                        <textarea cols='35' rows='3' class="form-control"
+                        id="textarea-creat"
+                        placeholder="Description"
+                        onChange={(e) => setDesc(e.target.value)}
+                        value={desc}
+                        ></textarea>
+                        <input type="file" className=" form-control projectUpload-project" onChange={(e) => setImage(e)} />
+                        <div className="formFoote">
+
+                        <button id='submitCreate-project' type="submit" class="btn btn-primary mb-8">Create</button>
+                    
+                        
+                        </div>
+                        
+                        
+                        </form>
+                  }    
+
+
+
+
                 <AlertDialog updateTags={updateTags}  trigger={trigger} submitCreatePost={submitCreatePost} />
                    {/* <form class="form-inline">
                     <div class="form-group mb-2">

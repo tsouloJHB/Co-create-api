@@ -14,8 +14,13 @@ const PostSchema = new mongoose.Schema(
         type: String,
         max: 50,
       },
-      img: {
-        type: String,
+      tags:{
+        type: Array,
+        default: [],
+      },
+      image:{
+        data:Buffer,
+        contentType:String
       },
       views: {  
         type: Array,

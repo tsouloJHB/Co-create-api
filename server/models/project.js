@@ -14,6 +14,10 @@ const ProjectSchema = new mongoose.Schema(
             type:String,
             required:[true,"No post Id provided"],
         },
+        image:{
+            data:Buffer,
+            contentType:String
+        },
         desc:{
             type: String,
             require:[true,"No project description provided"],
@@ -35,6 +39,10 @@ const ProjectSchema = new mongoose.Schema(
             type: Number,
             default:0,
             
+        },
+        tags:{
+            type: Array,
+            default: [],
         },
         contractId:{
             type: String,

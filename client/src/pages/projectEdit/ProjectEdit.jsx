@@ -147,33 +147,33 @@ const ProjectEdit = () =>{
             }}>
             {state.postId && state.userId === user.user ? <SideAcceptUsers updateMembers={updateMembers} updateParentUser={updateParentUser} postId={state.postId} />:""}
             </div>
-            <div  className="middle-cover" onClick={(e) => {
+            <div  className="middle-cover " onClick={(e) => {
             e.stopPropagation();
             }}>
-             
+                <div className="post-border">
                 <p className="yourProjectEdit">Edit project</p>
-                <div className="content-row project-row">
+                <div className="content-row project-row ">
                     
 
                 <div className="content-data" >{state.userId === user.user ?
-                 <><p>{state.projectName} </p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
-                 :<p>{state.projectName} </p>}
+                 <><p><b>{state.projectName} </b></p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("projectName")} color="primary" /></>
+                 :<p><b>{state.projectName} </b></p>}
                 </div>
 
-                <div className="content-data">Project Status {state.userId === user.user 
-                    ? <><p>{state.status} </p> <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("status")} color="primary" /></>
+                <div className="content-data"><b>Project Status: </b>  {state.userId === user.user 
+                    ? <><p> {state.status} </p> <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("status")} color="primary" /></>
                     :""}
                 </div>
                 <div className="content-data">
                     {state.userId !== user.user 
-                    ? <p>{state.desc} </p>
-                    :<div ><p>{state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></div>}
+                    ? <p><b>Desc</b>: {state.desc} </p>
+                    :<div ><p><b>Desc</b>: {state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("desc")} color="primary" /></div>}
                 </div>
                  <div className="content-data">
-                <p> {state &&  membersCount === 1 ?"Space left":"Spaces left"} {" "+membersCount }</p>
+                <p> <b>{state &&  membersCount === 1 ?"Space left":"Spaces left"}</b> {" "+membersCount }</p>
                 </div>
                 <div className="content-data">
-                <p>Current Members {" "}:</p>
+                <p><b>Current Members</b> {" "}:</p>
             
                 {
                     users && <p> {" "+users.length}</p>
@@ -245,7 +245,7 @@ const ProjectEdit = () =>{
 
             </div>
             </div>
-            
+            </div>
         </div>
     )
 

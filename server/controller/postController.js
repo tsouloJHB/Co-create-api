@@ -5,6 +5,8 @@ const createError = require('http-errors');
 const ProjectController = require('../controller/projectController');
 const joinController = require('./joinController');
 const groupController = require('../controller/GroupChatController');
+const {upload} = require("../middleware/uploadMiddleware");
+const fs = require('fs');
 
 
 const minimumMembers = 2;
@@ -14,9 +16,31 @@ const minimumMembers = 2;
 //@access   Private
 module.exports.create_post = async(req,res)=>{
     req.body.userId = req.id.id;
-   
+    // console.log(req.file.filename)
+    // res.status(201).json("set");
+     const tags = req.body.tags.split(",");
+      req.body.tags = tags
+  
     try {
+
+    
      const savedPost = await Post.create(req.body);
+
+    // const update = {
+    //   $push: {
+    //     tags: {
+    //       $each: tags
+    //     }
+    //   }
+    // };
+    // const filter = { _id: savedPost._id };
+    // Post.updateOne(filter, update, (err, result) => {
+    //   if (err) {
+    //     console.error('Error updating documents', err);
+    //     return;
+    //   }
+    //   });
+  
     //  console.log(req.body);
 
       //create project
@@ -28,18 +52,61 @@ module.exports.create_post = async(req,res)=>{
           desc:req.body.desc,
           members:[req.id.id],
           maxMembers:req.body.maxMembers,
+          tags:req.body.tags,
         });
-        groupResults = await newProject.save();
-        //create group chat
+        // const options = { ordered: true };
+        // newProject.insertMany()
+        groupResults = await newProject.save(); 
+
+          // upload tags to project
+        const update = {
+        $push: {
+          tags: {
+            $each: tags
+          }
+        }
+      };
+      const filter = { _id: groupResults._id };
+      // Project.updateOne(filter, update, (err, result) => {
+      //   if (err) {
+      //     console.error('Error updating documents', err);
+      //     return;
+      //   }
+      //   }); 
+
+
+        //upload image if provided for post and image
+        if(req.file){
+             //upload to post
+             const newImagePost = await Post.findByIdAndUpdate(
+              savedPost.id,{
+              image:{
+                  data:fs.readFileSync('uploads/'+req.file.filename),
+                  contentType:'image/png'
+              }});
+              //upload to project
+
+              const newImageProject = await Project.findByIdAndUpdate(
+                groupResults.id,{
+                image:{
+                    data:fs.readFileSync('uploads/'+req.file.filename),
+                    contentType:'image/png'
+                }}); 
+              if(!newImagePost && !newImageProject){
+                res.status(401).json("Could not upload file");
+              }
+        }
         
+        //create group chat
         groupController.createGroupChat(groupResults.id,req.id.id);
         res.status(201).json(savedPost);  
       }else{
         res.status(400).json("A project must have a minimum of 2 members"); 
       }
-   
+ 
     } catch (err) {
       res.status(400).json(err);
+      console.log(err)
     }
 }
 

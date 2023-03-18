@@ -39,7 +39,7 @@ const ProjectStatus = () =>{
         <div className="middle-cover">
           <div className="project-status-cover">
           <div className="cover-image">
-          <h4>Project status</h4>
+          <h4><b>Project status</b></h4>
             
             <p><b>Project name</b> : {project.projectName}</p>
             <p><b>Project Description</b> : {project.desc}</p>

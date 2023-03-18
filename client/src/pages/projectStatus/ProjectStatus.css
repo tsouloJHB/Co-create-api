@@ -3,6 +3,8 @@
     padding: 20px;
     position: relative;
     height: 704px;
+    width: 103%;
+    right: 1.5%;
 }
 .backGroundImage{
     width: 80%;

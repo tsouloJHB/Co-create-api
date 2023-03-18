@@ -66,13 +66,13 @@ const Projects = () => {
                     <p className="yourProject">Projects</p>
                     <span className="projectTime">All</span>
                 </div>
-              <button onClick={()=> handleClickSetProject()} class={viewTypeProject === "YourProjects"?"btn btn-success button-status":"btn btn-primary button-status"} >Your projects</button><br/>
+              <button onClick={()=> handleClickSetProject()} class={viewTypeProject === "YourProjects"?"btn btn-danger button-status":"btn btn-primary button-status"} >Your projects</button><br/>
               {/* <Button onClick={()=> handleClickSetProject()} variant="outlined" color={viewTypeProject === "YourProjects"?"info":"success"}  >Your projects</Button><br/> */}
-              <button    className="button-status" onClick={()=> handleClickSetProject("InProgress")}  class={viewTypeProject === "InProgress"?"btn btn-success button-status":"btn btn-primary button-status"} >Inprogress</button><br/>
+              <button    className="button-status" onClick={()=> handleClickSetProject("InProgress")}  class={viewTypeProject === "InProgress"?"btn btn-danger  button-status":"btn btn-primary button-status"} >Inprogress</button><br/>
               {/* <Button onClick={()=> handleClickSetProject("InProgress")} variant="outlined" color={viewTypeProject === "InProgress"?"info":"success"}  >Inprogress</Button><br/> */}
-              <button onClick={()=> handleClickSetProject("NotStarted")}  class={viewTypeProject === "NotStarted"?"btn btn-success button-status":"btn btn-primary button-status"} >Not Started</button><br/>
+              <button onClick={()=> handleClickSetProject("NotStarted")}  class={viewTypeProject === "NotStarted"?"btn btn-danger  button-status":"btn btn-primary button-status"} >Not Started</button><br/>
               {/* <Button onClick={()=> handleClickSetProject("NotStarted")} variant="outlined" color={viewTypeProject === "NotStarted"?"info":"success"}  >Not Started</Button><br/> */}
-              <button onClick={()=> handleClickSetProject("Pending")}  class={viewTypeProject === "Pending"?"btn btn-success button-status":"btn btn-primary button-status"} >Pending</button><br/>
+              <button onClick={()=> handleClickSetProject("Pending")}  class={viewTypeProject === "Pending"?"btn btn-danger  button-status":"btn btn-primary button-status"} >Pending</button><br/>
               {/* <Button onClick={()=> handleClickSetProject("Pending")} variant="outlined" color={viewTypeProject === "Pending"?"info":"success"}  >Pending</Button><br/> */}
             </div>  
           </div> 
@@ -127,7 +127,7 @@ const Projects = () => {
     
         </div>
         <div class="right-sidebar">
-        <CreateProject updateParentPost={fetchPosts}/> 
+        <CreateProject updateParentPost={fetchPosts} callerComponent="project"/> 
            </div> 
     </div> );
 }

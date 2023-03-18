@@ -19,6 +19,7 @@ import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import './PostDetails.css'
+import SnackBar from "../snackbar/SnackBar";
 import forestPicture  from  '../../images/MVI_9962_Moment(3).jpg'
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
@@ -37,6 +38,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     const navigate = useNavigate();
     const comments = true;
     const [commentsAmount,setCommentAmount] = useState(0);
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
    
     useEffect(()=>{
    
@@ -120,6 +122,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
        
         }
         const json = await response.json();  
+        setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
     }
 
     const handleOpenModal = e =>{
@@ -152,7 +155,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     }
 
     const handleOnclickEdit = () =>{
-       
+        
         navigate("/projectEdit",{state:project});
     }
      project && console.log()
@@ -165,6 +168,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     const commentsCount  = (amount)=>{
             setCommentAmount(amount)
     } 
+    let classNam =  ""
     return(
         <div>
             {/* convertBinaryToString(profile.image)  */}
@@ -230,12 +234,19 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 <hr/>
                 <p id="view-comments">Comments</p> 
                 <div id="postFooter">
-               
-              
-                <button   class="btn btn-info btn-xs science">Science</button>
-                <button   class="btn btn-success btn-xs tech">Technology</button>
+                        
+                {project && project.tags !== undefined ? 
+                    project.tags.map((tag) => (
+                         
+                        <button   className={"btn btn-xs " + tag.toLowerCase()}>{tag.toLowerCase()}</button>
+                    ))   
+                :""}
+                
+                {/* <button   className="btn  btn-xs science">Science</button>
+                <button   className="btn  btn-xs technology">Technology</button>
+                <button   className="btn btn-xs technology">Technology</button> */}
                 </div>
-               
+               <SnackBar trigger={triggerSnackBar} />
                 <Modal 
                     open={openModal} 
                     onClose={() => {
