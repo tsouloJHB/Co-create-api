@@ -41,7 +41,7 @@ function App () {
           <Routes>
           <Route
            path="/posts"
-           element={user ? <Posts/>:  <Login/>}
+           element={user ? <Posts/>:  <Navigate to="/login"/>}
            />
             <Route
               path="/"
@@ -49,7 +49,7 @@ function App () {
            />
             <Route
            path="/projects"
-           element={user ? <Projects />:  <Login/>}
+           element={user ? <Projects />: <Navigate to="/login"/>}
            />
            <Route
             path="/login"
@@ -57,26 +57,26 @@ function App () {
            />
            <Route
             path="/projectStatus"
-            element={user ? <ProjectStatus /> :  <Login/>} 
+            element={user ? <ProjectStatus /> :  <Navigate to="/projects" />} 
            />
             <Route
             path="/projectview"
-            element={user ? <ProjectView /> :  <Login/>} 
+            element={user ? <ProjectView /> :  <Navigate to="/projects" />} 
            />
 
           <Route
             path="/viewProject"
-            element={user ? <ViewProject /> :  <Login/>} 
+            element={user ? <ViewProject /> : <Navigate to="/projects" />} 
            />
 
           <Route  
             path="/projectEdit"
-            element={user ? <ProjectEdit /> :  <Login/>} 
+            element={user ? <ProjectEdit /> : <Navigate to="/projects" />} 
            />
 
           <Route  
             path="/profile"
-            element={user ? <Profile /> :  <Login/>} 
+            element={user ? <Profile /> :  <Navigate to="/projects" />} 
            />
             
             <Route

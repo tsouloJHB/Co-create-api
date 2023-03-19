@@ -13,7 +13,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import { Avatar } from "@mui/material";
 import profilePicture from "../../images/profile.jpg"
 import { convertBinaryToString} from "../../utils/ImageFormating"
-
+import { useNavigate } from 'react-router-dom';
 import "./Navbar.css"
 import { color } from "@mui/system";
 import { blue } from "@mui/material/colors";
@@ -22,10 +22,11 @@ const Navbar = () => {
    const {logout} = useLogout();
    const {user,dispatch} = useAuthContext();
    const [profileUser,setProfileUser] = useState(null)
+   const navigate = useNavigate();
    
    useEffect(()=>{
     getUserData()
-  },[]);
+  },[user]);
   
 
     const getUserData = async() =>{
@@ -41,6 +42,7 @@ const Navbar = () => {
 
    const handleClick = () =>{
     logout();
+    // navigate("/login");   
    }
     return (
       <nav>
@@ -51,6 +53,7 @@ const Navbar = () => {
          
       </div>
       <div class="nav-middle">
+      { user && (<>
         <div className="link-group">
           <Link className="nav-link" to="/posts">
           <FontAwesomeIcon className="homeButton" icon={faHouse} />
@@ -66,11 +69,12 @@ const Navbar = () => {
           </Link>
         </div>
        
-        
+        </>)}
       </div>                  
       <div class="nav-right">
+              { user && (<>
                 <Link to="/profile">
-                  {profileUser && console.log()}
+               
               { profileUser && Object.keys(profileUser.image).length !== 0 ?
                   <Avatar className="photo-nav" src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`} alt="" sx={{
                       width: 28,
@@ -96,12 +100,13 @@ const Navbar = () => {
                 <LogoutIcon onClick={handleClick}  color="primary" sx={{
                             width: 22,
                             height: 22,
-                            
+                            cursor:"pointer"
                         }} />
                  
                 {/* <button onClick={handleClick}  >Log out</button> */}
               </div>
             )}
+              </>)}
             {!user && (
               <div>
                 <Link to="/login">Login</Link>
