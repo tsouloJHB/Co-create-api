@@ -20,11 +20,12 @@ import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import './PostDetails.css'
 import SnackBar from "../snackbar/SnackBar";
+import ProfileModal from "../profileModal/ProfileModal";
 import forestPicture  from  '../../images/MVI_9962_Moment(3).jpg'
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis);
 
-const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetailsModal,post,updateParentPost,closeParent,openParent}) =>{
+const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetailsModal,post,updateParentPost,closeParent,openParent,createTrigger}) =>{
     let { user ,dispatch} = useContext(AuthContext);
     let {joins,JoinDispatch} = useContext(JoinContext)
     const {refreshtoken} = useRefreshToken();
@@ -39,6 +40,8 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     const comments = true;
     const [commentsAmount,setCommentAmount] = useState(0);
     const [triggerSnackBar, setTriggerSnackBar] = useState(0);
+    const [snackbarMessage ,setSnackBarMessage] = useState("")
+    const [openProfileModal, setOpenProfileModal] = useState(false);
    
     useEffect(()=>{
    
@@ -102,7 +105,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
         //updateParentPost();
         if(response.ok){
             updateParentPost();
-         
+           
             const newPosts = posts.filter(
                 item => item._id !== post._id 
             );
@@ -119,10 +122,12 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
             }     
            //update posts
             postDispatch({type:'SET_POSTS',payload:newPosts});
-       
+            // setSnackBarMessage("Join request successful")
+            // setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
+            createTrigger()
         }
         const json = await response.json();  
-        setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
+     
     }
 
     const handleOpenModal = e =>{
@@ -168,26 +173,35 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     const commentsCount  = (amount)=>{
             setCommentAmount(amount)
     } 
+
+    const handleViewProfile = async() => {
+        
+        setOpenProfileModal(true)
+        
+    }
+
     let classNam =  ""
     return(
         <div>
             {/* convertBinaryToString(profile.image)  */}
-            <div className="post-container"  onClick={handleOpenModal} >
+            <div className="post-container"  >
                 <div className="post-border">
                 <div className="post-row">
                     <div className="user-row">
                     <div className="user-profile">
                         {/* {profile && profile.image.data.data &&  <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> } */}
                         {profile && profile.image.data && profile.image.data.data !== null ?
-                        <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
+                        <Avatar onClick={handleViewProfile} className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(profile.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
+                            cursor:'pointer'
                             
                         }} />:
                         // <img alt={profile.name} src={`data:image/png;base64,${convertBinaryToString(profile.image)}`}/> :
                         <Avatar src={profilePicture} alt="" sx={{
                             width: 48,
                             height: 48,
+                            cursor:'pointer'
                         }} />
                         //  <img alt="fds" src={profilePicture}/>}
                         }
@@ -199,7 +213,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         </div>
                     </div>
                 </div>
-                <h4>{project && project.projectName}</h4> 
+                <h4  onClick={handleOpenModal}>{project && project.projectName}</h4> 
                 <p className="post-text">{project &&
                 //     <LinesEllipsis
                 //     text={project.desc}
@@ -208,7 +222,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 //     component='p'
                 //     basedOn='words'
                 //   />
-                  <ResponsiveEllipsis text={project.desc} maxLine={1} />
+                  <ResponsiveEllipsis  onClick={handleOpenModal} text={project.desc} maxLine={1} />
                 }</p>
                  {project && project.image !== undefined ?
                     <img alt={project && project.projectName} className="postImage"  src={`data:image/png;base64,${convertBinaryToString(project.image)}`}  />
@@ -216,7 +230,7 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                  }
                  
              
-                 <div class="post-row">
+                 <div  onClick={handleOpenModal} class="post-row">
                     <div onClick={(e) => {
                     e.stopPropagation();
                     }}>
@@ -228,11 +242,11 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         }}   onClick={handleOnclickEdit}/>  :  <button  onClick={handleSubmit} class="btn btn-primary   mb-8">Join</button>}
                      </div>
                     
-                    <p  className="post-text"><span id="comments-count">{commentsAmount} comments</span>  <span className="space">{project &&  project.maxMembers - project.members.length  +" "}{project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</span></p>
+                    <p   className="post-text"><span id="comments-count">{commentsAmount} comments</span>  <span className="space">{project &&  project.maxMembers - project.members.length  +" "}{project &&  project.maxMembers - project.members.length === 1 ?"space left":"spaces left"}</span></p>
                   
                 </div>
                 <hr/>
-                <p id="view-comments">Comments</p> 
+                <p  onClick={handleOpenModal} id="view-comments">Comments</p> 
                 <div id="postFooter">
                         
                 {project && project.tags !== undefined ? 
@@ -246,7 +260,14 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                 <button   className="btn  btn-xs technology">Technology</button>
                 <button   className="btn btn-xs technology">Technology</button> */}
                 </div>
-               <SnackBar trigger={triggerSnackBar} />
+               <SnackBar message="Join request successful" trigger={triggerSnackBar} />
+               <ProfileModal 
+                    open={openProfileModal} 
+                    onClose={() => setOpenProfileModal(false)}
+                    user={profile}
+                    modalLocation="post"
+                />
+
                 <Modal 
                     open={openModal} 
                     onClose={() => {

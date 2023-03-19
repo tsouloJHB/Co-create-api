@@ -16,7 +16,9 @@ import SideAcceptUsers from "../../components/SideAcceptUsers/SideAcceptUsers";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import { convertBinaryToString} from "../../utils/ImageFormating"
+import SnackBar from "../../components/snackbar/SnackBar";
 import './ProjectEdit.css';
+
 
 const ProjectEdit = () =>{
     // const location = useLocation();
@@ -33,6 +35,8 @@ const ProjectEdit = () =>{
     const [modalUser,setModalUser] = useState(null)
     const navigate = useNavigate();
     const [membersCount,setMembersCount] = useState(0);
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
+    const [snackbarMessage ,setSnackBarMessage] = useState("")
     
     useEffect(()=>{
         
@@ -105,7 +109,8 @@ const ProjectEdit = () =>{
             const newMembers = state.members.filter((member) =>  member !== data._id);
             state.members = newMembers
             console.log(state.members)
-
+            setSnackBarMessage("User removed")
+            setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
         }
       
        
@@ -125,6 +130,7 @@ const ProjectEdit = () =>{
             console.log(state._id)
             navigate(-1)
         }
+      
      
     }
     const updateParentUser = () =>{
@@ -156,18 +162,18 @@ const ProjectEdit = () =>{
                     
 
                 <div className="content-data" >{state.userId === user.user ?
-                 <><p><b>{state.projectName} </b></p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("projectName")} color="primary" /></>
+                 <><p><b>Project name :</b> &nbsp; {state.projectName}</p><AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("projectName")} color="primary" /></>
                  :<p><b>{state.projectName} </b></p>}
                 </div>
 
-                <div className="content-data"><b>Project Status: </b>  {state.userId === user.user 
-                    ? <><p> {state.status} </p> <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("status")} color="primary" /></>
+                <div className="content-data"><b>Project Status: </b> &nbsp;  &nbsp; {state.userId === user.user 
+                    ? <><p> {state.status} </p> <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("status")} color="primary" /></>
                     :""}
                 </div>
                 <div className="content-data">
                     {state.userId !== user.user 
                     ? <p><b>Desc</b>: {state.desc} </p>
-                    :<div ><p><b>Desc</b>: {state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer',fontSize:40}} onClick={() => handleEdit("desc")} color="primary" /></div>}
+                    :<div ><p><b>Desc</b>: {state.desc}</p>  <AddCircleIcon className="save-button"   sx={{ cursor: 'pointer'}} onClick={() => handleEdit("desc")} color="primary" /></div>}
                 </div>
                  <div className="content-data">
                 <p> <b>{state &&  membersCount === 1 ?"Space left":"Spaces left"}</b> {" "+membersCount }</p>
@@ -227,7 +233,7 @@ const ProjectEdit = () =>{
                     state.userId !== user.user ? <div><button onClick={handleExitProject}>Exit group </button></div>:""
                 }
                 </div>
-               
+                <SnackBar message={snackbarMessage} trigger={triggerSnackBar} />
                 <EditModal 
                     open={openModal} 
                     onClose={() => setOpenModal(false)}

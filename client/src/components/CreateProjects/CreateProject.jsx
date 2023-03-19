@@ -1,17 +1,21 @@
 import React from "react";
 import './CreateProject.css'
 import { AuthContext } from '../../context/AuthContext';
+import { PostContext } from "../../context/PostContext";
 import { useContext  } from "react";
 import {  createProjectPost } from '../../api/ProjectRequest';
 import { useState } from 'react';
 import { useLogout } from '../../hooks/useLogout'  
 import {  Button } from "@mui/material";
-import AlertDialog from "../DialogBox/DialogBox";
+import SnackBar from "../snackbar/SnackBar";
+import { fetchPosts } from "../../api/PostRequest";
+import AlertDialog from "../DialogBox/DialogBox";   
 
 
 
 const CreateProject =  ({updateParentPost,callerComponent}) =>{
     const {  user ,dispatch} = useContext(AuthContext);
+    let {posts,postDispatch} = useContext(PostContext)
     const {logout} = useLogout();
     const [projectName, setProjectName] = useState("");
     const [desc, setDesc] = useState("");
@@ -19,12 +23,13 @@ const CreateProject =  ({updateParentPost,callerComponent}) =>{
     const [imageValue,setImageValue] = useState(null)
     const [tags,setTags] = useState(null)
     const [trigger, setTrigger] = useState(0);
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
 
 
      const handleSubmit = async(e) =>{
         e.preventDefault();
+    
         setTrigger((trigger) => trigger + 1);
-      
         // const formData = new FormData()
         // formData.append("imageUpload", imageValue)
         // formData.append("projectName", projectName)
@@ -54,6 +59,10 @@ const CreateProject =  ({updateParentPost,callerComponent}) =>{
             setProjectName("");
             setMaxNumber("");
             updateParentPost();
+            // update the post component state    
+            const fetchedPost = await fetchPosts(user,dispatch,logout);
+            postDispatch({type:'SET_POSTS',payload:fetchedPost})
+            setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
         }
      }  
 
@@ -170,7 +179,7 @@ function App() {
 
 
 
-
+                <SnackBar   message="Project created"  trigger={triggerSnackBar} />  
                 <AlertDialog updateTags={updateTags}  trigger={trigger} submitCreatePost={submitCreatePost} />
                    {/* <form class="form-inline">
                     <div class="form-group mb-2">

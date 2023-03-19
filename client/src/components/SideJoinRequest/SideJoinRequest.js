@@ -16,6 +16,7 @@ import {Navigate, Route, Routes, useNavigate ,Link} from 'react-router-dom';
 import {  Button } from "@mui/material";
 import "./SideJoinRequest.css"
 import React from "react";
+import SnackBar from "../snackbar/SnackBar";
 
 
 const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
@@ -31,7 +32,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     const [openModal, setOpenModal] = useState(false);
     const navigate = useNavigate();
     const [modalProject,setModalProject] = useState(null);
-
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
 
 
     useEffect(()=>{
@@ -84,10 +85,10 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             })
         );
        //set projects to state
-       console.log(localProjects)     
+      
         JoinDispatch({type:'SET_JOINS',payload:localProjects})
         setProjects(localProjects)
-
+             
     }
 
     const handleSubmit = async(postId) =>{
@@ -103,6 +104,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
             // update the post component state    
             const fetchedPost = await fetchPosts(user,dispatch,logout);
             postDispatch({type:'SET_POSTS',payload:fetchedPost})
+            setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
         }
     }
     
@@ -160,7 +162,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
                     fromCom={'sideJoin'}
                     />  }
 
-                 
+        <SnackBar   message="Request canceled"  trigger={triggerSnackBar} />           
         </div>
     );
 }

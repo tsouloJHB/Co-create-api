@@ -11,12 +11,14 @@ import CreateProject from "../../components/CreateProjects/CreateProject";
 import SideJoinRequest from "../../components/SideJoinRequest/SideJoinRequest";
 import Notifications from "../../components/notifications/Notifications";
 import "./Post.css"
+import SnackBar from "../../components/snackbar/SnackBar";
+ 
 
-const Projects = () =>{
+const Projects = () =>{   
     const { user,dispatch } = useContext(AuthContext);
     const [userState ,setUserState] = useState(user);
     const [localPost,setlocalPost] = useState(null);
-   
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
     const [joins,setJoins] = useState(null);
     const {posts,postDispatch} = useContext(PostContext);
 
@@ -29,6 +31,10 @@ const Projects = () =>{
     const openParent = () =>{
       setCloseParent(false)
       
+    }
+
+    const createTrigger = () =>{
+      setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
     }
     const closeParentModal = ()=>{
       setCloseParent(true)
@@ -150,18 +156,29 @@ const Projects = () =>{
             <div  onClick={(e) => {
           e.stopPropagation();
         }}>
-              {localPost && localPost.map((post) => (
-                  <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost} postDetailsModalSetFalse={postDetailsModalSetFalse} postDetailsModalSetTrue={postDetailsModalSetTrue} postDetailsModal={postDetailsModal}  post={post}   closeParentModal={closeParentModal}   closeParent={closeParent} openParent={openParent}/> </div> 
+              {posts && posts.map((post) => (
+                  <div key={post._id}> <PostDetails key={post._id} updateParentPost={updateParentPost}
+                   postDetailsModalSetFalse={postDetailsModalSetFalse} 
+                   postDetailsModalSetTrue={postDetailsModalSetTrue}
+                    postDetailsModal={postDetailsModal}  
+                    post={post}   
+                    closeParentModal={closeParentModal}   
+                    closeParent={closeParent} 
+                    openParent={openParent} 
+                    createTrigger={createTrigger}
+                    /> </div> 
               ))}
             </div>
-            
+            <SnackBar message="Join request successful" trigger={triggerSnackBar} />
           </div>
           <div class="right-sidebar">
             <Notifications />
                 
                
             </div>
+            
       </div>
+      
     );
     
 }

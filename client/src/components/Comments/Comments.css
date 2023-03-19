@@ -71,17 +71,19 @@
 .comment {
     background-color: #f0f2f5;
     border-radius: 10px;
-    padding: 5px;
+    padding: 14px;
     margin-bottom: 10px;
     width: 90%;
-    height: 20%;
+    
   }
   
 .comment-text{
   position: relative;
-  bottom: 5px;
+  top: 10px;
+  bottom: 0px;
   color: black;
- 
+  margin-bottom: 40px;
+
 }  
 .comment-author {
     font-weight: bold;
@@ -124,7 +126,7 @@
 .comment-time{
   position: relative;
   top: 18px;
-  right: 8%;
+  right: 14%;
 }
 
 #comments-count{

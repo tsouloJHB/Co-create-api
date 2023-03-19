@@ -44,13 +44,15 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commen
     if (!open) return null;
 
     const convertBinaryToString = (image)=>{
-      
-      const base64String =  btoa(new Uint8Array(image.data.data).reduce(function (data, byte) {
-            return data + String.fromCharCode(byte);
-        }, ''));
+        
+        
+      const base64String = btoa(new Uint8Array(image.data.data).reduce(function (data, byte) {
+          return data + String.fromCharCode(byte);
+      }, ''));
           
       return base64String
   }
+
 
    const submitComment = async() =>{
       let commentResponse = ""
@@ -61,9 +63,10 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commen
       }
       if(commentResponse){
           //reload post
-          setComment("");
+       
           fetchComments()
       }
+      setComment("");
    }
     return (
 
@@ -98,8 +101,9 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commen
                           
         <p>{user && user.name}</p>
         <span className="postTime">{format(projectData.createdAt)}</span>
-        <p className="projectName">{projectData && projectData.projectName}</p>           
+           
       </div>
+      <p className="projectName">{projectData && projectData.projectName}</p>  
     <p className="postDescription">{projectData && projectData.desc}</p>
     <hr/>
     <Comments fetchComments={fetchComments} postId={projectData._id} comments={comments} />
@@ -109,7 +113,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commen
         <br/>
           <textarea placeholder="write commment" className='comment-input'
             onChange={(e) => setComment(e.target.value)}
-          
+           value={comment}
           ></textarea>
           <br/>
           <p  className="pressEnter" onClick={submitComment}>Click to submit</p>

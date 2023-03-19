@@ -5,11 +5,12 @@ import { useLogout } from "../../hooks/useLogout";
 import { AuthContext } from '../../context/AuthContext';
 import { updateProject } from '../../api/ProjectRequest';
 import profilePicture from "../../images/profile.jpg"
+import { Avatar } from "@mui/material";
 
 import './modal.css';
 
 
-const ProfileModal = ({ open, onClose, user}) =>{
+const ProfileModal = ({ open, onClose, user,modalLocation}) =>{
     let { dispatch} = useContext(AuthContext);
     const [field,setField] = useState(null);
     const {logout} = useLogout();
@@ -42,22 +43,47 @@ const ProfileModal = ({ open, onClose, user}) =>{
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className='modalContainer'
+        className='modalContainer modal'
       >
         
+        <div className="modal__header">
+        <h5 class="modal-title text-center">Profile</h5>  
        
+        {modalLocation === "post" 
+        ? <div className='closeBtnModal post-modal'  onClick={onClose}><span>x</span></div> 
+        : <div className='closeBtnModal'  onClick={onClose}><span>x</span></div> 
+        }   
+        
+       
+        </div>
         <div className='modalRight'>
-          <p className='closeBtn' onClick={onClose}>
+          {/* <p className='closeBtn' onClick={onClose}>
             X
-          </p>
+          </p> */}
           <div className='content'>
-            <h3>Profile</h3>
+            
             <br/>
-            {user.image && user.image.data && user.image.data.data !== null ? <div><img alt={user.name} src={`data:image/png;base64,${convertBinaryToString(user.image)}`}/> </div>:<div><img alt="fds" src={profilePicture}/></div>}    
-            <p>{user.name} {user.surname}</p>
-            <p>{user.desc}</p>
-            <p>Occupation: {user.occupation}</p>
-            <p>From: {user.city}</p>      
+            {user.image && user.image.data && user.image.data.data !== null 
+            ? <div>
+               <Avatar className="profile-pic-modal" src={`data:image/png;base64,${convertBinaryToString(user.image)}`} alt="" sx={{
+                            width: 218,
+                            height: 218,
+                            
+                        }} />
+              </div>
+            :<div>
+              <Avatar className="profile-pic-modal" src={profilePicture} alt="" sx={{
+                            width: 218,
+                            height: 218,
+                            
+                        }} />
+           
+              </div>
+            }    
+            <br/><p><b>Name</b> : {user.name} {user.surname}</p>
+            <p><b>About :</b> {user.desc}</p>
+            <p><b>Occupation</b> : {user.occupation}</p>
+            <p><b>From</b> : {user.city}</p>      
          
 
           </div>

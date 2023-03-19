@@ -70,7 +70,8 @@ const Navbar = () => {
       </div>                  
       <div class="nav-right">
                 <Link to="/profile">
-              { profileUser && profileUser.image !== undefined ?
+                  {profileUser && console.log()}
+              { profileUser && Object.keys(profileUser.image).length !== 0 ?
                   <Avatar className="photo-nav" src={`data:image/png;base64,${convertBinaryToString(profileUser.image)}`} alt="" sx={{
                       width: 28,
                       height: 28,

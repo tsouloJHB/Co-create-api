@@ -11,6 +11,7 @@ import { convertBinaryToString} from "../../utils/ImageFormating"
 import "./ProjectStatus.css"
 import backGroundImage from  "../../images/reading.jpg"
 import profilePicture from "../../images/profile.jpg"
+import ProfileModal from "../../components/profileModal/ProfileModal";
 
 const ProjectStatus = () =>{
     const {  user ,dispatch} = useContext(AuthContext);
@@ -19,6 +20,8 @@ const ProjectStatus = () =>{
     const { project } = location.state;
     const [members,setMembers] = useState(null);
     const [joinRequest,setJoinRequest] = useState(null);
+    const [openProfileModal, setOpenProfileModal] = useState(false);
+    const [profileModalUser, setProfileModalUser] = useState(null);
 
     useEffect(()=>{       
         console.log(project)
@@ -35,6 +38,16 @@ const ProjectStatus = () =>{
         getJoins();
         
     },[]);
+
+    const handleViewProfile = async(user) => {
+      console.log(user)
+      setProfileModalUser(user)
+      setOpenProfileModal(true)
+  }
+  const closeModals = ()=>{
+      
+      setOpenProfileModal(false)
+  }
     return (
         <div className="middle-cover">
           <div className="project-status-cover">
@@ -54,12 +67,12 @@ const ProjectStatus = () =>{
            <div className="projectStatus-profiles" >
             
              {item.image !== undefined ? 
-                        <div><Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(item.image)}`} alt="" sx={{
+                        <div><Avatar onClick={(e) => handleViewProfile(item)} className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(item.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
-                            
+                            cursor:'pointer',
                         }} /></div>
-                        :<div> <Avatar className="profile-pic" src={profilePicture} alt="" sx={{
+                        :<div> <Avatar onClick={(e) => handleViewProfile(item)} className="profile-pic" src={profilePicture} alt="" sx={{
                             width: 48,
                             height: 48,
                             
@@ -72,7 +85,12 @@ const ProjectStatus = () =>{
           </div>
             <img className="backGroundImage" src={backGroundImage} alt="fdf" width="100px"/>
            
-           
+            <ProfileModal 
+                    open={openProfileModal} 
+                    onClose={() => setOpenProfileModal(false)}
+                    user={profileModalUser}
+                    modalLocation="post"
+                />
         </div>
       </div>
     );

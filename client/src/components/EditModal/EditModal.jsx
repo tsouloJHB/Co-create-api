@@ -100,7 +100,7 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
         <h5 class="modal-title text-center">{fieldName}</h5>  
        
           
-       <span className='closeBtnModal'  onClick={onClose}>x</span> 
+        <div className='closeBtnModal'  onClick={onClose}><span>x</span></div> 
        
         </div>
         <div className='modalRight'>
@@ -110,7 +110,7 @@ const EditModal = ({ open, onClose, projectData,fieldName,fieldData,updateState,
             <br/>
             <br/>
             <br/>
-            { fieldType === "project"? fieldName !== "status" ? <input type="text" value={field} className="input_style"   onChange={(e) => setField(e.target.value)} />:
+            { fieldType === "project"? fieldName !== "status" ? <input type="text" value={field}    onChange={(e) => setField(e.target.value)} />:
              
             <select  name="status" onChange={(e) => setField(e.target.value)}>
                 <option value="NotStarted">NotStarted</option>

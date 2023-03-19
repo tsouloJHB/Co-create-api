@@ -5,12 +5,15 @@ import { useLogout } from "../../hooks/useLogout";
 import { AuthContext } from '../../context/AuthContext';  
 import profilePicture from "../../images/profile.jpg"
 import { Avatar,Button } from "@mui/material";
+import SnackBar from "../snackbar/SnackBar";
 import './SideAcceptUsers.css'
 
 const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
     const [joinRequests,setJoinRequests] = useState(null);
     let { user ,dispatch} = useContext(AuthContext);
     const {logout} = useLogout();
+    const [triggerSnackBar, setTriggerSnackBar] = useState(0);
+    const [snackbarMessage ,setSnackBarMessage] = useState("")
 
     useEffect(()=>{
         console.log(postId)
@@ -53,6 +56,8 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                 setJoinRequests(newJoinRequests);
             }
         }
+        setSnackBarMessage("User "+status)
+        setTriggerSnackBar((triggerSnackBar) => triggerSnackBar + 1);
 
       
     }
@@ -88,7 +93,7 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                
             }
              {joinRequests && joinRequests.length === 0 ? "No request":""}
-     
+             <SnackBar message={snackbarMessage} trigger={triggerSnackBar} />
             </div>
         
     )

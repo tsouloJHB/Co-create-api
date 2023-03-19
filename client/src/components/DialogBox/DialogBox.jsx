@@ -6,10 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {  useEffect ,useState} from "react";
+import SnackBar from '../snackbar/SnackBar';
 
 export default function AlertDialog({updateTags,trigger, submitCreatePost}) {
   const [open, setOpen] = React.useState(false);
   const [tags,setTags] = useState([])
+  const [snackBarTrigger, setTriggerSnackBar] = useState([])
 
   const handleClickOpen = () => {
 
@@ -80,6 +82,7 @@ export default function AlertDialog({updateTags,trigger, submitCreatePost}) {
           </Button>
         </DialogActions>
       </Dialog>
+         {/* <SnackBar trigger={snackBarTrigger} /> */}
     </div>
   );
 }
