@@ -189,15 +189,17 @@ const ProjectEdit = () =>{
                 {
                 users  && users.length > 0?
                     users.map(LocalUser =>(
+                     
                         <div key={LocalUser._id}>
+                               {console.log(LocalUser)}
                        <div className="profile-info">  
                         {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? 
-                        <div><Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`} alt="" sx={{
+                        <div><Avatar  onClick={() => handleViewProfile(LocalUser)} className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
                             
                         }} /></div>
-                        :<div> <Avatar className="profile-pic" src={profilePicture} alt="" sx={{
+                        :<div> <Avatar  onClick={() => handleViewProfile(LocalUser)} className="profile-pic" src={profilePicture} alt="" sx={{
                             width: 48,
                             height: 48,
                             

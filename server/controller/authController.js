@@ -9,19 +9,6 @@ const fs = require('fs');
 const { findByIdAndUpdate } = require('../models/user');
 const sharp = require('sharp')
 const {upload} = require('../middleware/uploadMiddleware')
-//post middleware
-// const Storage = multer.diskStorage({
-//     destination:"uploads",
-//     filename : (req,file,cb) =>{
-//         cb(null,Date.now()+file.originalname);
-//         // cb(null,file.originalname);
-//     },
-// });
-
-// const upload = multer({
-//     storage:Storage
-// }).single('imageUpload')
-
 
 const resizeImage = async(name) => {
     const resize = await sharp('uploads/'+name)
@@ -146,8 +133,9 @@ module.exports.get_users = async(req,res) =>{
 
         const request = await Promise.all(
             users.map(async (user) => {
-                var foundUser = await User.findById(user);  
-              return foundUser;
+                var foundUser = await User.findById(user);
+                const { password, isAdmin,createdAt,updatedAt,__v, ...other } = foundUser._doc;  
+              return other;
             })
           );
 

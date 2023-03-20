@@ -81,7 +81,7 @@ const ProfileModal = ({ open, onClose, user,modalLocation}) =>{
               </div>
             }    
             <br/><p><b>Name</b> : {user.name} {user.surname}</p>
-            <p><b>About :</b> {user.desc}</p>
+            <p><b>About :</b> {user.desc ? user.desc : user.bio }</p>
             <p><b>Occupation</b> : {user.occupation}</p>
             <p><b>From</b> : {user.city}</p>      
          

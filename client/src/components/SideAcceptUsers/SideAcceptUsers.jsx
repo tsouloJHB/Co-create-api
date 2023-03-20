@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import profilePicture from "../../images/profile.jpg"
 import { Avatar,Button } from "@mui/material";
 import SnackBar from "../snackbar/SnackBar";
+import ProfileModal from "../profileModal/ProfileModal";
 import './SideAcceptUsers.css'
 
 const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
@@ -14,6 +15,8 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
     const {logout} = useLogout();
     const [triggerSnackBar, setTriggerSnackBar] = useState(0);
     const [snackbarMessage ,setSnackBarMessage] = useState("")
+    const [openProfileModal, setOpenProfileModal] = useState(false);
+    const [profile, setProfile] = useState(null);
 
     useEffect(()=>{
         console.log(postId)
@@ -62,29 +65,36 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
       
     }
 
+    const handleViewProfile = async(user) => {
+        setProfile(user)
+        setOpenProfileModal(true)
+        
+    }
+
     return (
         <div className="post-border">
       
             
             <p className="yourProject">Project join request</p>
+            {joinRequests && console.log(joinRequests)} 
             {
                 joinRequests && joinRequests.map(join =>(
                     <div key={join.joinId} className="workout-details" >
-                     
+                    {console.log(join)} 
                     {join.image && join.image.data && join.image.data.data !== null ? 
-                    <Avatar className="profile-pic-accept" src={`data:image/png;base64,${convertBinaryToString(join.image.data)}`} alt="" sx={{
+                    <Avatar onClick={(e) => handleViewProfile(join)} className="profile-pic-accept" src={`data:image/png;base64,${convertBinaryToString(join.image.data)}`} alt="" sx={{
                         width: 48,
-                        height: 48,
-                        
+                        height: 48,         
+                        cursor:"pointer"
                     }} />
-                    : <Avatar className="profile-pic-accept" src={profilePicture} alt="" sx={{
+                    : <Avatar onClick={(e) => handleViewProfile(join)} className="profile-pic-accept" src={profilePicture} alt="" sx={{
                         width: 48,
                         height: 48,
-                        
+                        cursor:"pointer"
                     }} />}
                     <p className="side-name">{join.name + " "}{join.surname} </p>
-                    <Button variant="outlined" color="success"  onClick={() => handleAcceptUser(join,'Accepted')}  >Accept</Button>
-                    <Button variant="outlined" color="success"   onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button>
+                    <Button variant="outlined" color="success"  class="btn btn-primary"  onClick={() => handleAcceptUser(join,'Accepted')}  >Accept</Button>
+                    <Button variant="outlined" color="success"  class="btn btn-danger"  onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button>
                     <hr />
                     </div>
                   
@@ -94,6 +104,12 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
             }
              {joinRequests && joinRequests.length === 0 ? "No request":""}
              <SnackBar message={snackbarMessage} trigger={triggerSnackBar} />
+             <ProfileModal 
+                    open={openProfileModal} 
+                    onClose={() => setOpenProfileModal(false)}
+                    user={profile}
+                    modalLocation="post"
+                />
             </div>
         
     )

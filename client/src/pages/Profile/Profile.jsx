@@ -149,8 +149,9 @@ const Profile = () => {
                     <br/>
                     <br/>
                     <form onSubmit={(e)=>handleClick(e)} encType="multipart/form-data">
-                        <input className="browse" type="file" id="myFile" onChange={(e) => setPreviewImage(e)} name="filename"/>
-                        <input type="submit"  />
+                        <input className=" form-control projectUpload-profile" type="file" id="myFile" onChange={(e) => setPreviewImage(e)} name="filename"/>
+                        <br/>
+                        <input id='submitProfilePicture' type="submit"  class="btn btn-primary mb-8"/>
                     </form>
 
                  
@@ -191,7 +192,7 @@ const Profile = () => {
                 fieldName={editField}
                 fieldData={ fieldData  }
                 updateState={updateState}
-                fieldType="profile"
+                fieldType="project"
             />
                  </>
 

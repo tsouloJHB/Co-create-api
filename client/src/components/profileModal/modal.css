@@ -35,7 +35,7 @@
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: hidden;
-    z-index: 1000;
+    z-index: 1000 ;
   }
   
   img {

@@ -115,3 +115,46 @@ form{
   top: 30px;
 }
 
+
+.projectUpload-profile{
+  width: 70%;
+  font-size: 14px;
+  height: 40px;
+  border-radius: 0px;
+  position: relative;
+  left: 21%;
+  margin-top: 10px;
+  background-color: #ec9b5e;
+  
+}
+
+.projectUpload-profile::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.projectUpload-profile::before {
+  content: 'Upload profile image';
+  display: inline-block;
+
+
+
+  padding-top: 3px;
+  color: white;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+}  
+
+#submitProfilePicture{
+  margin-left: 0px;
+  margin-right: 0px;
+  position: relative;
+  left: 21%;
+  right: 0px;
+  width: 70%;
+  bottom: 15px;
+
+}
+
+
