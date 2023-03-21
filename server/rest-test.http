@@ -23,7 +23,7 @@ Content-Type: application/json
 //get user info
 get http://localhost:8080/api/users/users/63ab3e9df64e8baf2976d159,63ab3f17bf246598d2f1983f,63c051b56d52f42e978e5db3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NDI5MjYxNiwiZXhwIjoxNjc0MzEwNjE2fQ.UR9XnhdzRGOeaWVImwdoTkuAjgkBCJPXuacPttaLe7c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3OTMzNDQ5NCwiZXhwIjoxNjc5MzUyNDk0fQ.ygEyJNfgOlj_cH4KAjKtt7519Ear2A65sH4HJEBYOHY"
 
 
 
@@ -69,15 +69,15 @@ Content-Type: application/json
 ###
 get  http://localhost:8080/api/users/639a8205e3cb2b41c7ea835a
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWIzZTlkZjY0ZThiYWYyOTc2ZDE1OSIsImlhdCI6MTY3NDEzOTY1NCwiZXhwIjoxNjc0MTU3NjU0fQ.kTrzYPATg0SALSoV-MgkhxQtbosMS-QtTLugRjTZ_OU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3ODk5ODIwNiwiZXhwIjoxNjc5MDE2MjA2fQ.88NgfXVkcNTkUq5z2ddHdc_TdxlZ9UdY67wANTzD1bo
 
 //create post and project
 ###
 post  http://localhost:8080/api/posts  
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3NTEwMDQ2NCwiZXhwIjoxNjc1MTE4NDY0fQ.pxCgfwDhRzpCieG5TAJRuZK1pWeCmyzZyM_XaPosEig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3ODk5ODIwNiwiZXhwIjoxNjc5MDE2MjA2fQ.88NgfXVkcNTkUq5z2ddHdc_TdxlZ9UdY67wANTzD1bo
 
-{
+{ 
    
     "desc":"We going to satan",
     "img":"",

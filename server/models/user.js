@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     },
     surname:{
         type:String,
+        required:[true,"Please enter a surname"],
         max:50
     },
     city:{

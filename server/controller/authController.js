@@ -45,13 +45,14 @@ module.exports.login_post = async (req,res)=>{
 //@route    POST api/users/users/
 //@access   Public
 module.exports.sign_up = async (req,res)=>{
-    const {name,email,password} = req.body;
+    const {name,surname,email,password} = req.body;
     try{
-        const user = await User.create({email,password,name});
+        const user = await User.create({email,surname,password,name});
         const token = await createToken(user._id);
         const RefreshToken = await createRefreshToken(user._id);
         saveDeleteRefreshToken(user._id);
         res = setCookies(res,token,RefreshToken);
+        console.log({'user': user._id,'accessToken':token,'refreshToken':RefreshToken});
         res.status(201).json({'user': user._id,'accessToken':token,'refreshToken':RefreshToken});
     }catch(err){
         const errors = handleErrors(err);
@@ -142,7 +143,7 @@ module.exports.get_users = async(req,res) =>{
             // await users.find().forEach(function(user) {
             //     user_info.push(user);
             // });
-         
+            console.log(request)
 	        res.status(200).json(request);
 	    }else{
 	        res.status(403).json("Unknown user");
