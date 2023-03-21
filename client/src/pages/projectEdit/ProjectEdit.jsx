@@ -17,6 +17,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Avatar, IconButton, Tooltip, Button } from "@mui/material";
 import { convertBinaryToString} from "../../utils/ImageFormating"
 import SnackBar from "../../components/snackbar/SnackBar";
+import { faTrash} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ProjectEdit.css';
 
 
@@ -51,6 +53,7 @@ const ProjectEdit = () =>{
        
         if(newUsers.length > 0){
             const users = await getUsers(newUsers,dispatch,logout);
+            console.log(users)
             setUsers(users)
         }
         
@@ -186,32 +189,33 @@ const ProjectEdit = () =>{
                 }
                 </div>
                 <div className="content-data">
+            
                 {
                 users  && users.length > 0?
                     users.map(LocalUser =>(
                      
                         <div key={LocalUser._id}>
-                               {console.log(LocalUser)}
+                            
                        <div className="profile-info">  
                         {LocalUser.image && LocalUser.image.data && LocalUser.image.data.data !== null ? 
                         <div><Avatar  onClick={() => handleViewProfile(LocalUser)} className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(LocalUser.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,
-                            
+                            cursor:'pointer'
                         }} /></div>
                         :<div> <Avatar  onClick={() => handleViewProfile(LocalUser)} className="profile-pic" src={profilePicture} alt="" sx={{
                             width: 48,
                             height: 48,
-                            
+                            cursor:'pointer'
                         }} /></div>}
 
                          <div className="userInfo-Edit-Project"> 
                             <p>{LocalUser.name} {LocalUser.surname}</p>
-                            <Button  className="userButton" variant="outlined" color="success" onClick={() => handleViewProfile(LocalUser)}  >View profile</Button>
+                            {/* <Button  className="userButton" variant="outlined" color="success" onClick={() => handleViewProfile(LocalUser)}  >View profile</Button> */}
                         
                             {state.userId === user.user ?
-                            <Button className="userButton" variant="outlined" color="success"  onClick={() => handleRemoveUser(LocalUser)}  >Remove User</Button>
-                            
+                            // <Button variant="outlined"   class="btn btn-danger userButton"  onClick={() => handleRemoveUser(LocalUser)}  >Remove User</Button>
+                            <FontAwesomeIcon className="deleteButton" icon={faTrash} onClick={() => handleRemoveUser(LocalUser)} />
                             :""}
                             
                           </div>
@@ -227,7 +231,7 @@ const ProjectEdit = () =>{
                 {
                     state.userId === user.user ?
                     
-                     <div><Button variant="outlined" color="success" onClick={handleDeleteProject}  >Delete Project</Button></div>
+                     <div><Button variant="outlined"  class="btn btn-danger " onClick={handleDeleteProject}  >Delete Project</Button></div>
                      :""
                 }
                 

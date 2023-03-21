@@ -4,8 +4,8 @@ import { BrowserRouter, Navigate, Route ,Routes} from 'react-router-dom';
 import { useEffect } from "react";
 //Pages & components
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
 import NavBar from './components/navbar/NavBar'
 import { AuthContext } from './context/AuthContext';
 import Posts from './pages/Posts/Posts';
@@ -18,6 +18,7 @@ import ProjectStatus from './pages/projectStatus/ProjectStatus';
 import ViewProject from './pages/ViewProject';
 import ProjectEdit from './pages/projectEdit/ProjectEdit';
 import Profile from './pages/Profile/Profile';
+import NavBarChecker from "./components/NavChecker/NavBarChecker";
 
 
 function App () {
@@ -36,7 +37,10 @@ function App () {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar/>
+      <NavBarChecker>
+        <NavBar/>
+      </NavBarChecker>
+      
         <div className="pages">
           <Routes>
           <Route
@@ -53,37 +57,37 @@ function App () {
            />
            <Route
             path="/login"
-            element={!user ? <Login /> : <Navigate to="/projects" />} 
+            element={!user ? <Login /> : <Navigate to="/posts" />} 
            />
-           <Route
+           <Route 
             path="/projectStatus"
-            element={user ? <ProjectStatus /> :  <Navigate to="/projects" />} 
+            element={user ? <ProjectStatus /> : <Navigate to="/login"/>} 
            />
             <Route
             path="/projectview"
-            element={user ? <ProjectView /> :  <Navigate to="/projects" />} 
+            element={user ? <ProjectView /> :  <Navigate to="/login"/>} 
            />
 
           <Route
             path="/viewProject"
-            element={user ? <ViewProject /> : <Navigate to="/projects" />} 
+            element={user ? <ViewProject /> : <Navigate to="/login"/>} 
            />
 
           <Route  
             path="/projectEdit"
-            element={user ? <ProjectEdit /> : <Navigate to="/projects" />} 
+            element={user ? <ProjectEdit /> : <Navigate to="/login"/>} 
            />
 
           <Route  
             path="/profile"
-            element={user ? <Profile /> :  <Navigate to="/projects" />} 
+            element={user ? <Profile /> :  <Navigate to="/login"/>} 
            />
             
             <Route
             path="/signup"
-            element={!user ? <Signup /> : <Navigate to="/projects" />} 
+            element={!user ? <Signup /> : <Navigate to="/posts" />} 
            />
-        
+       
           </Routes>
         </div>
       </BrowserRouter>

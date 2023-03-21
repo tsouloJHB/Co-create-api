@@ -36,9 +36,10 @@ export const getUsers = async(users,dispatch,logout) =>{
             headers: {'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`},
           
         })
-        console.log(response)
+ 
         if(response.ok){
             const json = await response.json();
+            console.log(json)
             return json
           }
         

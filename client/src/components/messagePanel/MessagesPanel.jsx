@@ -200,7 +200,7 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
                       <>
                          <div className="message"  >{member._id === chat.senderId && user.user === chat.senderId
                           ?  <>
-                          { member.image !== undefined ?
+                          { member.image !== undefined &&  member.image.data !== undefined ?
                             <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,
@@ -221,7 +221,7 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
                             <p  className="text"> <span>{member.name}</span>
                             {chat.text} </p>
                             <p class="time-response"> {format(chat.createdAt)}</p>
-                            { member.image !== undefined ?
+                            { member.image !== undefined && member.image.data !== undefined ?
                             <Avatar className="profile-pic-message" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,

@@ -66,7 +66,7 @@ const ProjectStatus = () =>{
            {item._id === project.userId?<><p id="groupName">Group leader</p><br/></>:"" }
            <div className="projectStatus-profiles" >
             
-             {item.image !== undefined ? 
+             {item.image !== undefined && item.image.data !== undefined  ? 
                         <div><Avatar onClick={(e) => handleViewProfile(item)} className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(item.image)}`} alt="" sx={{
                             width: 48,
                             height: 48,

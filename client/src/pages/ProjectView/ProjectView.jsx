@@ -53,7 +53,7 @@ const ProjectView = () => {
           <div className="projectUser" key={index}>
            
           
-            { item.image !== undefined ?
+            { item.image !== undefined  && item.image.data !== undefined ?
             <Avatar className="photo" src={`data:image/png;base64,${convertBinaryToString(item.image)}`} alt="" sx={{
                                 width: 48,
                                 height: 48,

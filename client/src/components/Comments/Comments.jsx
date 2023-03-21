@@ -44,7 +44,7 @@ const Comments = ({ fetchComments,postId,comments}) => {
             <div className='comments'> {comments && comments.map((comment)=>(
                 <div className='comment' key={comment.comment._id}>
                     <div className="user-profile">
-                    { comment.user.image.data.data !== null ? 
+                    { comment.user.image.data !== undefined && comment.user.image.data.data !== undefined ? 
                      <Avatar className="profile-pic" src={`data:image/png;base64,${convertBinaryToString(comment.user.image)}`} alt="" sx={{
                         width: 48,
                         height: 48,
@@ -56,8 +56,14 @@ const Comments = ({ fetchComments,postId,comments}) => {
                     }} />}
                     {console.log(comment)}
                     <span className='comment-author'>{comment.user.name}</span>
-                    <span className="comment-time">{format(comment.comment.createdAt)} </span>
-                    <span className='comment-author'>{comment.user.comments}</span>
+                    <span className="comment-time ">{format(comment.comment.createdAt)} </span>
+                    <div className="groupInfo">
+                  
+                 
+                  <span className='comment-author'>{comment.user.comments}</span>
+                  </div>
+                   
+                   
                     </div>
                     <span className='comment-text'>{comment.comment.text}</span>
                 </div>

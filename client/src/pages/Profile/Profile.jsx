@@ -45,6 +45,7 @@ const Profile = () => {
 
     const handleEdit = (field) =>{
         let nameSurname = ""
+        setFieldData("")
         profileUser && Object.keys(profileUser).map(key => {
             if(key === field) 
             {

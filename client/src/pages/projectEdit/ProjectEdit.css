@@ -66,9 +66,19 @@
 .userInfo-Edit-Project .userButton{
     
     position: relative;
-    left:-20px;
+    left:-25px;
+    height: 40px;
+   
 }
-
+.deleteButton{
+    position: relative;
+    left:-88px;
+    color: gray;
+    margin-bottom: 10px;
+}
+.deleteButton:hover{
+    cursor: pointer;
+}
 .yourProjectEdit{
     color: gray;
     font-size: 14px;

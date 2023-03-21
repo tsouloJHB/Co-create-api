@@ -7,6 +7,8 @@ import profilePicture from "../../images/profile.jpg"
 import { Avatar,Button } from "@mui/material";
 import SnackBar from "../snackbar/SnackBar";
 import ProfileModal from "../profileModal/ProfileModal";
+import { faTrash} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SideAcceptUsers.css'
 
 const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
@@ -94,7 +96,8 @@ const SideAcceptUsers = ({updateMembers,updateParentUser,postId}) =>{
                     }} />}
                     <p className="side-name">{join.name + " "}{join.surname} </p>
                     <Button variant="outlined" color="success"  class="btn btn-primary"  onClick={() => handleAcceptUser(join,'Accepted')}  >Accept</Button>
-                    <Button variant="outlined" color="success"  class="btn btn-danger"  onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button>
+                    <FontAwesomeIcon className="deleteButton-side" icon={faTrash} onClick={() => handleAcceptUser(join,'Rejected')} />
+                    {/* <Button variant="outlined" color="success"  class="btn btn-danger"  onClick={() => handleAcceptUser(join,'Rejected')}  >Rejected</Button> */}
                     <hr />
                     </div>
                   

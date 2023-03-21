@@ -13,3 +13,10 @@
     top: 5px;
   
 }
+.deleteButton-side{
+    color: gray;
+    display: block;
+    margin: auto;
+    height: 25px;
+    cursor: pointer;
+}
