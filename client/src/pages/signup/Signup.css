@@ -1,0 +1,15 @@
+.error-message{
+    color: red;
+    font-size: 13px;
+}
+.error-message-server{
+    color: red;
+    font-size: 13px;
+    margin-right: 40px;
+    position: relative;
+    bottom: 10px;
+}
+.signup-button{
+    position: relative;
+    bottom: 20px;
+}

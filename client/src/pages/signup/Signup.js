@@ -10,27 +10,90 @@ const Signup = () => {
     const [password,setPassword] = useState(null);
     const [password2,setPassword2] = useState(null);
     const [name,setName] = useState(null);
+    const [errorName,setErrorName] = useState(null);
+    const [errorSurname,setErrorSurname] = useState(null)
+    const [errorPassword,setErrorPassword] = useState(null)
+    const [errorPassword2,setErrorPassword2] = useState(null)
+    const [errorEmail,setErrorEmail] = useState(null)
     const [surname,setSurname] = useState(null);
     let {signup,error,isLoading} = useSignup();
     const navigate = useNavigate();
-    const [frontError, setFrontError] = useState(null) 
+    const [frontError, setFrontError] = useState() 
     const handleSubmit = async(e)=>{
       e.preventDefault()
-      if(password !== password2 ){
-        console.log("Password don't match");
-        error = "Passwords don't match"
-        setFrontError("Passwords don't match")
-        return;
-      }
-      if(password === null || password2 === null ){
-        
-        setFrontError("Passwords is empty")
-        return;
-      }
-      await signup(name,surname,email,password)
-      navigate("/login");
+      // validateName(name,"name")
+      // validateName(surname,"surname")
+      
+        const errors = errorHandler();
+        if(!errors  && checkIfPasswordMatch() && checkEmailFormat()){
+          const response =  await signup(name,surname,email,password)
+          if(response === undefined ){
+            navigate("/login") 
+          }
+        }
+    
+ 
+      //
     }
-  
+    
+    const errorHandler = ()=>{
+        console.log(name)
+        // const field = ['name','surname','password']
+        let error = false
+        if(name === null || name === ""){
+          
+          setErrorName("Name field cannot be empty")
+          error = true
+        }else{
+        
+          setErrorName(null)
+        }
+
+        if(surname === null || surname === ""){
+           setErrorSurname("Surname field cannot be empty")
+           error = true
+        }else{
+          setErrorSurname(null);
+        }
+
+        if(email === null || email === ""){
+          setErrorEmail("email field cannot be empty")
+          error = true
+       }else{
+         setErrorEmail(null);
+       }
+       if(password === null || password === ""){
+        setErrorPassword("password field cannot be empty")
+        error = true
+     }else{
+       setErrorPassword(null);
+     }
+
+        return error;
+    }
+    const checkIfPasswordMatch = () =>{
+     
+        if(password !== password2 ){
+          console.log("here password")
+          setErrorPassword2("Passwords don't match")
+          return false;
+          }
+        else{
+          setErrorPassword2(null)
+        }  
+      return true
+    }
+
+    const checkEmailFormat = () =>{
+      const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if(!email.match(validRegex)) {
+        setErrorEmail("enter a valid email address")
+        return false
+      }else{
+        setErrorEmail(null)
+      }
+      return true
+    }
     return (
 
 
@@ -61,12 +124,14 @@ const Signup = () => {
                     <div className="form-outline">
                       <input type="text" id="form3Example1" className="form-control"  onChange={(e) => setName(e.target.value)} value={name}  />
                       <label className="form-label" >First name</label>
+                      { <p className="error-message">{errorName}</p> }
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
                       <input type="text" id="form3Example2" onChange={(e) => setSurname(e.target.value)} className="form-control" value={surname}  />
                       <label className="form-label" >Last name</label>
+                      { <p className="error-message">{errorSurname}</p> }
                     </div>
                   </div>
                 </div>
@@ -75,35 +140,38 @@ const Signup = () => {
                 <div className="form-outline mb-4">
                   <input type="email" id="form3Example3" className="form-control"  onChange={(e) => setEmail(e.target.value)} value={email} />
                   <label className="form-label" >Email address</label>
+                  { <p className="error-message">{errorEmail}</p> }
                 </div>
 
                 
                 <div className="form-outline mb-4">
                   <input type="password" id="form3Example4" className="form-control"  onChange={(e) => setPassword(e.target.value)} />
                   <label className="form-label" >Password</label>
+                  { <p className="error-message">{errorPassword}</p> }
                 </div>
 
                 <div className="form-outline mb-4">
                   <input type="password" id="form3Example4" className="form-control"  onChange={(e) => setPassword2(e.target.value)} />
                   <label className="form-label" >Repeat password</label>
+                  { <p className="error-message">{errorPassword2}</p> }
                 </div>
          
-                <div className="form-check d-flex justify-content-center mb-4">
-                  <input className="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label className="form-check-label">
-                    Subscribe to our newsletter
-                  </label>
+                <div className="form-check d-flex justify-content-center mb-3">
+                {error && <div className="error-message-server">{error}</div> }
+               
+                  
                 </div>
 
                
-                <button type="submit" className="btn btn-primary btn-block mb-4">
+                <button type="submit" className="btn btn-primary btn-block signup-button">
                   Sign up
                 </button>
-
+             
                 {frontError && <div classNameName="error">{frontError}</div> }
                 <div className="text-center">
                   <p>or  <Link to="/login"> sign in </Link> </p>
                 </div>
+               
               </form>
             </div>
           </div>

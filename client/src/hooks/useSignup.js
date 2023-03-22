@@ -22,20 +22,33 @@ export const useSignup = () => {
             setIsLoading(false)
             console.log(json.errors);
             let error = "";
-
-            if(json.errors.email !== ""){
+           
+            if(json.errors.email !==  ''){
+                console.log("email")
                 error  = json.errors.email
-            }else if(json.errors.name !== ""){
+                setError(error);
+                return error
+            }
+            if(json.errors.name !== undefined){
+               console.log("name")
                 error = json.errors.name
+                setError(error);
+                return error
             }
-            if(json.errors.surname !== ""){
+            if(json.errors.surname !==  undefined){
+                console.log("surname")
                 error = json.errors.surname
+                setError(error);
+                return error
             }
-            if(json.errors.password !== ""){
+            if(json.errors.password !==  undefined){
+                console.log("password")
                 error = json.errors.password
+                setError(error);
+                return error
             }
-         
-            setError(error);
+            console.log(error)
+           
         }
         if(response.ok){
             console.log(JSON.stringify(json))
