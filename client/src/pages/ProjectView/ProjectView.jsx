@@ -39,17 +39,23 @@ const ProjectView = () => {
 
     return (  
       <div className="container">
+        
          <div className="left-sidebar-view ">
-          
+          <div className="side-view-space">
          <p className="projectNameView">{project.projectName}</p>
-         <hr/>
+         <hr id="divider" />
          <div className="projectDescription">
            <p>{project.desc}</p>
         
            <p>Members no: {project.members.length}</p>
          </div> 
       
-        {members.map((item,index) => (
+    
+          
+          </div> 
+          <div className="side-view-space">
+          {members.map((item,index) => (
+          <>
           <div className="projectUser" key={index}>
            
           
@@ -70,12 +76,18 @@ const ProjectView = () => {
                 : <span class="dotOffline"></span> 
               }            
                         
-              <p>{item.name}  {item._id === project.userId?"Group leader":"" }</p>
+              <p>{item.name}  <span id="group-leader">{item._id === project.userId?"Group leader":"" }</span></p>
               {/* {onlineUsers && console.log(onlineUsers.find(profile=> profile.userId === item._id) !== undefined)} */}
+          
           </div>
+          <hr id="divider"/>
+          </>
           
         ))}
+          </div>
          </div>
+       
+         
             <div className="middle-cover middle-project-view">
           
      

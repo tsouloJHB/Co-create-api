@@ -138,8 +138,8 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
       }
     const handleSubmit = async(e) =>{
         e.preventDefault();
-        
-      
+            
+        console.log("press")  
         const sendMessageResponse = await sendMessage(message,project._id,user,dispatch,logout);
         if(sendMessageResponse){
           
@@ -164,10 +164,11 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
     return (
         <div  className="">
           
-          <section  class="chat">
-        <div  className="header-chat">
+          <section  className="chat">
+        <div>
           <i  className="icon fa fa-user-o" aria-hidden="true"></i>
-          <p  className="name">{project.projectName}</p> 
+          {/* <p  className="name">{project.projectName}</p>  */}
+          <p  className="group-name">Group messages</p>
           {typing && 
             <><span className="typing">Typing</span><p>
                 {typingData && members && members.map((member,index) =>(
@@ -183,7 +184,7 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
         <form className="footer-chat" onSubmit={handleSubmit}>
           <i  className="icon fa fa-smile-o clickable"  aria-hidden="true"></i>
           <input type="text" className="write-message"  onChange={handleOnchange} placeholder="Type your message here"></input>
-          <SendIcon className="sendMessage" color="primary"sx={{ fontSize: "35px",  cursor: 'pointer' }} />
+          <SendIcon onClick={handleSubmit} className="sendMessage" color="primary"sx={{ fontSize: "35px",  cursor: 'pointer' }} />
      
           </form>
         </div>
@@ -218,9 +219,10 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
                           <div  className="response">
                             <>
                         
-                            <p  className="text"> <span>{member.name}</span>
+                            <p  className="text-from"> <span id="member-name">{member.name} </span>
                             {chat.text} </p>
-                            <p class="time-response"> {format(chat.createdAt)}</p>
+                            <p class="time-response">{format(chat.createdAt)} </p>
+                           
                             { member.image !== undefined && member.image.data !== undefined ?
                             <Avatar className="profile-pic-message" src={`data:image/png;base64,${convertBinaryToString(member.image)}`} alt="" sx={{
                                 width: 48,

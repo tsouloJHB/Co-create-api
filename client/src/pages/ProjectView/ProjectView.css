@@ -5,22 +5,29 @@
   
   }
 .left-sidebar-view{
-    flex-basis: 50%;
+    flex-basis: 40%;
     position: sticky;
     z-index: 1;
-    top: 70px;
-    align-self: flex-start;
-    background: var(--bg-color);
-    padding: 20px;
-    border-radius: 17px;
+    margin-right: 10px;
   
   }
 
+.side-view-space{
+  
+  align-self: flex-start;
+  background: var(--bg-color);
+  padding: 20px;
+  border-radius: 17px;
+  margin-bottom: 30px;
+  border: 1px solid rgb(218, 218, 218);
+}  
+
 .projectNameView{
   text-transform: uppercase;
-  color: gray;
+  color: rgb(0, 0, 0);
   text-align: center;
   font-size: 14px;
+  font-weight: 500;
 }  
 .projectUser{
   display: flex;
@@ -40,6 +47,9 @@
   display: inline-block;
   margin-top: 32px;
   margin-right: 13px;
+  position: relative;
+  right: 10px;
+  border: 2px solid white;
 }
 .dotOnline {
   height: 15px;
@@ -49,6 +59,9 @@
   display: inline-block;
   margin-top: 32px;
   margin-right: 13px;
+  position: relative;
+  right: 10px;
+  border: 2px solid white;
 }
 .projectDescription{
   text-align: center;
@@ -61,6 +74,26 @@
   background-color: red;
   position: relative;
   bottom: 8px;
+}
+
+#divider{
+  color: rgb(188, 188, 188);
+  width: 80%;
+  position: relative;
+  left: 10%;
+}
+.side-below{
+  
+  position: sticky;
+  z-index: 1;
+  top: 70px;
+  left: 40px;
+  align-self: flex-start;
+}
+#group-leader{
+  color: rgb(231, 20, 20);
+  font-size: 10px;
+  display: block;
 }
 
 
