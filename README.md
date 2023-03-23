@@ -10,19 +10,23 @@ https://nodejs.org/en/download
 In the project directory, you can run:
 
 ### `Run the Api`
-
+<br/>
 In the server folder: /server
 Run `npm install`
+<br/>
 Run `npm start`
 
 ### `Run the Socket Server`
+<br/>
 In the socket folder: /socket
+<br/>
 Run `npm install`
+<br/>
 Run `npm start`
 
-### `Run the Client app`
-In the client folder: /client
-Run `npm install`
+### `Run the Client app`<br/>
+In the client folder: /client<br/>
+Run `npm install`<br/>
 Run `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
