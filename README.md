@@ -7,9 +7,10 @@ This platform is designed to connect innovators, creators, researchers, students
 
 In the project directory, you can run:
 
-### `npm start`
+### `Run the Api`
 
-Runs the app in the development mode.\
+In the server foldder: server/ .\
+Run `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
