@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Co create
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+About
+The platform is designed to connect innovators, creators, researchers, students, and anyone with an interest in innovation to find like-minded individuals and teams to collaborate with. Our aim is to foster creativity and innovation by creating an environment where individuals with different skills and backgrounds can come together and bring their ideas to life. With our application, users can create and join projects, message other users in real-time, and utilize a variety of tools to facilitate collaboration
 
 ## Available Scripts
 
