@@ -9,8 +9,7 @@ https://nodejs.org/en/download
 
 In the project directory, you can run:
 
-### `Run the Api`
-<br/>
+### `Run the Api`<br/>
 In the server folder: /server<br/>
 Run `npm install`<br/>
 Run `npm start`
