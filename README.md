@@ -26,5 +26,6 @@ Run `npm install`<br/>
 Run `npm start`<br/>
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-
-
+### `Database`<br/>
+If you wish to change the database location, perhaps localize it in the<br/>
+/server folder, edit the.env file, and change the connection string.
