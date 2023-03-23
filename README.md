@@ -11,15 +11,12 @@ In the project directory, you can run:
 
 ### `Run the Api`
 <br/>
-In the server folder: /server
-Run `npm install`
-<br/>
+In the server folder: /server<br/>
+Run `npm install`<br/>
 Run `npm start`
 
-### `Run the Socket Server`
-<br/>
-In the socket folder: /socket
-<br/>
+### `Run the Socket Server`<br/>
+In the socket folder: /socket<br/>
 Run `npm install`
 <br/>
 Run `npm start`
@@ -27,7 +24,7 @@ Run `npm start`
 ### `Run the Client app`<br/>
 In the client folder: /client<br/>
 Run `npm install`<br/>
-Run `npm start`
+Run `npm start`<br/>
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
