@@ -19,16 +19,33 @@ const CreateProject =  ({updateParentPost,callerComponent}) =>{
     const {logout} = useLogout();
     const [projectName, setProjectName] = useState("");
     const [desc, setDesc] = useState("");
-    const [maxNumber, setMaxNumber] = useState(null); 
+    const [maxNumber, setMaxNumber] = useState(""); 
     const [imageValue,setImageValue] = useState(null)
     const [tags,setTags] = useState(null)
     const [trigger, setTrigger] = useState(0);
     const [triggerSnackBar, setTriggerSnackBar] = useState(0);
+    const [fieldError,setFieldError] = useState(null);    
 
 
      const handleSubmit = async(e) =>{
         e.preventDefault();
-    
+        //handle form 
+        
+        if(projectName === "" ){
+            setFieldError("Project name cannot be empty");
+            return;
+        }else if(maxNumber === ""){
+            setFieldError("Member no: name cannot be empty");
+            return;
+        }else if(desc === ""){
+            setFieldError("Description name cannot be empty");
+            return;
+        }else if(isNaN(maxNumber)){
+            setFieldError("Member no: should be a number");
+            return;
+        }else{
+            setFieldError("");
+        }
         setTrigger((trigger) => trigger + 1);
         // const formData = new FormData()
         // formData.append("imageUpload", imageValue)
@@ -115,7 +132,7 @@ function App() {
                         value={projectName}
                        
                         />
-                   
+                        
                         
                         <input type="text" 
                         class="form-control max-input"
@@ -138,8 +155,9 @@ function App() {
                         <input type="file" className=" form-control projectUpload" onChange={(e) => setImage(e)} />
                         </div>
                         
-                       
+                        <p className="createError">{fieldError}</p>   
                 </form>
+                
                   :
                         <form onSubmit={handleSubmit} class=" create-from">
                         
@@ -173,7 +191,7 @@ function App() {
                         
                         </div>
                         
-                        
+                        <p className="createError">{fieldError}</p>  
                         </form>
                   }    
 

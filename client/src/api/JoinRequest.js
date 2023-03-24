@@ -1,5 +1,7 @@
 import { RefreshToken } from "./RefreshToken";
 
+var timeOut = 0;
+
 export const getJoinRequest = async(postId,user,dispatch,logout) =>{
     try {
         const response = await fetch('http://localhost:8080/api/join/'+postId,{
@@ -11,18 +13,22 @@ export const getJoinRequest = async(postId,user,dispatch,logout) =>{
             },
           
         })
-        console.log(response)
+
         if(response.ok){
             const json = await response.json();
+            timeOut = 0
             return json
           }
         
           if(response.status === 401){
               const refreshResponse = await RefreshToken(logout,user,dispatch);
-            if(refreshResponse){
+            if(refreshResponse && timeOut < 5 ){
                 user = JSON.parse(localStorage.getItem('user'))
                 getJoinRequest(postId,user,dispatch,logout);
+                timeOut = timeOut + 1
                
+            }else{
+                
             }  
           }
           return [];

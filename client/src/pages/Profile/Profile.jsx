@@ -21,6 +21,7 @@ const Profile = () => {
     const [imageValue,setImageValue] = useState(null)
     const [image,setImage] = useState(null)
     const [prevImage,setPrevImage] = useState(null);
+    const [fieldError,setFieldError] = useState(null);
 
     useEffect(()=>{
         getUserData();
@@ -72,16 +73,21 @@ const Profile = () => {
     const handleClick = async(e) =>{
      
         e.preventDefault()
-       
-        const formData = new FormData()
-        formData.append("imageUpload", imageValue)
-      
-        const profileP = await updateUserProfilePicture(formData,dispatch,logout)   
-        if(profileP){
-            //get updated profile data 
-            getUserData();
+        if(imageValue !== null){
+            setFieldError(null)
+            const formData = new FormData()
+            formData.append("imageUpload", imageValue)
+          
+            const profileP = await updateUserProfilePicture(formData,dispatch,logout)   
+            if(profileP){
+                //get updated profile data 
+                getUserData();
+            }
+            removeSelectedImage()
+        }else{
+            setFieldError("No image selected")
         }
-        removeSelectedImage()
+       
     }
     const removeSelectedImage = () => {
         setImageValue();
@@ -154,7 +160,7 @@ const Profile = () => {
                         <br/>
                         <input id='submitProfilePicture' type="submit"  class="btn btn-primary mb-8"/>
                     </form>
-
+                    <p className="profileError">{fieldError}</p>
                  
                 </div>
                 <div className="content-row"> 

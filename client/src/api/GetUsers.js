@@ -1,8 +1,11 @@
 
 import { RefreshToken } from "./RefreshToken";
+import {useNavigate} from 'react-router-dom';
+var timeOut = 0;
 
+const navigate = useNavigate();
 export const getUser = async(user,dispatch,logout) =>{
-    
+   
     try {
         const response = await fetch('http://localhost:8080/api/users/'+user,{
 	        method:'GET',
@@ -11,6 +14,7 @@ export const getUser = async(user,dispatch,logout) =>{
 
         if(response.ok){
             const json = await response.json();
+            timeOut = 0
             return json
           }
         
@@ -19,7 +23,7 @@ export const getUser = async(user,dispatch,logout) =>{
             if(refreshResponse){
                 user = JSON.parse(localStorage.getItem('user'))
                 getUser(user,dispatch,logout);
-               
+                timeOut = timeOut + 1
             }  
           }
           return [];
@@ -49,6 +53,8 @@ export const getUsers = async(users,dispatch,logout) =>{
                
                 getUsers(user,dispatch,logout);
                
+            }else{
+                navigate("/login") 
             }  
           }
           return [];

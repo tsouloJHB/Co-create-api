@@ -86,21 +86,14 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
     
         })      
        
-        if(response.status === 400){
-           
-        }
+      
         if(response.status === 401){
-            // send refresh token
-           // await refreshtoken();
-           if(response.status === 401){
+            
             const refreshResponse = await RefreshToken(logout,user,dispatch);
-          
             if(refreshResponse){
                user = JSON.parse(localStorage.getItem('user'))
                handleSubmit();
             }
-          }
-
         }
         //updateParentPost();
         if(response.ok){

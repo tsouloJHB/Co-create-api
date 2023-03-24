@@ -213,9 +213,11 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
                                 height: 48,
                             }} />
                          }
-                          <p className="text"> {chat.text} {member.name}</p>  </>: ""}</div>
+                          <p className="text"> {chat.text} {member.name}</p>  </>:
+                           ""}</div>
                           { member._id === chat.senderId ?<p class="time"> {format(chat.createdAt)}</p>:""}</>
-                       :<><div  className="message ">
+                       :<><div  className="message ">{member._id === chat.senderId && user.user !== chat.senderId?
+                        <>
                           <div  className="response">
                             <>
                         
@@ -237,6 +239,8 @@ const MessagesPanel = ({project, updateOnlineUsers}) =>{
                          }
                             </>
                           </div>
+                          </>
+                            :""}
                        </div>
                        {/* { member._id !== chat.senderId ?<p class="time-response"> {format(chat.createdAt)}</p>:""} */}</>
                        }

@@ -30,7 +30,6 @@ const Projects = () => {
     const fetchPosts = async () =>{
         const response = await UserProject(user,dispatch,logout);
         if(response){
-            console.log(response);
             const inProgress = response.filter(
                 item => item.status === 'InProgress'
             );
@@ -82,7 +81,7 @@ const Projects = () => {
             
          
             
-            {projects.length === 0 ?"No Projects Found" :""} 
+            {projects.length === 0 ?<div className="post-container">No Projects Found<p>All created projects will appear here</p></div> :""} 
             
         { viewTypeProject === "InProgress" ? projects && projects.filter((pro) => {
             return  pro.status === "InProgress"

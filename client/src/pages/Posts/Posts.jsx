@@ -12,7 +12,7 @@ import SideJoinRequest from "../../components/SideJoinRequest/SideJoinRequest";
 import Notifications from "../../components/notifications/Notifications";
 import "./Post.css"
 import SnackBar from "../../components/snackbar/SnackBar";
- 
+import { useNavigate } from 'react-router-dom';
 
 const Projects = () =>{   
     const { user,dispatch } = useContext(AuthContext);
@@ -21,7 +21,8 @@ const Projects = () =>{
     const [triggerSnackBar, setTriggerSnackBar] = useState(0);
     const [joins,setJoins] = useState(null);
     const {posts,postDispatch} = useContext(PostContext);
-
+    const [openProfileModal, setOpenProfileModal] = useState(false);
+    const navigate = useNavigate();
     const {logout} = useLogout();
     var myPostFound = 0
     const [closeParent, setCloseParent] = useState(false);
@@ -47,6 +48,10 @@ const Projects = () =>{
         
        
         const fetchPosts = async () =>{
+            if(JSON.parse(localStorage.getItem('user')).token === null){
+              localStorage.removeItem('user')
+              navigate("/login");
+            }
               //await userAuthRefreshToken();  
               //await RefreshToken(logout,user,dispatch);
           
@@ -168,6 +173,7 @@ const Projects = () =>{
                     createTrigger={createTrigger}
                     /> </div> 
               ))}
+              {posts && posts.length === 0 ? <div className="post-container">No posts available</div>:""}
             </div>
             <SnackBar message="Join request successful" trigger={triggerSnackBar} />
           </div>

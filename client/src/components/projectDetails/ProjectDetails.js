@@ -38,12 +38,12 @@ const ProjectDetails = ({project}) => {
             <br/>
  
             {project.status === "InProgress"? <Link to="/projectView" state={{ project: project } }>
-                <ChatIcon sx={{cursor:"pointer"}} />
+                <ChatIcon sx={{cursor:"pointer",color:"blue"}} />
                 {/* <Button variant="outlined" color="success" >Open</Button> */}
                 </Link>  
                 :""}
             {project.status === "NotStarted"? <Link to="/projectStatus" state={{ project: project } }>
-                <InfoIcon sx={{cursor:"pointer"}}/>
+                <InfoIcon sx={{cursor:"pointer",color:"blue"}}/>
                 {/* <Button variant="outlined" color="success" >    Project status</Button> */}
             
                 </Link>  :""}

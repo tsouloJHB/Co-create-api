@@ -153,8 +153,15 @@ form{
   left: 21%;
   right: 0px;
   width: 70%;
-  bottom: 15px;
+  bottom: 15  px;
 
+}
+.profileError{
+  font-size: 14px;
+  color: red;
+  position: relative;
+  top:10px;
+  left: 35%;
 }
 
 

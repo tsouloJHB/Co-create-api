@@ -103,14 +103,13 @@ const Signup = () => {
       <div className="row gx-lg-5 align-items-center">
         <div className="col-lg-6 mb-5 mb-lg-0">
           <h1 className="my-5 display-3 fw-bold ls-tight">
-            The best offer <br />
-            <span className="text-primary">for your business</span>
+            
+            <span className="text-primary">Co-create</span>
           </h1>
           <p >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-            quibusdam tempora at cupiditate quis eum maiores libero
-            veritatis? Dicta facilis sint aliquid ipsum atque?
+          Welcome! Our platform is designed to connect innovators, creators, researchers, students, and anyone with an interest in innovation to find like-minded individuals and teams to collaborate with. Our aim is to foster creativity and innovation by creating an environment where individuals with different skills and backgrounds can come together and bring their ideas to life.
+
+          With our application, users can create and join projects, message other users in real-time, and utilize a variety of tools to facilitate collaboration.
           </p>
         </div>
 
