@@ -12,9 +12,11 @@ export const fetchPosts = async(user,dispatch,logout) =>{
   
       
       const lJoins =  await fetchAllJoinRequest(user,dispatch,logout)
-      console.log(lJoins);
-      if(lJoins){
-        
+      console.log(lJoins)
+      if(lJoins.hasOwnProperty("id")){
+       
+
+      
         let data = [];
         json && json.forEach(post => {
         let returnObject = post
@@ -34,7 +36,12 @@ export const fetchPosts = async(user,dispatch,logout) =>{
         return data;
        
       }
-      }
+      
+    }else{
+      return json;
+    }
+    }else{
+   
     }
 
     

@@ -81,7 +81,11 @@ const Projects = () => {
             
          
             
-            {projects.length === 0 ?<div className="post-container">No Projects Found<p>All created projects will appear here</p></div> :""} 
+            {projects.length === 0 
+            ?<div className="post-container no-projects"><p><b>No Projects Found</b></p>
+                <p>All created projects will appear here</p>
+              </div> 
+            :""} 
             
         { viewTypeProject === "InProgress" ? projects && projects.filter((pro) => {
             return  pro.status === "InProgress"

@@ -3,9 +3,9 @@ import { RefreshToken } from "./RefreshToken";
 import {useNavigate} from 'react-router-dom';
 var timeOut = 0;
 
-const navigate = useNavigate();
+
 export const getUser = async(user,dispatch,logout) =>{
-   
+  
     try {
         const response = await fetch('http://localhost:8080/api/users/'+user,{
 	        method:'GET',
@@ -33,6 +33,7 @@ export const getUser = async(user,dispatch,logout) =>{
 }
 
 export const getUsers = async(users,dispatch,logout) =>{
+   
     const user = JSON.parse(localStorage.getItem('user'))
     try {
         const response = await fetch(`http://localhost:8080/api/users/users/${users.join(',')}`,{
@@ -54,7 +55,7 @@ export const getUsers = async(users,dispatch,logout) =>{
                 getUsers(user,dispatch,logout);
                
             }else{
-                navigate("/login") 
+                
             }  
           }
           return [];
@@ -68,7 +69,7 @@ export const getUsers = async(users,dispatch,logout) =>{
 
 
 export const updateUserProfile = async(dataObj,dispatch,logout) =>{
-
+    
     const user = JSON.parse(localStorage.getItem('user'))
     try {
         const response = await fetch('http://localhost:8080/api/users/',{
@@ -103,6 +104,7 @@ export const updateUserProfile = async(dataObj,dispatch,logout) =>{
 
 
 export const updateUserProfilePicture = async(image,dispatch,logout) =>{
+  
     console.log(image)
     const user = JSON.parse(localStorage.getItem('user'))
     try {

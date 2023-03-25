@@ -130,7 +130,7 @@ const SideJoinRequest = ({closeParentModal,closeParent,openParent}) =>{
     }
 
     return (
-        <div className="SideJoinRequest post-border">
+        <div className="SideJoinReuest post-border">
             {closeParent}
             {joins && joins.length === 0?<p>No joins</p>:""}
             {/* <div class="request-bar">

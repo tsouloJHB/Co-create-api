@@ -95,6 +95,11 @@ const Projects = () =>{
             
         }
         const fetchAllJoinRequest = async () =>{
+          
+          if(JSON.parse(localStorage.getItem('user')) === undefined){
+            localStorage.removeItem('user')
+            navigate("/login");
+          }
           console.log("JOin request failed");
           const response = await fetch('http://localhost:8080/api/join/requests',{
             method:'GET',
