@@ -88,9 +88,11 @@
   .feeddark .viewcomments:hover {
     text-decoration: underline;
   }
-  
+.post-title{
+  color:  var(--black_contrast)  ;
+}  
 .post-text{
-  color: #9a9a9a;
+  color: var(--black_contrast);
   margin: 15px 0;
   font-size: 15px;
 

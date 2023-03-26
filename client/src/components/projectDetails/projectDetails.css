@@ -4,6 +4,9 @@
     margin: 10px    ;
     
 }
+.project-des{
+    color: var(--black_contrast);
+}
 .projectTime{
     color: gray;
     font-size: 10px;
@@ -26,7 +29,7 @@
     font-weight: 500; 
 }
 .yourProjectStatus{
-    color:black;
+    color:var(--black_contrast);
     font-size: 10px;
     margin: 10px;
     font-weight: 500; 

@@ -200,13 +200,13 @@ const PostDetails = ({postDetailsModalSetTrue,postDetailsModalSetFalse,postDetai
                         }
                      
                         <div>
-                            {profile &&  profile._id === user.user ? <p>You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
+                            {profile &&  profile._id === user.user ? <p className="comment-author">You</p> :<p>{profile && profile.name} {profile && profile.surname}</p> }
                             <span>{format(post.createdAt)} </span>
                         </div>
                         </div>
                     </div>
                 </div>
-                <h4  onClick={handleOpenModal}>{project && project.projectName}</h4> 
+                <h4 className="post-title"  onClick={handleOpenModal}>{project && project.projectName}</h4> 
                 <p className="post-text">{project &&
                 //     <LinesEllipsis
                 //     text={project.desc}

@@ -13,7 +13,7 @@
     z-index: 0;
 }
 .project-status-cover .cover-image{
-    background-color:white;   
+    background: var(--portal_color);  
     height: 600px;
     width: 100%;
     left: 0px;
@@ -27,6 +27,7 @@
     flex-direction: row;
     margin: auto;
     width: 5%;
+    
 }
 .projectStatus-profiles p {
     margin-left: 15px;

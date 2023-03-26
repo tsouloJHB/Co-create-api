@@ -17,3 +17,7 @@
     font-size: 12px;
   
   }
+
+  #noNotfi{
+    color: var(--black_contrast);
+  }

@@ -3,7 +3,7 @@
     height: 65px;
     width: 100%;
 
-
+  
     text-align:center;
     position: relative;
     overflow:hidden;
@@ -24,6 +24,7 @@
 
   .SideJoinRequest{
     text-align: center  ;
+    
   }
   #divider{
     background-color: rgb(255, 255, 255);

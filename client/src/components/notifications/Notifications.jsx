@@ -9,7 +9,7 @@ const Notifications = () =>{
                     <h4>Notifications</h4>
                  
                 </div>
-                <div>
+                <div id="noNotfi">
                     No Notifications
                 </div>
                 {/* <div class="event">

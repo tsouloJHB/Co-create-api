@@ -12,7 +12,8 @@
     align-items: center;
    
 }
-.comment-form{
+
+.comment .user-profile .comment-form{
     display: flex;
     align-items: center;
  
@@ -69,7 +70,7 @@
   }
   
 .comment {
-    background-color: #f0f2f5;
+    background-color: var(--comments_color);
     border-radius: 10px;
     padding: 14px;
     margin-bottom: 10px;
@@ -81,13 +82,13 @@
   position: relative;
   top: 10px;
   bottom: 0px;
-  color: black;
+  color:  var(--black_contrast);
   margin-bottom: 40px;
 
 }  
 .comment-author {
     font-weight: bold;
-   
+    color: var(--black_contrast);
   }
 
 
@@ -123,14 +124,17 @@
   position: relative;
   top: 14px;
 }
+.user-profile .comment-author{
+  color: var(--black_contrast);
+}
 .comment-time{
   position: relative;
   top: 16px;
-  
   width: 100%;
 }
 .groupInfo{
   position: relative;
+ 
  
  
   display: flex;

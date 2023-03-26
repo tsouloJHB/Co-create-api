@@ -54,7 +54,7 @@ const Comments = ({ fetchComments,postId,comments}) => {
                         width: 48,
                         height: 48,
                     }} />}
-                    {console.log(comment)}
+                    
                     <span className='comment-author'>{comment.user.name}</span>
                     <span className="comment-time ">{format(comment.comment.createdAt)} </span>
                     <div className="groupInfo">

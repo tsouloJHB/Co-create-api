@@ -99,7 +99,7 @@ const Modal = ({ open, onClose, projectData, user,insertComments,fromCom, commen
           height: 48,
       }} />}
                           
-        <p>{user && user.name}</p>
+        <p className="profile-name">{user && user.name}</p>
         <span className="postTime">{format(projectData.createdAt)}</span>
            
       </div>

@@ -32,9 +32,9 @@ const ProjectDetails = ({project}) => {
                 <p className="projectStatus">{project.status}</p>
                 {project.userId === user.user?<span className="yourProjectStatus">Your project</span>:""}
             </div>
-            <h5>{project.projectName}</h5>
+            <h5  className="project-des">{project.projectName}</h5>
             <br/>
-            <p>{project.desc}{project.desc}</p>
+            <p className="project-des">{project.desc}{project.desc}</p>
             <br/>
  
             {project.status === "InProgress"? <Link to="/projectView" state={{ project: project } }>

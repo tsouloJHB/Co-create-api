@@ -15,7 +15,7 @@
 .side-view-space{
   
   align-self: flex-start;
-  background: var(--bg-color);
+  background: var(--portal_color);
   padding: 20px;
   border-radius: 17px;
   margin-bottom: 30px;
@@ -24,7 +24,7 @@
 
 .projectNameView{
   text-transform: uppercase;
-  color: rgb(0, 0, 0);
+  color: var(--black_contrast);
   text-align: center;
   font-size: 14px;
   font-weight: 500;
