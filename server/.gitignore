@@ -39,7 +39,7 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+node_modules/jui
 server/node_modules/
 client/node_modules/
 jspm_packages/

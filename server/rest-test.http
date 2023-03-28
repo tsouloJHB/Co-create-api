@@ -12,8 +12,9 @@ post http://localhost:8080/api/users/signup
 Content-Type: application/json
 
 {
-    "email":"nolan@gmail.com",
-    "name":"nolan",
+    "email":"james@gmail.com",
+    "name":"",
+    "surname":"taps",
     "password":"1234567"
 }
 
@@ -23,8 +24,7 @@ Content-Type: application/json
 //get user info
 get http://localhost:8080/api/users/users/63ab3e9df64e8baf2976d159,63ab3f17bf246598d2f1983f,63c051b56d52f42e978e5db3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3OTMzNDQ5NCwiZXhwIjoxNjc5MzUyNDk0fQ.ygEyJNfgOlj_cH4KAjKtt7519Ear2A65sH4HJEBYOHY"
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MjA1ZTNjYjJiNDFjN2VhODM1YSIsImlhdCI6MTY3OTMzNDU2MiwiZXhwIjoxNjc5MzUyNTYyfQ.IcRYvpNwYWA4QtxiAcvaNDU1_9ZGd2xac2ZIw6N3dGE
 
 
 
